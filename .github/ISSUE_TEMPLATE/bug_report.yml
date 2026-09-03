@@ -1,0 +1,60 @@
+name: Bug report / Fehlermeldung
+description: Something in UnifyRAW does not work as expected. / Etwas funktioniert nicht wie erwartet.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for reporting. English or German, whichever is easier. / Danke fuer die Meldung. Deutsch oder Englisch, wie es leichter faellt."
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened? / Was ist passiert?
+      description: What did you do, what did you expect, what happened instead? / Was hast du getan, was erwartet, was ist stattdessen passiert?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce / Schritte zum Nachstellen
+      placeholder: "1. ...\n2. ...\n3. ..."
+  - type: dropdown
+    id: source
+    attributes:
+      label: Source type / Quellentyp
+      options:
+        - Local folder / Lokaler Ordner
+        - Immich
+        - Lychee
+        - Other / Andere
+        - Not source related / Unabhaengig von der Quelle
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area / Bereich
+      options:
+        - Library / Bibliothek
+        - Editor
+        - RAW decoding / RAW-Dekodierung
+        - Export
+        - Device sync / Geraete-Abgleich
+        - Login / Account
+        - Other / Sonstiges
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and OS / Browser und Betriebssystem
+      placeholder: "e.g. Chrome 140 on Windows 11, Safari on iPadOS 19"
+    validations:
+      required: true
+  - type: input
+    id: file
+    attributes:
+      label: File type, camera / Dateityp, Kamera
+      placeholder: "e.g. NEF from Nikon Z6 II, HEIC from iPhone"
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots, console errors / Screenshots, Konsolenfehler
+      description: Please do not post photos you do not want to be public. / Bitte keine Fotos posten, die nicht oeffentlich sein sollen.

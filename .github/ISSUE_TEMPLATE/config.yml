@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Website
+    url: https://unifyraw.com
+    about: What UnifyRAW is, which sources work today, how privacy is handled.
+  - name: Open the app
+    url: https://photo.beseb.de
+    about: The hosted instance, currently free.

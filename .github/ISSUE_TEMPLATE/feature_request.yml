@@ -1,0 +1,36 @@
+name: Feature request / Feature-Wunsch
+description: Propose a feature or a new photo source. / Schlage eine Funktion oder eine neue Quelle vor.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: "Please search existing requests first and upvote instead of duplicating. / Bitte erst suchen und bestehende Wuensche hochvoten statt zu doppeln."
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind / Art
+      options:
+        - New source (Immich, PhotoPrism, ...) / Neue Quelle
+        - Editor feature / Editor-Funktion
+        - Library feature / Bibliotheks-Funktion
+        - Export / Writeback
+        - Self-hosting, licence, pricing / Selfhosting, Lizenz, Preis
+        - Other / Sonstiges
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do? / Was willst du erreichen?
+      description: Describe the goal, not only the button you miss. / Beschreibe das Ziel, nicht nur den fehlenden Knopf.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal / Vorschlag
+  - type: textarea
+    id: reference
+    attributes:
+      label: How do other tools do it? / Wie machen es andere Werkzeuge?
+      placeholder: "e.g. Lightroom, darktable, RawTherapee, Capture One"
