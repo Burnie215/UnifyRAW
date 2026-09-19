@@ -1,0 +1,763 @@
+/* ─── Shared ─── */
+.photo-grid-pinch-surface {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Keep ordinary one-finger vertical scrolling native. Pinch zoom is handled
+ * only for the two-pointer library gesture on touch-first phone layouts. */
+.photo-grid-pinch-surface.is-pinch-enabled {
+  touch-action: pan-y;
+}
+
+.photo-grid {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.grouped-scroll {
+  padding: 16px;
+}
+
+/* ─── Timeline ─── */
+.timeline-view {
+  padding: 16px 16px 16px 32px;
+}
+
+.timeline-month {
+  position: relative;
+  margin-bottom: 24px;
+  padding-left: 20px;
+  border-left: 2px solid var(--border);
+}
+
+/* A switch, not a caption: the whole line folds its month away. */
+.timeline-month-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  position: relative;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.timeline-month-header:hover .timeline-month-label { color: var(--accent); }
+
+.timeline-chevron {
+  transition: transform 0.15s;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+}
+
+.timeline-chevron.open { transform: rotate(90deg); }
+
+.timeline-dot {
+  position: absolute;
+  left: -27px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg-secondary);
+}
+
+.timeline-month-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.timeline-month-count {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.grid-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-secondary);
+  gap: 8px;
+}
+
+.empty-icon { opacity: 0.3; margin-bottom: 8px; }
+.empty-hint { font-size: 12px; opacity: 0.6; }
+
+.grid-item-loading {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-tertiary);
+}
+
+.grid-item-blurhash {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(4px);
+  transform: scale(1.1); /* hide blur edges */
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+.grid-checkbox {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.grid-checkbox.checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ═══ Tiles View ═══ */
+.tiles-grid {
+  display: grid;
+  gap: 8px;
+  justify-content: start;
+}
+
+.grid-item.tile {
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  border: 2px solid transparent;
+  transition: border-color 0.15s;
+  background: var(--bg-tertiary);
+}
+
+.grid-item.tile:hover { border-color: var(--bg-hover); }
+.grid-item.tile.selected { border-color: var(--accent); }
+
+/* RAW tile cache state — solid darker border when a Smart Preview is
+ * already cached locally (next open will be fast). */
+.grid-item.tile.cached-preview {
+  border-color: rgba(0, 0, 0, 0.55);
+}
+.grid-item.tile.cached-preview.selected { border-color: var(--accent); }
+
+/* Hover dwell triggered a backend prefetch — animate a dashed border
+ * around the tile until the cache write lands. */
+.grid-item.tile.prefetching {
+  border-style: dashed;
+  border-color: var(--accent);
+  animation: tile-prefetch-march 0.6s linear infinite;
+}
+
+@keyframes tile-prefetch-march {
+  0%   { border-color: var(--accent); }
+  50%  { border-color: rgba(74, 158, 255, 0.45); }
+  100% { border-color: var(--accent); }
+}
+
+.grid-item.tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.grid-item-name {
+  font-size: 10px;
+  color: #ddd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.grid-item-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.7) 40%);
+  padding: 14px 6px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.grid-item-footer .stars {
+  opacity: 0.85;
+}
+
+/* Tile flag indicator */
+.tile-flag {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  padding: 2px 4px;
+  display: flex;
+}
+
+.tile-flag.pick { color: #fff; }
+.tile-flag.reject { color: #e74c3c; }
+
+/* Edit indicator (small blue dot, bottom-right of tile) */
+.tile-edit-badge {
+  position: absolute;
+  bottom: 28px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent, #3b82f6);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Stack badge */
+/* Names the RAW hidden behind a grouped tile, next to the stack badge. */
+.tile-pair-badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--accent, #4a9eff);
+  border-radius: 3px;
+  padding: 1px 4px;
+  z-index: 3;
+  pointer-events: none;
+  line-height: 1.3;
+}
+
+/* Clickable: it folds its stack open and shut again. */
+.tile-stack-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 9px;
+  font-weight: 600;
+  font-family: inherit;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 1px 4px;
+  z-index: 3;
+  cursor: pointer;
+  line-height: 1.3;
+}
+
+.tile-stack-badge:hover {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.tile-stack-badge.open {
+  background: var(--accent, #4a9eff);
+  color: var(--accent-fg, #fff);
+}
+
+.list-stack-badge {
+  margin-left: 6px;
+  font-size: 9px;
+  font-weight: 600;
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.12);
+  color: inherit;
+  border: none;
+  border-radius: 3px;
+  padding: 1px 4px;
+  cursor: pointer;
+  line-height: 1.3;
+}
+
+.list-stack-badge.open {
+  background: var(--accent, #4a9eff);
+  color: var(--accent-fg, #fff);
+}
+
+.grid-item.tile.stacked {
+  box-shadow: 2px 2px 0 0 rgba(255, 255, 255, 0.15), 4px 4px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Stars */
+.stars {
+  display: flex;
+  gap: 1px;
+}
+
+.star-filled {
+  fill: #f1c40f;
+  stroke: #f1c40f;
+  stroke-width: 0.5;
+}
+
+.star-empty {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 0.5;
+}
+
+/* Flag icons */
+.flag-pick { color: #fff; }
+.flag-reject { color: #e74c3c; }
+
+/* ═══ Folder Sections (collapsible) ═══ */
+.folder-section {
+  margin-bottom: 4px;
+}
+
+.folder-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 6px 4px;
+  border: none;
+  background: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.folder-header:hover { color: var(--accent); }
+
+.folder-chevron {
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+
+.folder-chevron.open { transform: rotate(90deg); }
+
+.folder-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.folder-count {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.folder-body {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+/* ═══ Folder Tiles (mosaic + stack) ═══ */
+.folder-tile {
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.15s;
+}
+
+.folder-tile:hover {
+  transform: scale(1.02);
+}
+
+.folder-tile-preview {
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-tertiary);
+}
+
+.folder-tile-frame {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.folder-tile:hover .folder-tile-frame {
+  border-color: var(--accent);
+}
+
+.folder-tile-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 2px;
+  gap: 4px;
+}
+
+.folder-tile-name {
+  font-size: 11px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.folder-tile-count {
+  font-size: 10px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+/* Mosaic: 2x2 grid inside folder tile */
+.mosaic-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  width: 100%;
+  height: 100%;
+  gap: 1px;
+}
+
+.mosaic-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mosaic-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-active);
+}
+
+/* Stack: cards layered */
+.stack-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.stack-card {
+  position: absolute;
+  width: 75%;
+  height: 75%;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border);
+}
+
+.stack-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Folder back button */
+.folder-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 0;
+  margin-bottom: 12px;
+}
+
+.folder-back-btn:hover { text-decoration: underline; }
+
+/* ═══ List View ═══ */
+.photo-grid.list-view {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  position: sticky;
+  top: 0;
+  background: var(--bg-secondary);
+  z-index: 1;
+}
+
+.list-folder-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  width: 100%;
+  text-align: left;
+}
+
+.list-folder-row:hover { background: var(--bg-hover); }
+
+.list-folder-row .folder-count {
+  margin-left: auto;
+}
+
+.list-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+  position: relative;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.list-row:hover { background: var(--bg-hover); }
+.list-row.selected { background: rgba(74, 158, 255, 0.1); }
+
+.list-col-thumb {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg-tertiary);
+}
+
+.list-col-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.list-thumb-loading {
+  width: 100%;
+  height: 100%;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.list-col-name {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-primary);
+}
+
+.list-col-path {
+  width: 140px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11px;
+}
+
+.list-col-rating { width: 60px; flex-shrink: 0; }
+.list-col-flag { width: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.list-col-date { width: 90px; flex-shrink: 0; text-align: right; }
+
+.list-row[style*="border-left-color"] {
+  border-left: 3px solid;
+  padding-left: 13px;
+}
+.list-col-size { width: 70px; flex-shrink: 0; text-align: right; }
+.list-col-type { width: 50px; flex-shrink: 0; text-align: right; }
+
+.list-row .grid-checkbox {
+  position: relative;
+  top: auto;
+  left: auto;
+}
+
+/* ═══ Gallery View ═══ */
+.photo-grid.gallery-view {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+}
+
+.gallery-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.gallery-main-name {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 4px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.gallery-divider {
+  height: 6px;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  cursor: ns-resize;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  touch-action: none;
+}
+
+.gallery-divider::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 2px;
+  background: var(--text-secondary);
+  border-radius: 1px;
+  opacity: 0.4;
+}
+
+.gallery-divider:hover::after { opacity: 0.8; }
+
+.gallery-strip {
+  display: flex;
+  gap: 4px;
+  padding: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: var(--bg-secondary);
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.gallery-strip-track {
+  position: relative;
+  flex: 0 0 auto;
+  align-self: stretch;
+}
+
+.gallery-strip-window {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.gallery-strip-item {
+  flex-shrink: 0;
+  /* The strip computes its scroll length from this width, so the 2 px border
+   * has to sit inside it - otherwise every thumbnail is 4 px wider than the
+   * model and the two drift apart over ten thousand of them. */
+  box-sizing: border-box;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.15s, opacity 0.15s;
+  opacity: 0.6;
+  background: var(--bg-tertiary);
+}
+
+.gallery-strip-item:hover { opacity: 0.9; }
+.gallery-strip-item.active { border-color: var(--accent); opacity: 1; }
+.gallery-strip-item.selected { border-color: var(--accent); }
+
+.gallery-strip-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* The strip is one row, not a grid: the trigger rides at its right end, where
+   scrolling to the last thumbnail brings it into view. */
+.gallery-strip .load-more-trigger {
+  flex: 0 0 auto;
+  padding: 0 12px;
+}
+
+/* ═══ Load More ═══ */
+.load-more-trigger {
+  display: flex;
+  justify-content: center;
+  padding: 24px 16px;
+  grid-column: 1 / -1;
+}
+
+.load-more-btn {
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 8px 24px;
+  border-radius: 6px;
+  font-size: 12px;
+  transition: all 0.15s;
+}
+
+.load-more-btn:hover {
+  background: rgba(74, 158, 255, 0.1);
+  border-color: var(--accent);
+}
+
+.load-more-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  animation: pulse 1.5s ease-in-out infinite;
+}

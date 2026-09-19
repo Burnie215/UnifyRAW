@@ -1,0 +1,5 @@
+# UnifyRAW ist in einer fruehen Alpha und soll nicht in Suchmaschinen stehen.
+# Zusaetzlich setzt die Auslieferung X-Robots-Tag: noindex, nofollow — der
+# Header wirkt auch dort, wo diese Datei nicht gelesen wird.
+User-agent: *
+Disallow: /

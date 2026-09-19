@@ -1,0 +1,760 @@
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.dialog {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  width: 380px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.dialog.dialog-wide {
+  width: 1040px;
+  max-width: 92vw;
+  max-height: 88vh;
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.dialog-header h3 {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+.dialog-close {
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+.dialog-close:hover {
+  color: var(--text-primary);
+}
+
+.dialog-body {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ─── Adaptive dialogs ─── */
+:root[data-screen="phone"] .dialog-overlay {
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+:root[data-screen="phone"] .dialog,
+:root[data-screen="phone"] .dialog.dialog-wide {
+  width: 100dvw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overscroll-behavior: contain;
+}
+
+:root[data-screen="phone"] .dialog-header {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  min-height: calc(56px + env(safe-area-inset-top, 0));
+  padding: env(safe-area-inset-top, 0) 12px 0 16px;
+  background: var(--bg-secondary);
+}
+
+:root[data-screen="phone"] .dialog-close,
+:root[data-screen="phone"] .dialog-back,
+:root[data-screen="phone"] .album-select-all {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+:root[data-screen="phone"] .dialog-body {
+  padding: 14px 14px calc(28px + env(safe-area-inset-bottom, 0));
+  gap: 12px;
+}
+
+:root[data-screen="phone"] .source-type-btn,
+:root[data-screen="phone"] .source-picker .source-type-btn,
+:root[data-screen="phone"] .source-transport-selector > label,
+:root[data-screen="phone"] .album-item,
+:root[data-screen="phone"] .dialog-submit {
+  min-height: 48px;
+}
+
+:root[data-screen="phone"] .source-picker .source-type-btn div {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+:root[data-screen="phone"] .source-transport-selector {
+  grid-template-columns: 1fr;
+}
+
+:root[data-screen="phone"] .dialog input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+:root[data-screen="phone"] .dialog select,
+:root[data-screen="phone"] .dialog textarea {
+  min-height: 46px;
+  font-size: 16px;
+}
+
+:root[data-screen="tablet"] .dialog {
+  max-width: min(92vw, 720px);
+  max-height: 90dvh;
+}
+
+:root[data-screen="tablet"] .dialog.dialog-wide {
+  max-width: 94vw;
+}
+
+.source-picker .source-group {
+  margin-bottom: 4px;
+}
+
+.source-picker .source-type-btn {
+  padding: 5px 10px;
+  gap: 8px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.source-picker .source-type-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.source-picker .source-type-btn div {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.source-picker .source-type-btn strong {
+  font-size: var(--text-base);
+}
+
+.source-picker .source-type-btn span {
+  font-size: 9px;
+}
+
+.source-type-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+}
+
+.source-type-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: rgba(74, 158, 255, 0.05);
+}
+
+.source-type-btn.disabled,
+.source-type-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+
+.source-type-btn.disabled:hover {
+  border-color: var(--border);
+  background: none;
+}
+
+.coming-soon-badge {
+  margin-left: auto;
+  font-size: 8px !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff !important;
+  white-space: nowrap;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.selfhost-only-badge {
+  margin-left: auto;
+  font-size: 8px !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  /* Deliberately not the accent colour: this is a condition, not a promise. */
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-secondary, #999) !important;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.source-picker-local .coming-soon-badge {
+  font-size: 9px !important;
+  padding: 2px 8px;
+}
+
+.source-type-btn svg {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.source-type-btn div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.source-type-btn strong {
+  font-size: var(--text-md);
+  font-weight: 500;
+}
+
+.source-type-btn span {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+/* Album selection */
+.album-filter-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.album-filter-toggle input { accent-color: var(--accent); }
+
+.source-transport-selector {
+  display: grid;
+  /* Zwei feste Spalten passten nicht in den Dialog: die zweite Option lag
+     hinter dem rechten Rand und war schlicht unsichtbar - der Browser-Weg sah
+     dadurch aus, als gaebe es gar keine Wahl. Bei zu wenig Platz stapeln. */
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 6px;
+  margin: 4px 0;
+  padding: 0;
+  border: 0;
+}
+
+.source-transport-selector legend {
+  grid-column: 1 / -1;
+  margin-bottom: 2px;
+  font-size: var(--text-base);
+  color: var(--text-primary);
+}
+
+.source-transport-selector > label {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.source-transport-selector > label.active {
+  border-color: var(--accent);
+  background: rgba(74, 158, 255, 0.08);
+}
+
+/* Angeboten, aber nicht waehlbar: der Weg ueber den Server braucht ein
+   Backend, das dieser Build nicht hat. Sichtbar bleibt er trotzdem, damit
+   die Browser-Verbindung als Wahl erkennbar ist und nicht als einzige Zeile. */
+.source-transport-selector > label.unavailable {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.source-transport-selector > label.unavailable input {
+  cursor: not-allowed;
+}
+
+.source-transport-cors code {
+  display: block;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.source-transport-selector small.transport-unavailable {
+  margin-top: 3px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.source-transport-selector input {
+  margin: 2px 0 0;
+  accent-color: var(--accent);
+}
+
+.source-transport-selector label span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.source-transport-selector label strong {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.source-transport-selector label small,
+.source-transport-selector p {
+  font-size: var(--text-xs);
+  line-height: 1.35;
+  color: var(--text-secondary);
+}
+
+.source-transport-selector p {
+  grid-column: 1 / -1;
+  margin: 2px 0 0;
+}
+
+.album-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+}
+
+.album-select-all {
+  border: none;
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  padding: 2px 6px;
+}
+
+.album-list {
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.album-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: var(--text-base);
+  transition: background 0.1s;
+}
+
+.album-item:hover { background: var(--bg-hover); }
+.album-item.selected { background: rgba(74, 158, 255, 0.1); }
+.album-item input { accent-color: var(--accent); flex-shrink: 0; }
+
+.album-name {
+  flex: 1;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.album-count {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.dialog-back {
+  border: none;
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: var(--text-base);
+  padding: 0;
+  align-self: flex-start;
+  margin-bottom: 4px;
+}
+
+.dialog-back:hover {
+  text-decoration: underline;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-field label {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.form-field input {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  padding: 8px 10px;
+  font-size: var(--text-md);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.form-field input:focus {
+  border-color: var(--accent);
+}
+
+.form-field input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 58px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  padding: 8px 10px;
+  font: inherit;
+}
+
+.library-mode-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.library-mode-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  min-height: 116px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+}
+
+.library-mode-card.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.library-mode-card svg { color: var(--accent); }
+.library-mode-card span { color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.35; }
+
+.library-root-list {
+  display: flex;
+  flex-direction: column;
+  max-height: 180px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.library-root-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.library-root-item:last-child { border-bottom: 0; }
+.library-root-item.disabled { opacity: 0.55; }
+.library-root-item small, .library-root-empty, .library-field-help {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+.library-root-empty { padding: 8px 0; }
+
+.library-import-progress {
+  display: grid;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+.library-import-progress progress {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.form-hint-block {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  padding: 8px 10px;
+  border-radius: 4px;
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
+.form-error {
+  font-size: var(--text-base);
+  color: #e74c3c;
+  padding: 4px 0;
+}
+
+.dialog-submit {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  font-size: var(--text-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-top: 4px;
+}
+
+.dialog-submit:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.dialog-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* OAuth mode toggle */
+.form-mode-toggle {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.form-mode-toggle button {
+  flex: 1;
+  border: none;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  padding: 6px 12px;
+  font-size: var(--text-base);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.form-mode-toggle button.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.form-mode-toggle button:not(.active):hover {
+  background: var(--bg-hover);
+}
+
+/* ── Source groups ── */
+
+.source-picker {
+  max-height: 60vh;
+  overflow-y: auto;
+  gap: 4px;
+}
+
+.source-picker-local {
+  margin-bottom: 8px;
+}
+
+.source-picker-local .source-type-btn {
+  width: 100%;
+  padding: 8px 14px;
+  gap: 10px;
+}
+
+.source-picker-local .source-type-btn strong {
+  font-size: var(--text-md);
+}
+
+.source-picker-local .source-type-btn span {
+  font-size: var(--text-xs);
+}
+
+.source-picker-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.source-group {
+  margin-bottom: 8px;
+}
+
+.source-group-title {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  padding: 2px 0;
+  margin-bottom: 2px;
+}
+
+.source-transport-cors {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.source-transport-cors span {
+  flex-basis: 100%;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.source-transport-cors code {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 11px;
+  user-select: all;
+}
+
+.source-transport-cors button {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  font-size: 11px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Aufklappbare Server-Beispiele. Der Dialog ist schmal, deshalb bleibt der
+   Block zu, bis jemand ihn braucht — und der Schnipsel scrollt in sich,
+   statt den Dialog zu verbreitern. */
+.cors-snippets-toggle {
+  align-self: flex-start;
+  margin-top: 6px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--accent);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.cors-snippets {
+  margin-top: 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.cors-snippet-kinds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.cors-snippet-kinds button {
+  padding: 3px 9px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: none;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+.cors-snippet-kinds button.active {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  background: rgba(74, 158, 255, 0.12);
+}
+
+.cors-snippets pre {
+  margin: 0;
+  max-height: 190px;
+  overflow: auto;
+  padding: 8px;
+  border-radius: 5px;
+  background: var(--bg-deep, rgba(0, 0, 0, 0.25));
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  white-space: pre;
+}
+
+.cors-snippet-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.cors-snippet-actions small {
+  color: var(--text-secondary);
+}
+
+/* Sagt, wo die Zugangsdaten landen, bevor jemand sie eintippt. Leise, weil sie
+   bei jeder Server-Quelle erscheint - aber direkt unter den Feldern. */
+.source-credentials-note {
+  margin: -2px 0 6px;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.45;
+}
+

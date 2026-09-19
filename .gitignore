@@ -1,0 +1,55 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Local recovery snapshots (can be large and may contain local configuration)
+.backups/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Claude Code
+.claude/
+
+# Database files
+*.db
+packages/backend/data/
+packages/backend/tsconfig.tsbuildinfo
+
+# AI model weights — not in git; fetched via scripts/fetch-denoise-models.sh
+public/models/denoise/*.onnx
+
+# Local compose additions (LAN DNS, extra mounts) — never the product compose
+docker-compose.override.yml
+
+# Secrets. The README tells the operator to copy .env.example to .env and
+# .env.hub.example to .env.hub; neither was ignored, so a filled-in AUTH_SECRET
+# showed up as an untracked file waiting to be committed.
+.env
+.env.*
+!.env.example
+!.env.hub.example
+
+# Browser-test artifacts
+playwright-report/
+test-results/
+.vitest-attachments/
+**/__screenshots__/

@@ -1,0 +1,186 @@
+.crop-tool {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  cursor: crosshair;
+}
+
+.crop-mask {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+.crop-mask-top { left: 0; right: 0; top: 0; }
+.crop-mask-bottom { left: 0; right: 0; }
+.crop-mask-left { left: 0; }
+.crop-mask-right { }
+
+.crop-area {
+  position: absolute;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  cursor: move;
+  touch-action: none;
+}
+
+.crop-grid-h, .crop-grid-v {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.crop-grid-h { left: 0; right: 0; height: 1px; }
+.crop-grid-v { top: 0; bottom: 0; width: 1px; }
+
+/* Handles */
+.crop-handle {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  touch-action: none;
+  z-index: 2;
+}
+
+.crop-handle-tl { top: -7px; left: -7px; cursor: nwse-resize; }
+.crop-handle-tr { top: -7px; right: -7px; cursor: nesw-resize; }
+.crop-handle-bl { bottom: -7px; left: -7px; cursor: nesw-resize; }
+.crop-handle-br { bottom: -7px; right: -7px; cursor: nwse-resize; }
+.crop-handle-t { top: -7px; left: 50%; transform: translateX(-50%); cursor: ns-resize; }
+.crop-handle-b { bottom: -7px; left: 50%; transform: translateX(-50%); cursor: ns-resize; }
+.crop-handle-l { left: -7px; top: 50%; transform: translateY(-50%); cursor: ew-resize; }
+.crop-handle-r { right: -7px; top: 50%; transform: translateY(-50%); cursor: ew-resize; }
+
+/* Rotation handle — sits above the top edge on a short stem.
+   The anchor is positioned at top-center and reaches upward; the handle
+   itself is a circle (visually distinct from the square resize handles)
+   and uses ew-resize cursor since the interaction is a horizontal drag. */
+.crop-rotate-anchor {
+  position: absolute;
+  top: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 36px;
+  pointer-events: none;
+  z-index: 3;
+}
+.crop-rotate-stem {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.6);
+}
+.crop-handle-rotate {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  cursor: ew-resize;
+  pointer-events: auto;
+}
+.crop-handle-rotate:hover {
+  background: var(--accent, #4a9eff);
+  border-color: var(--accent, #4a9eff);
+}
+
+.crop-dims {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.crop-actions {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 25;
+}
+
+.crop-cancel-btn, .crop-confirm-btn {
+  min-width: 116px;
+  min-height: 36px;
+  padding: 8px 22px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.crop-cancel-btn {
+  background: rgba(40, 40, 40, 0.92);
+  color: white;
+}
+
+.crop-cancel-btn:hover { background: rgba(70, 70, 70, 0.95); }
+
+.crop-confirm-btn {
+  background: var(--accent);
+  color: white;
+}
+
+.crop-confirm-btn:hover { background: var(--accent-hover); }
+
+:root[data-input="touch"] .crop-handle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+:root[data-input="touch"] .crop-handle-tl { top: -14px; left: -14px; }
+:root[data-input="touch"] .crop-handle-tr { top: -14px; right: -14px; }
+:root[data-input="touch"] .crop-handle-bl { bottom: -14px; left: -14px; }
+:root[data-input="touch"] .crop-handle-br { bottom: -14px; right: -14px; }
+:root[data-input="touch"] .crop-handle-t { top: -14px; }
+:root[data-input="touch"] .crop-handle-b { bottom: -14px; }
+:root[data-input="touch"] .crop-handle-l { left: -14px; }
+:root[data-input="touch"] .crop-handle-r { right: -14px; }
+
+:root[data-input="touch"] .crop-rotate-anchor {
+  top: -54px;
+  width: 32px;
+  height: 54px;
+}
+
+:root[data-input="touch"] .crop-rotate-stem {
+  top: 28px;
+  height: 26px;
+}
+
+:root[data-input="touch"] .crop-handle-rotate {
+  width: 28px;
+  height: 28px;
+}
+
+:root[data-input="touch"] .crop-cancel-btn,
+:root[data-input="touch"] .crop-confirm-btn {
+  min-width: 104px;
+  min-height: 48px;
+  font-size: 14px;
+}
+
+:root[data-screen="phone"] .crop-actions {
+  bottom: calc(12px + env(safe-area-inset-bottom, 0));
+}

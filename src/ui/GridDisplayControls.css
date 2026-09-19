@@ -1,0 +1,72 @@
+.grid-display-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.grid-display-controls .view-modes {
+  display: flex;
+  background: var(--bg-tertiary);
+  border-radius: 5px;
+  padding: 2px;
+  gap: 1px;
+}
+
+.grid-display-controls .view-mode-btn {
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.grid-display-controls .view-mode-btn:hover {
+  color: var(--text-primary);
+}
+
+.grid-display-controls .view-mode-btn.active {
+  background: var(--bg-active);
+  color: var(--accent);
+}
+
+.grid-display-controls .size-slider {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.grid-display-controls .size-slider input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 80px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--slider-track);
+  outline: none;
+  cursor: pointer;
+}
+
+.grid-display-controls .size-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.grid-display-controls .size-slider input[type="range"]::-webkit-slider-thumb:hover {
+  background: var(--accent);
+}
+
+:root[data-input="touch"] .grid-display-controls .view-mode-btn {
+  min-width: 44px;
+  min-height: 44px;
+}

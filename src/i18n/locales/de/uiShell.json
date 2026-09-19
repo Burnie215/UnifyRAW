@@ -1,0 +1,155 @@
+{
+  "uiShell": {
+    "panelRegistry": {
+      "navigator": "Navigator",
+      "loupe": "Lupe",
+      "presets": "Presets",
+      "history": "Verlauf",
+      "layers": "Ebenen",
+      "histogram": "Histogramm",
+      "toolstrip": "Werkzeuge",
+      "basic": "Grundeinstellungen",
+      "whitebalance": "Weißabgleich",
+      "presence": "Wirkung",
+      "tonecurve": "Gradationskurve",
+      "levels": "Tonwerte",
+      "hsl": "Color Editor",
+      "colorgrading": "Color Grading",
+      "bw": "Schwarzweiß",
+      "detail": "Details",
+      "effects": "Effekte",
+      "sky": "Himmel ersetzen",
+      "transform": "Transformieren",
+      "masking": "Masken & Retusche",
+      "softproof": "Soft Proofing",
+      "metadata": "Metadaten",
+      "keywords": "Stichwörter",
+      "quickdev": "Schnellentwicklung",
+      "filmstrip": "Filmstreifen"
+    },
+    "modPanel": {
+      "pin": "Anheften",
+      "unpin": "Lösen",
+      "reset": "Einstellungen zurücksetzen"
+    },
+    "floating": {
+      "dock": "Zurück docken",
+      "expand": "Aufklappen",
+      "collapse": "Einklappen"
+    },
+    "filmstrip": {
+      "prev": "Vorheriges",
+      "next": "Nächstes",
+      "countPhotos": "{{count}} Fotos",
+      "countWithSelected": "{{count}} Fotos / {{index}} ausgewählt"
+    },
+    "layerBanner": {
+      "label": "Ebene: {{name}}"
+    },
+    "viewMode": {
+      "countSelected": "{{selected}} von {{total}} ausgewählt",
+      "countPhotos": "{{count}} Fotos",
+      "grid": "Raster",
+      "loupe": "Lupe",
+      "compare": "Vergleich",
+      "survey": "Übersicht",
+      "gridTooltip": "Rasteransicht (G)",
+      "loupeTooltip": "Lupenansicht (E)",
+      "compareTooltip": "Vergleichsansicht (C)",
+      "surveyTooltip": "Übersichtsansicht (N)"
+    },
+    "phoneLibrary": {
+      "allPhotos": "Alle Fotos",
+      "adjust": "Ansicht anpassen",
+      "selectedCount": "{{count}} ausgewählt",
+      "libraryView": "Arbeitsansicht",
+      "layout": "Rasterdarstellung",
+      "organize": "Sortieren und gruppieren",
+      "sort": "Sortierung",
+      "group": "Gruppierung",
+      "moreActions": "Weitere Aktionen",
+      "selectionActions": "Auswahlaktionen",
+      "rateSelection": "Bewerten und markieren"
+    },
+    "toolStrip": {
+      "edit": "Bearbeiten",
+      "crop": "Zuschneiden (R)",
+      "heal": "Reparieren (Q)",
+      "brush": "Pinsel (K)",
+      "gradient": "Verlaufsfilter (M)",
+      "radial": "Radialfilter (Umschalt+M)",
+      "straighten": "Begradigen"
+    },
+    "toneAdjust": {
+      "treatment": "Behandlung",
+      "color": "Farbe",
+      "bw": "S/W",
+      "wbPickerTooltip": "Weißabgleich-Pipette — klicke auf eine neutrale (graue/weiße) Fläche im Bild",
+      "wbPickerActive": "Pipette aktiv — klicke auf Grau/Weiß",
+      "wbPickerIdle": "Pipette"
+    },
+    "toolPanels": {
+      "sharpness": "Schärfe",
+      "radius": "Radius",
+      "masking": "Maskierung",
+      "noiseReduction": "Rauschreduzierung",
+      "denoiseLuma": "Entrauschen Luminanz",
+      "denoiseChroma": "Entrauschen Farbe",
+      "denoiseDetail": "Entrauschen Details",
+      "aiDenoise": "KI-Entrauschen",
+      "aiDenoiseApply": "Anwenden",
+      "aiDenoiseDownloading": "Modell wird geladen",
+      "aiDenoiseProcessing": "Wird verarbeitet",
+      "aiDenoiseCancel": "Abbrechen",
+      "aiDenoiseStrength": "Stärke",
+      "aiDenoiseReset": "Zurücksetzen",
+      "aiDenoiseUnavailable": "Im neuen Render-Engine noch nicht verfügbar. Die Funktion kommt mit einem späteren Update zurück.",
+      "aiDenoiseRetry": "Erneut versuchen",
+      "angle": "Winkel",
+      "geometry": "Geometrie",
+      "straighten": "Begradigen",
+      "straightenHint": "Linie entlang einer geraden Kante ziehen",
+      "vignette": "Vignettierung",
+      "vignetteFeather": "Vignette Weichheit",
+      "grain": "Korn",
+      "grainSize": "Korngröße",
+      "rotation": "Drehung",
+      "perspectiveV": "Perspektive V",
+      "perspectiveH": "Perspektive H",
+      "distortion": "Verzerrung",
+      "cropAspect": "Seitenverhältnis",
+      "cropFree": "Frei",
+      "horizontal": "Horizontal",
+      "vertical": "Vertikal"
+    },
+    "colorPanels": {
+      "red": "Rot",
+      "orange": "Orange",
+      "yellow": "Gelb",
+      "green": "Grün",
+      "aqua": "Aqua",
+      "blue": "Blau",
+      "purple": "Lila",
+      "magenta": "Magenta",
+      "bwInactiveHint": "Aktiviere S/W im Grundeinstellungen-Panel"
+    },
+    "metaPanels": {
+      "reset": "Zurücksetzen"
+    },
+    "libraryPanel": {
+      "reset": "Zurücksetzen",
+      "applyingToSelection": "Wird auf {{done}} von {{total}} Fotos angewendet…",
+      "identifying": "Foto wird identifiziert…",
+      "identifyFailed": "Foto konnte nicht identifiziert werden — die Bearbeitung wurde nicht gespeichert.",
+      "exposure": "Belichtung",
+      "contrast": "Kontrast",
+      "highlights": "Lichter",
+      "shadows": "Tiefen",
+      "whites": "Weiß",
+      "blacks": "Schwarz",
+      "clarity": "Klarheit",
+      "vibrance": "Dynamik",
+      "saturation": "Sättigung"
+    }
+  }
+}

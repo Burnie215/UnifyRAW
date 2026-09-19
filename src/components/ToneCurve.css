@@ -1,0 +1,146 @@
+.tone-curve {
+  position: relative;
+  background: #1a1a1a;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* ─── Top bar: channel tabs ─── */
+
+.curve-top-bar {
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  background: #1e1e1e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.curve-channels {
+  display: flex;
+  gap: 0;
+  width: 100%;
+}
+
+.curve-ch-tab {
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 10px;
+  padding: 5px 8px 4px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.1s, border-color 0.1s;
+  flex: 1;
+  text-align: center;
+}
+
+.curve-ch-tab:hover {
+  color: var(--text-primary);
+}
+
+.curve-ch-tab.active {
+  border-bottom-color: currentColor;
+}
+
+/* ─── SVG Curve Area ─── */
+
+.curve-svg {
+  width: 100%;
+  aspect-ratio: 1;
+  display: block;
+  touch-action: none;
+  cursor: crosshair;
+  background: #111;
+}
+
+.curve-grid {
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 0.5;
+}
+
+.curve-baseline {
+  stroke: rgba(255, 255, 255, 0.15);
+  stroke-width: 0.5;
+}
+
+.curve-line {
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+/* Square control points */
+
+.curve-point {
+  stroke-width: 1.5;
+  cursor: grab;
+}
+
+.curve-point:hover {
+  stroke: #e67e22;
+  fill: rgba(230, 126, 34, 0.3);
+}
+
+.curve-point.active {
+  cursor: grabbing;
+}
+
+/* ─── Bottom bar: I/O + actions ─── */
+
+.curve-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 6px;
+  background: #1e1e1e;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.curve-io {
+  display: flex;
+  gap: 16px;
+  font-size: 9px;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+  opacity: 0.7;
+}
+
+.curve-bottom-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.curve-reset-btn {
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  transition: color 0.1s;
+}
+
+.curve-reset-btn:hover {
+  color: var(--accent);
+}
+
+.curve-preset-select {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  font-size: 9px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+}
+
+.curve-preset-select:hover {
+  border-color: var(--accent);
+}

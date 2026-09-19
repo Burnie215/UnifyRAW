@@ -1,0 +1,50 @@
+.catalog-readonly-banner {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: min(640px, calc(100vw - 32px));
+  background: var(--bg-secondary, #1f1f1f);
+  border: 1px solid var(--border, #333);
+  border-left: 3px solid var(--color-warning, #f39c12);
+  border-radius: 8px;
+  padding: 10px 14px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text-primary, #eee);
+}
+
+.catalog-readonly-banner.free {
+  border-left-color: var(--color-success, #2ecc71);
+}
+
+.catalog-readonly-banner.error {
+  border-left-color: var(--color-error, #e74c3c);
+}
+
+.catalog-readonly-banner-btn {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  background: var(--accent, #4a9eff);
+  color: white;
+}
+
+.catalog-readonly-banner-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.catalog-readonly-banner-btn.secondary {
+  background: transparent;
+  border: 1px solid var(--border, #333);
+  color: var(--text-primary, #eee);
+}

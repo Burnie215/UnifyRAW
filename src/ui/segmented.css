@@ -1,0 +1,71 @@
+/**
+ * Segmented controls and action pills for the adjustment panels.
+ *
+ * One place for the shared shape so the Color Editor, Color Grading, Levels
+ * and the math toggle read as the same control rather than four variations.
+ * Panels keep their own class for layout and add `seg` / `seg-btn` for looks.
+ */
+
+.seg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 2px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.seg-btn {
+  flex: 1;
+  border: 1px solid transparent;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  line-height: 1.35;
+  padding: 2px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  text-align: center;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+
+.seg-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.seg-btn.active {
+  background: var(--bg-tertiary);
+  border-color: var(--bg-active);
+  color: var(--text-primary);
+}
+
+/* Standalone action button in the same language as the segments. */
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border-radius: 8px;
+  padding: 3px 10px;
+  font-size: var(--text-sm);
+  line-height: 1.35;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+
+.pill-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.pill-btn.active {
+  background: var(--bg-tertiary);
+  border-color: var(--accent);
+  color: var(--text-primary);
+}

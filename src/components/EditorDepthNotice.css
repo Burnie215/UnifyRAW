@@ -1,0 +1,48 @@
+/* Same mechanics as .stale-banner, but anchored in the editor canvas: this
+   notice belongs to one photo, not to the session. */
+.editor-depth-notice {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: min(480px, calc(100% - 32px));
+  /* Above the EXIF overlay (8), below the load overlay (200): while the
+     image is still loading there is nothing to report yet. */
+  z-index: 9;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--bg-secondary, #1f1f1f);
+  border: 1px solid var(--border, #333);
+  border-left: 3px solid var(--accent, #4a9eff);
+  border-radius: 8px;
+  padding: 10px 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}
+
+.editor-depth-notice-title {
+  font-weight: 600;
+  color: var(--text-primary, #eee);
+  margin-bottom: 3px;
+}
+
+.editor-depth-notice-text {
+  color: var(--text-secondary, #aaa);
+  line-height: 1.4;
+}
+
+.editor-depth-notice-dismiss {
+  flex: 0 0 auto;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-secondary, #aaa);
+}
+
+.editor-depth-notice-dismiss:hover {
+  color: var(--text-primary, #eee);
+}

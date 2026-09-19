@@ -1,0 +1,154 @@
+.mod-panel {
+  border-bottom: 1px solid var(--border);
+}
+
+.mod-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: var(--bg-tertiary);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  user-select: none;
+  transition: background 0.1s;
+}
+
+.mod-panel-header:hover {
+  background: var(--bg-hover);
+}
+
+.mod-panel-icon {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.mod-panel-icon svg {
+  width: 12px;
+  height: 12px;
+}
+
+.mod-panel-title {
+  flex: 1;
+  color: var(--text-secondary);
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mod-panel:not(.collapsed) .mod-panel-title {
+  color: var(--text-primary);
+}
+
+.mod-panel-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.mod-panel-pin {
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px 6px;
+  margin-right: 4px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.1s, color 0.1s, background 0.1s;
+}
+
+.mod-panel-header:hover .mod-panel-pin,
+.mod-panel-pin.active {
+  opacity: 1;
+}
+
+.mod-panel-pin:hover { color: var(--text-primary); background: rgba(255,255,255,0.08); }
+.mod-panel-pin.active { color: var(--accent); transform: rotate(45deg); }
+
+.mod-panel-reset {
+  border: none;
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 4px 6px;
+  margin-right: 2px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  opacity: 1;
+}
+
+.mod-panel-reset:hover {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.08);
+}
+
+.mod-panel-reset:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: -1px;
+}
+
+.mod-panel-chevron {
+  font-size: 10px;
+  color: var(--text-secondary);
+  line-height: 1;
+}
+
+.mod-panel-body {
+  padding: 8px 10px;
+}
+
+/* Drag indicator */
+.mod-panel.dragging {
+  opacity: 0.5;
+}
+
+.mod-panel-drop-indicator {
+  height: 2px;
+  background: var(--accent);
+  margin: 0 4px;
+}
+
+/* Quick Develop panel */
+.quickdev-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 6px;
+}
+
+.quickdev-reset-btn {
+  background: transparent;
+  border: 1px solid var(--border, rgba(255,255,255,0.15));
+  color: var(--text-secondary);
+  font-size: 11px;
+  padding: 2px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: color 0.1s, background 0.1s, border-color 0.1s;
+}
+
+.quickdev-reset-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.quickdev-reset-btn:not(:disabled):hover {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.25);
+}
+
+.quickdev-progress {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}

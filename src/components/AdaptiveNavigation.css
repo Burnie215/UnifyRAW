@@ -1,0 +1,627 @@
+.adaptive-topbar {
+  display: flex;
+  align-items: center;
+  height: calc(52px + env(safe-area-inset-top, 0px));
+  min-height: calc(52px + env(safe-area-inset-top, 0px));
+  padding: env(safe-area-inset-top, 0) 12px 0;
+  box-sizing: border-box;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  z-index: 20;
+  overflow: hidden;
+  transition: height 160ms ease, min-height 160ms ease, opacity 120ms ease, border-color 120ms ease;
+}
+
+.adaptive-topbar-phone {
+  padding-left: max(4px, env(safe-area-inset-left, 0px));
+  padding-right: max(4px, env(safe-area-inset-right, 0px));
+}
+
+.adaptive-topbar-hidden {
+  height: 0;
+  min-height: 0;
+  padding-top: 0;
+  border-bottom-color: transparent;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.adaptive-menu-btn,
+.adaptive-drawer-close,
+.adaptive-action-btn {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-primary);
+}
+
+.adaptive-menu-btn:active,
+.adaptive-drawer-close:active,
+.adaptive-action-btn:active {
+  background: var(--bg-active);
+}
+
+.adaptive-action-btn:disabled {
+  opacity: 0.35;
+}
+
+.adaptive-context-button {
+  flex: 1;
+  min-width: 0;
+  height: 48px;
+  padding: 5px 5px 4px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-primary);
+  text-align: left;
+}
+
+.adaptive-context-button:active {
+  background: var(--bg-active);
+}
+
+.adaptive-topbar-brand {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  /* Two pieces of text at different sizes — share the baseline, not the box. */
+  align-items: baseline;
+}
+
+.adaptive-topbar-brand .adaptive-topbar-title {
+  flex: 0 1 auto;
+  padding-right: 0;
+}
+
+.adaptive-topbar-title {
+  flex: 1;
+  min-width: 0;
+  padding: 0 10px;
+  font-size: var(--text-lg);
+  font-weight: 650;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adaptive-context-button .adaptive-topbar-title {
+  width: 100%;
+  flex: 0 1 auto;
+  padding: 0;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.adaptive-context-count {
+  width: 100%;
+  overflow: hidden;
+  color: var(--text-secondary);
+  font-size: 10px;
+  line-height: 13px;
+  font-variant-numeric: tabular-nums;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adaptive-topbar-count {
+  min-width: 44px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.adaptive-adjust-btn {
+  position: relative;
+}
+
+.adaptive-adjust-btn.active {
+  color: var(--accent);
+}
+
+.adaptive-active-dot {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 6px;
+  height: 6px;
+  border: 2px solid var(--bg-secondary);
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.adaptive-selection-count {
+  flex: 1;
+  min-width: 0;
+  padding: 0 8px;
+  overflow: hidden;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adaptive-search-mode {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.adaptive-search-mode > svg {
+  min-width: 21px;
+  color: var(--text-secondary);
+}
+
+.adaptive-search-mode input {
+  flex: 1;
+  min-width: 0;
+  height: 42px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 16px;
+}
+
+.adaptive-search-mode input::placeholder {
+  color: var(--text-secondary);
+}
+
+.adaptive-menu-btn:focus-visible,
+.adaptive-drawer-close:focus-visible,
+.adaptive-action-btn:focus-visible,
+.adaptive-context-button:focus-visible,
+.phone-library-sheet-header button:focus-visible,
+.phone-choice-grid button:focus-visible,
+.phone-rating-buttons button:focus-visible,
+.phone-color-buttons button:focus-visible,
+.phone-reset-filters:focus-visible,
+.phone-library-action-list button:focus-visible,
+.phone-select-control select:focus-visible,
+.phone-range-control input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.adaptive-search-mode:focus-within {
+  box-shadow: inset 0 -2px var(--accent);
+}
+
+/* Phone library controls are deliberately temporary. The sheet overlays the
+   grid and leaves no persistent second toolbar behind after dismissal. */
+.phone-library-sheet-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 320;
+}
+
+.phone-library-sheet-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: rgba(0, 0, 0, 0.58);
+  backdrop-filter: blur(2px);
+}
+
+.phone-library-sheet {
+  position: absolute;
+  inset: auto 0 0;
+  box-sizing: border-box;
+  max-height: min(82dvh, 720px);
+  padding-right: env(safe-area-inset-right, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-bottom: 0;
+  border-radius: 18px 18px 0 0;
+  background: var(--bg-secondary);
+  box-shadow: 0 -14px 40px rgba(0, 0, 0, 0.48);
+  animation: phone-library-sheet-in 180ms ease-out;
+}
+
+.phone-library-sheet-handle {
+  width: 36px;
+  height: 4px;
+  margin: 8px auto 2px;
+  border-radius: 2px;
+  background: var(--text-secondary);
+  opacity: 0.42;
+}
+
+.phone-library-sheet-header {
+  min-height: 50px;
+  padding: 0 6px 0 16px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.phone-library-sheet-header h2 {
+  flex: 1;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.phone-library-sheet-header button {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-primary);
+}
+
+.phone-library-sheet-content {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.phone-control-section {
+  padding: 14px 16px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.phone-control-section:last-child {
+  border-bottom: 0;
+}
+
+.phone-control-section h3 {
+  margin: 0 0 10px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.phone-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.phone-choice-grid button {
+  min-width: 0;
+  min-height: 58px;
+  padding: 7px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 10px;
+}
+
+.phone-choice-grid button.active {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, var(--bg-tertiary));
+  color: var(--accent);
+}
+
+.phone-choice-grid svg {
+  width: 20px;
+  height: 20px;
+}
+
+.phone-range-control,
+.phone-select-control,
+.phone-filter-row {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.phone-range-control {
+  margin-top: 8px;
+}
+
+.phone-range-control input {
+  width: min(62%, 240px);
+  height: 44px;
+}
+
+.phone-select-control select {
+  width: min(65%, 250px);
+  min-height: 44px;
+  padding: 0 34px 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.phone-rating-buttons,
+.phone-flag-buttons,
+.phone-color-buttons {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.phone-rating-buttons button,
+.phone-flag-buttons button,
+.phone-color-buttons button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.phone-rating-buttons button.active,
+.phone-flag-buttons button.active,
+.phone-color-buttons button.active {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--accent);
+}
+
+.phone-rating-buttons {
+  max-width: 75%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.phone-flag-buttons {
+  max-width: 72%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.phone-color-buttons {
+  max-width: 72%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.phone-rating-buttons::-webkit-scrollbar,
+.phone-flag-buttons::-webkit-scrollbar,
+.phone-color-buttons::-webkit-scrollbar {
+  display: none;
+}
+
+.phone-keyword-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 220px;
+  min-height: 44px;
+  padding: 6px 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.phone-keyword-chip span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.phone-color-dot {
+  width: 17px;
+  height: 17px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+}
+
+.phone-reset-filters {
+  width: 100%;
+  min-height: 46px;
+  margin-top: 8px;
+  border: 1px solid color-mix(in srgb, var(--accent) 50%, var(--border));
+  border-radius: 8px;
+  background: transparent;
+  color: var(--accent);
+  font-size: 13px;
+}
+
+.phone-library-action-list {
+  padding: 4px 10px 12px;
+  overflow-y: auto;
+}
+
+.phone-library-action-list button {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 14px;
+  text-align: left;
+}
+
+.phone-library-action-list button:active {
+  background: var(--bg-active);
+}
+
+.phone-library-action-list button:disabled {
+  opacity: 0.35;
+}
+
+.phone-library-action-list button.danger {
+  color: var(--color-error, #e74c3c);
+}
+
+@keyframes phone-library-sheet-in {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* On a short landscape phone, a bottom sheet would leave almost no photo
+   visible. Move the same temporary controls to a right-side sheet instead. */
+@media (orientation: landscape) and (max-height: 520px) {
+  :root[data-screen="phone"] .phone-library-sheet {
+    inset: 0 0 0 auto;
+    width: min(62vw, 430px);
+    max-height: none;
+    padding-top: env(safe-area-inset-top, 0px);
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-radius: 18px 0 0 18px;
+    animation-name: phone-library-sheet-in-landscape;
+  }
+
+  :root[data-screen="phone"] .phone-library-sheet-handle {
+    display: none;
+  }
+}
+
+@keyframes phone-library-sheet-in-landscape {
+  from { transform: translateX(24px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.adaptive-drawer-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+}
+
+.adaptive-drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: rgba(0, 0, 0, 0.56);
+  backdrop-filter: blur(2px);
+}
+
+.adaptive-navigation-drawer {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: min(88vw, 380px);
+  padding-top: env(safe-area-inset-top, 0);
+  background: var(--bg-secondary);
+  box-shadow: 12px 0 36px rgba(0, 0, 0, 0.42);
+  animation: adaptive-drawer-in 160ms ease-out;
+}
+
+.adaptive-navigation-drawer-tablet {
+  width: min(46vw, 440px);
+}
+
+.adaptive-navigation-drawer .sidebar {
+  width: 100%;
+  min-width: 0;
+  border-right: 0;
+}
+
+/* Sidebar rows were designed around mouse hover. Inside the adaptive drawer
+   they become explicit touch targets and destructive actions stay visible. */
+:root[data-input="touch"] .adaptive-navigation-drawer .nav-item,
+:root[data-input="touch"] .adaptive-navigation-drawer .section-header,
+:root[data-input="touch"] .adaptive-navigation-drawer .tree-item,
+:root[data-input="touch"] .adaptive-navigation-drawer .source-empty-action,
+:root[data-input="touch"] .adaptive-navigation-drawer .reconnect-banner,
+:root[data-input="touch"] .adaptive-navigation-drawer .source-select-btn,
+:root[data-input="touch"] .adaptive-navigation-drawer .source-manage-btn,
+:root[data-input="touch"] .adaptive-navigation-drawer .settings-footer-btn,
+:root[data-input="touch"] .adaptive-navigation-drawer .about-btn,
+:root[data-input="touch"] .adaptive-navigation-drawer .col-add-btn,
+:root[data-input="touch"] .adaptive-navigation-drawer .col-type-btn,
+:root[data-input="touch"] .adaptive-navigation-drawer .col-confirm-btn,
+:root[data-input="touch"] .adaptive-navigation-drawer .col-item {
+  min-height: 44px;
+}
+
+:root[data-input="touch"] .adaptive-navigation-drawer .section-header-action,
+:root[data-input="touch"] .adaptive-navigation-drawer .source-visibility-btn,
+:root[data-input="touch"] .adaptive-navigation-drawer .source-action-btn,
+:root[data-input="touch"] .adaptive-navigation-drawer .col-del-btn {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+}
+
+:root[data-input="touch"] .adaptive-navigation-drawer .source-actions,
+:root[data-input="touch"] .adaptive-navigation-drawer .col-del-btn {
+  opacity: 1;
+}
+
+.adaptive-drawer-close {
+  position: absolute;
+  top: max(env(safe-area-inset-top, 0), 4px);
+  right: 6px;
+  z-index: 2;
+}
+
+@keyframes adaptive-drawer-in {
+  from { transform: translateX(-24px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .adaptive-navigation-drawer,
+  .phone-library-sheet { animation: none; }
+  .adaptive-topbar { transition: none; }
+}
+
+.phone-switch-control {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.phone-switch-control input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  margin: 10px;
+  accent-color: var(--accent);
+}
+
+.adaptive-selection-rate-btn:disabled {
+  opacity: 0.4;
+}

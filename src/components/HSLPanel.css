@@ -1,0 +1,306 @@
+/* ═══ Color Editor Panel ═══ */
+
+.ce-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  user-select: none;
+}
+
+/* ─── Tabs ─── */
+
+.ce-tabs {
+  margin-bottom: 2px;
+}
+
+/* ─── Wheel Area (wheel + optional side sliders) ─── */
+
+.ce-wheel-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 0;
+  min-width: 0;
+}
+
+/* The wheel gives way as the panel narrows — the arc sliders keep their width
+   (they are already thin), so the circle shrinks instead of being clipped. */
+.ce-wheel {
+  display: flex;
+  justify-content: center;
+  touch-action: none;
+  flex: 0 1 260px;
+  min-width: 110px;
+}
+
+.ce-wheel-canvas {
+  border-radius: 50%;
+  cursor: crosshair;
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  aspect-ratio: 1;
+}
+
+/* ─── Arc Sliders (Skin Tone: S left, L right) ─── */
+
+.ce-arc-slider {
+  width: 16px;
+  height: 180px;
+  position: relative;
+  cursor: ns-resize;
+  touch-action: none;
+  flex-shrink: 0;
+}
+
+.ce-arc-track {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.ce-arc-left .ce-arc-track {
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.25));
+}
+
+.ce-arc-right .ce-arc-track {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0.3));
+}
+
+.ce-arc-thumb {
+  position: absolute;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.ce-arc-label {
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8px;
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+/* ─── Toolbar (Picker + View Selected) ─── */
+
+/* Four wheel values in a row under the wheel, label over value. */
+.ce-wheel-values {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0 6px;
+  margin: 0;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.ce-wheel-value dt {
+  font-size: 9px;
+  color: var(--text-secondary);
+  letter-spacing: 0.2px;
+}
+
+.ce-wheel-value dd {
+  margin: 0;
+  font-size: 11px;
+  color: var(--text-primary);
+}
+
+.ce-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.ce-picker-btn {
+  /* shape from .pill-btn; keeps only its square footprint */
+  padding: 3px 7px;
+}
+
+
+.ce-picker-btn.active {
+  background: rgba(230, 126, 34, 0.2);
+  border-color: #e67e22;
+  color: #e67e22;
+}
+
+.ce-view-range {
+  /* shape from .pill-btn; the pill's own active state shows what is checked */
+  text-align: left;
+}
+
+/* Kept in the DOM for keyboard and assistive tech, out of the way visually. */
+.ce-view-range input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* ─── Sliders ─── */
+
+.ce-sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+/* ─── ΔH/ΔS/ΔL Table ─── */
+
+.ce-table {
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.ce-table-header {
+  display: grid;
+  grid-template-columns: 18px 16px 1fr 1fr 1fr;
+  gap: 2px;
+  padding: 2px 4px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  background: var(--bg-secondary);
+}
+
+.ce-th { text-align: center; }
+
+.ce-table-row {
+  display: grid;
+  grid-template-columns: 18px 16px 1fr 1fr 1fr;
+  gap: 2px;
+  padding: 3px 4px;
+  cursor: pointer;
+  border-radius: 3px;
+  align-items: center;
+  transition: background 0.1s;
+}
+
+.ce-table-row:hover { background: rgba(255, 255, 255, 0.04); }
+.ce-table-row.active { background: rgba(74, 158, 255, 0.12); }
+.ce-table-row.active .ce-val { color: var(--text-primary); }
+.ce-table-row.changed .ce-val { color: var(--accent); }
+
+.ce-check {
+  color: #e67e22;
+  font-size: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.ce-color-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ce-val {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 10px;
+}
+
+/* ─── Advanced Footer (+/− Buttons) ─── */
+
+.ce-adv-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.ce-adv-btns {
+  display: flex;
+  gap: 4px;
+}
+
+.ce-adv-btn {
+  /* colours from .pill-btn; kept square for the +/- glyphs */
+  width: 22px;
+  height: 20px;
+  padding: 0;
+  font-size: 14px;
+}
+
+.ce-adv-btn:hover { border-color: var(--accent); color: var(--text-primary); }
+.ce-adv-btn:disabled { opacity: 0.3; cursor: default; }
+
+/* ─── Before/After Swatches ─── */
+
+.ce-compare {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+
+.ce-compare-swatch {
+  width: 32px;
+  height: 24px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.ce-compare-vals {
+  display: flex;
+  gap: 4px;
+  font-size: 9px;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+/* ─── Hint Text ─── */
+
+.ce-hint {
+  font-size: 10px;
+  color: var(--text-secondary);
+  opacity: 0.6;
+  text-align: center;
+  padding: 8px 0;
+}
+
+/* ─── Skin Tone Uniformity ─── */
+
+.ce-uniformity {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+  margin-top: 4px;
+}
+
+.ce-uniformity-header {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--text-secondary);
+  padding-bottom: 4px;
+}

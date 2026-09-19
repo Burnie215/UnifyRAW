@@ -1,0 +1,43 @@
+.loupe-view {
+  padding: 2px 0 4px;
+}
+
+.loupe-frame {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loupe-canvas {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  /* Never smooth a 1:1 view - interpolation is the thing being looked past. */
+  image-rendering: pixelated;
+}
+
+.loupe-state {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+}
+
+.loupe-hint {
+  font-size: 10px;
+  line-height: 1.35;
+  color: var(--text-secondary);
+  margin-top: 5px;
+}

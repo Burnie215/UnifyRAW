@@ -1,0 +1,14 @@
+.crop-overlay-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.crop-lines line,
+.crop-lines path {
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}

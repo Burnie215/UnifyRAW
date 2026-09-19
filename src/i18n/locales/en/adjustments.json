@@ -1,0 +1,109 @@
+{
+  "adjustments": {
+    "curve": {
+      "channels": {
+        "rgb": "RGB",
+        "luma": "Luma",
+        "red": "Red",
+        "green": "Green",
+        "blue": "Blue"
+      },
+      "input": "In",
+      "output": "Out",
+      "reset": "Reset",
+      "presetPlaceholder": "▾",
+      "presets": {
+        "linear": "Linear",
+        "strongContrast": "Strong contrast",
+        "mediumContrast": "Medium contrast",
+        "filmMatte": "Film matte",
+        "negative": "Negative",
+        "crossProcess": "Cross process"
+      }
+    },
+    "levels": {
+      "channels": {
+        "rgb": "RGB",
+        "red": "Red",
+        "green": "Green",
+        "blue": "Blue"
+      }
+    },
+    "histogram": {
+      "shadowClipping": "Shadow clipping",
+      "highlightClipping": "Highlight clipping",
+      "unavailable": "No histogram available"
+    },
+    "hsl": {
+      "modes": {
+        "basic": "Basic",
+        "advanced": "Advanced",
+        "skinTone": "Skin tone"
+      },
+      "pickerTitle": "Pick color from image",
+      "viewRange": "Show selected color range",
+      "feather": "Smoothing",
+      "hue": "Hue",
+      "saturation": "Saturation",
+      "lightness": "Lightness",
+      "advancedHint": "Click on the wheel to pick a color",
+      "uniformity": "Uniformity",
+      "wheel": {
+        "hue": "Hue",
+        "sat": "Sat",
+        "range": "Range",
+        "satRange": "Sat range"
+      }
+    },
+    "colorGrading": {
+      "master": "Master",
+      "threeWay": "3-Way",
+      "shadow": "Shadow",
+      "midtone": "Midtone",
+      "highlight": "Highlight",
+      "blending": "Blending",
+      "balance": "Balance",
+      "hue": "Hue",
+      "sat": "Sat",
+      "satAdj": "Sat ±",
+      "lumAdj": "Lum ±"
+    },
+    "crop": {
+      "cancel": "Cancel",
+      "cancelTitle": "Cancel crop (Esc)",
+      "confirm": "Crop",
+      "confirmTitle": "Apply crop (Enter)"
+    },
+    "retouch": {
+      "deletePoint": "Delete retouch point",
+      "heal": "Heal",
+      "clone": "Clone",
+      "clickTarget": "← Click target",
+      "clickSource": "← Click source",
+      "limitReached": "Maximum {{max}} retouch points",
+      "sizeTitle": "Adjust brush size",
+      "size": "Size:"
+    },
+    "softProof": {
+      "active": "Proof active",
+      "title": "Soft proofing",
+      "gamutWarning": "Gamut warning",
+      "profile": "Profile",
+      "paper": "Paper",
+      "simulatePaperWhite": "Simulate paper white",
+      "paperOptions": {
+        "none": "No paper",
+        "matte": "Matte paper",
+        "glossy": "Glossy paper",
+        "fineArt": "Fine art paper",
+        "canvas": "Canvas"
+      }
+    },
+    "navigator": {
+      "fit": "Fit",
+      "oneToOne": "1:1 (100%)",
+      "zoomOut": "Zoom out",
+      "zoomIn": "Zoom in"
+    }
+  }
+}

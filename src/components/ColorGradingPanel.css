@@ -1,0 +1,164 @@
+.cg-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* The wheels ask this container how much room they have, so the value
+     readouts can appear only when there is room to spare beside them. */
+  container-type: inline-size;
+}
+
+/* Tabs: Master | 3-Way | Shadow | Midtone | Highlight */
+.cg-tabs {
+  margin-bottom: 2px;
+}
+
+/* ─── 3-Way: as many wheels per row as fit ───
+   Each wheel is a fixed 110px, so wrapping gives three layouts as the panel
+   narrows: a row of three, a 2+1 triangle (the last row stays centred), and
+   finally a single column. Row gap is 0 — the arc padding around each wheel
+   already separates them vertically. */
+.cg-3way {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 12px;
+  padding: 8px 0 4px;
+}
+
+.cg-3way-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0; /* never squeeze a wheel — wrap instead */
+}
+
+.cg-cell-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.cg-zone-label {
+  font-size: 9px;
+  color: var(--text-secondary);
+  letter-spacing: 0.2px;
+}
+
+/* ─── Value readouts ─── */
+.cg-values {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.cg-value dt {
+  font-size: 9px;
+  color: var(--text-secondary);
+  letter-spacing: 0.2px;
+}
+
+.cg-value dd {
+  margin: 0;
+  font-size: 11px;
+  color: var(--text-primary);
+}
+
+/* Beside the wheel: four rows, label left, value right. Hidden until the
+   panel is wide enough to hold a wheel plus this column in one row. */
+.cg-values-column {
+  display: none;
+  width: 84px;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.cg-values-column .cg-value {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px;
+}
+
+/* A bare wheel is 110px, so the panel wraps to three per row at 354px and two
+   at 232px. Values (a 84px column beside a wheel) only fit while a row holds a
+   single wheel — above that the layout keeps priority and the numbers drop. */
+@container (min-width: 200px) and (max-width: 231px) {
+  .cg-3way-cell {
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .cg-cell-info {
+    align-items: flex-start;
+  }
+
+  .cg-values-column {
+    display: flex;
+  }
+}
+
+/* Under a single large wheel: four columns, label over value. */
+.cg-values-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0 6px;
+  width: 100%;
+  max-width: 240px;
+  text-align: center;
+}
+
+/* ─── Single wheel view ─── */
+.cg-single {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0;
+}
+
+/* ─── Capture One style wheel ─── */
+.c1-wheel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.c1-wheel-canvas {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.c1-center {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.c1-indicator {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.55);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  box-shadow: 0 0 2px rgba(0,0,0,0.45);
+}
+
+.c1-lum-arc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}

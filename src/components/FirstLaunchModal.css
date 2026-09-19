@@ -1,0 +1,230 @@
+.first-launch-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  backdrop-filter: blur(4px);
+}
+
+.first-launch-dialog {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  width: 620px;
+  max-width: 92vw;
+  max-height: 92vh;
+  padding: 28px;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.first-launch-dialog h2 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.first-launch-intro {
+  margin: 0 0 14px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.first-launch-hint {
+  margin: 0 0 16px;
+  padding: 10px 12px;
+  background: var(--bg-tertiary, rgba(255, 255, 255, 0.03));
+  border-left: 2px solid var(--accent, #4a9eff);
+  font-size: 11px;
+  color: var(--text-secondary);
+  border-radius: 4px;
+}
+
+.first-launch-hint code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  color: var(--text-primary);
+}
+
+.first-launch-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.first-launch-option {
+  background: var(--bg-tertiary, rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.15s, background 0.15s;
+  font: inherit;
+  color: inherit;
+}
+
+.first-launch-option:hover:not(:disabled) {
+  border-color: var(--accent, #4a9eff);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.first-launch-option:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.first-launch-option.recommended {
+  border-color: var(--accent, #4a9eff);
+}
+
+.first-launch-option-title {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.first-launch-option-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.first-launch-option-desc code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  color: var(--text-primary);
+}
+
+.first-launch-option-badge {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent, #4a9eff);
+  padding: 2px 7px;
+  border: 1px solid currentColor;
+  border-radius: 10px;
+}
+
+.first-launch-cancel {
+  margin-top: 12px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.first-launch-cancel:hover:not(:disabled) {
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+.first-launch-error {
+  margin-top: 14px;
+  padding: 10px 12px;
+  background: rgba(231, 76, 60, 0.1);
+  border-left: 2px solid var(--color-error, #e74c3c);
+  color: var(--color-error, #e74c3c);
+  font-size: 11px;
+  border-radius: 4px;
+}
+
+.first-launch-busy {
+  margin-top: 14px;
+  padding: 10px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* A tier the browser cannot offer stays on screen, readable but plainly off. */
+.first-launch-option.unavailable {
+  opacity: 0.55;
+  cursor: not-allowed;
+  border-style: dashed;
+}
+
+.first-launch-option.unavailable:hover {
+  border-color: var(--border);
+  background: var(--bg-tertiary, rgba(255, 255, 255, 0.02));
+}
+
+/* The server tier is a container, not a button: it opens onto an address. */
+.first-launch-option-group {
+  padding: 0;
+  cursor: default;
+}
+
+.first-launch-option-head {
+  display: block;
+  width: 100%;
+  padding: 14px 16px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.first-launch-option-head:disabled {
+  cursor: wait;
+}
+
+.first-launch-option-group.expanded {
+  border-color: var(--accent, #4a9eff);
+}
+
+.first-launch-server {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: 0 16px 14px;
+}
+
+.first-launch-server-input {
+  flex: 1 1 220px;
+  min-width: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 8px;
+  font: inherit;
+  font-size: 12px;
+  color: var(--text-primary);
+}
+
+.first-launch-server-connect {
+  background: var(--accent, #4a9eff);
+  border: none;
+  border-radius: 4px;
+  padding: 7px 14px;
+  font-size: 12px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.first-launch-server-connect:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.first-launch-server-note {
+  flex: 1 1 100%;
+  font-size: 10.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}

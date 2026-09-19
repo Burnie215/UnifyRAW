@@ -1,0 +1,546 @@
+/* ─── Panel System ─── */
+.panel-system {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.ps-main-row {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Left column wrapper (header + panel zone) */
+.ps-left-column {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+}
+
+.ps-left-column .panel-zone {
+  flex: 1;
+  border-right: none;
+  width: auto !important;
+  min-width: auto !important;
+}
+
+.ps-left-header {
+  flex-shrink: 0;
+}
+
+.ps-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.ps-toolbar {
+  flex-shrink: 0;
+}
+
+.ps-canvas {
+  flex: 1;
+  position: relative;
+  background: var(--bg-primary, #1a1a1a);
+  overflow: hidden;
+  min-height: 0;
+}
+
+.ps-statusbar {
+  flex-shrink: 0;
+}
+
+.ps-bottom {
+  flex-shrink: 0;
+  border-top: 1px solid var(--border);
+  max-height: 40%;
+  overflow: hidden;
+}
+
+/* ─── Floating Panel ─── */
+.ps-floating {
+  position: absolute;
+  z-index: 50;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.ps-floating-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: var(--bg-tertiary);
+  cursor: grab;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  user-select: none;
+}
+
+.ps-floating-header:active {
+  cursor: grabbing;
+}
+
+.ps-floating-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 2px;
+}
+
+.ps-floating-btn {
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.ps-floating-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.ps-floating-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 10px;
+}
+
+/* ─── Treatment Toggle ─── */
+.treatment-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.treatment-label {
+  font-size: 10px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.treatment-btns {
+  display: flex;
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+  padding: 1px;
+  gap: 1px;
+}
+
+.treatment-btn {
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.treatment-btn.active {
+  background: var(--bg-active);
+  color: var(--text-primary);
+}
+
+/* ─── WB Picker ─── */
+.wb-picker-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 5px 8px;
+  margin-bottom: 6px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: none;
+  color: var(--text-secondary);
+  font-size: 11px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.wb-picker-btn:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+.wb-picker-btn.active {
+  border-color: var(--accent);
+  background: rgba(74, 158, 255, 0.12);
+  color: var(--accent);
+}
+
+.bw-inactive-hint {
+  font-size: 10px;
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 8px 0;
+  opacity: 0.6;
+}
+
+/* ─── Drag Overlay ─── */
+.ps-drag-overlay {
+  position: fixed;
+  z-index: 100;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.ps-drag-title {
+  color: var(--accent);
+}
+
+/* Dragging panel in source zone is dimmed */
+.pz-panel-dragging {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* ─── Adaptive tablet drawers ─── */
+.ps-adaptive .ps-main-row,
+.ps-adaptive .ps-center {
+  width: 100%;
+}
+
+.ps-tablet-drawer-trigger {
+  position: absolute;
+  z-index: 25;
+  top: 50%;
+  width: 44px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg-secondary) 92%, transparent);
+  color: var(--text-secondary);
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.ps-tablet-drawer-trigger-left {
+  left: 0;
+  border-left: 0;
+  border-radius: 0 10px 10px 0;
+}
+
+.ps-tablet-drawer-trigger-right {
+  right: 0;
+  border-right: 0;
+  border-radius: 10px 0 0 10px;
+}
+
+.ps-compact-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 240;
+}
+
+.ps-compact-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.ps-tablet-drawer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: min(48vw, 460px);
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.ps-tablet-drawer-left { left: 0; }
+.ps-tablet-drawer-right { right: 0; }
+
+.ps-compact-header,
+.ps-phone-sheet-title {
+  min-height: 50px;
+  padding: 6px 10px 6px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.ps-compact-header strong,
+.ps-phone-sheet-title strong {
+  flex: 1;
+}
+
+.ps-compact-header button,
+.ps-phone-sheet-title button {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 24px;
+}
+
+.ps-phone-sheet-title-icon {
+  width: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+}
+
+.ps-phone-sheet-title .ps-phone-sheet-back {
+  margin-left: -8px;
+  font-size: inherit;
+}
+
+.ps-phone-sheet-title button:focus-visible,
+.ps-phone-tool-grid button:focus-visible,
+.ps-phone-more-tools summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.ps-compact-panel-list {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.ps-compact-panel-list .mod-panel-header {
+  min-height: 44px;
+}
+
+/* ─── Phone editor tool picker + temporary panel sheet ─── */
+.ps-phone-sheet-layer {
+  z-index: 260;
+}
+
+.ps-phone-sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  height: min(76dvh, 680px);
+  padding-right: env(safe-area-inset-right, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  padding-left: env(safe-area-inset-left, 0px);
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px 18px 0 0;
+  background: var(--bg-secondary);
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.ps-phone-tool-picker-sheet {
+  height: auto;
+  max-height: min(76dvh, 680px);
+}
+
+.ps-phone-sheet-handle {
+  width: 42px;
+  height: 5px;
+  margin: 8px auto 5px;
+  border-radius: 99px;
+  background: var(--slider-track);
+  flex-shrink: 0;
+}
+
+.ps-phone-sheet-content {
+  flex: 1;
+  min-height: 0;
+  padding: 10px 14px 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.ps-phone-tool-picker {
+  flex: 1;
+  min-height: 0;
+  padding: 8px 14px 20px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.ps-phone-tool-group {
+  padding: 8px 0;
+}
+
+.ps-phone-tool-group h3 {
+  margin: 0 2px 8px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ps-phone-tool-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.ps-phone-tool-grid button {
+  min-width: 0;
+  min-height: 56px;
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.ps-phone-tool-grid button:active {
+  border-color: color-mix(in srgb, var(--accent) 65%, var(--border));
+  background: color-mix(in srgb, var(--accent) 12%, var(--bg-tertiary));
+}
+
+.ps-phone-tool-icon {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+}
+
+.ps-phone-tool-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.ps-phone-more-tools {
+  margin-top: 4px;
+  border-top: 1px solid var(--border);
+}
+
+.ps-phone-more-tools summary {
+  min-height: 48px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  color: var(--text-primary);
+  cursor: pointer;
+  list-style: none;
+}
+
+.ps-phone-more-tools summary::-webkit-details-marker {
+  display: none;
+}
+
+.ps-phone-more-tools summary > span:first-child {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ps-phone-more-count {
+  min-width: 24px;
+  height: 24px;
+  padding: 0 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.ps-phone-more-tools summary svg {
+  transition: transform 160ms ease;
+}
+
+.ps-phone-more-tools[open] summary svg {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 340px) {
+  .ps-phone-tool-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Landscape phones have little vertical room. Keep the canvas usable by
+   docking the temporary editor sheet to the right instead of covering most
+   of the image from below. */
+@media (orientation: landscape) and (max-height: 520px) {
+  :root[data-screen="phone"] .ps-phone-sheet {
+    inset: 0 0 0 auto;
+    width: min(54vw, 420px);
+    height: auto;
+    max-height: none;
+    padding-top: env(safe-area-inset-top, 0px);
+    border: 1px solid var(--border);
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-radius: 18px 0 0 18px;
+  }
+
+  :root[data-screen="phone"] .ps-phone-tool-picker-sheet {
+    height: auto;
+    max-height: none;
+  }
+
+  :root[data-screen="phone"] .ps-phone-sheet-handle {
+    display: none;
+  }
+}

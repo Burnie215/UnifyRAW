@@ -1,0 +1,179 @@
+/* Side by Side */
+.ba-side-by-side {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.ba-half {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 100%;
+}
+
+.ba-half .ba-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Split */
+.ba-split {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: col-resize;
+  touch-action: none;
+}
+
+.ba-split .ba-canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ba-before {
+  z-index: 2;
+}
+
+.ba-after {
+  z-index: 1;
+}
+
+.ba-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  transform: translateX(-50%);
+  z-index: 3;
+  cursor: col-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ba-divider-line {
+  width: 2px;
+  height: 100%;
+  background: white;
+  opacity: 0.7;
+}
+
+.ba-divider-handle {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Toggle */
+.ba-toggle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ba-toggle .ba-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Labels */
+.ba-label {
+  position: absolute;
+  bottom: 8px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 2px 10px;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.ba-half .ba-label {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ba-label-left { left: 16px; }
+.ba-label-right { right: 16px; }
+
+.ba-toggle .ba-label {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Mode bar */
+.ba-mode-bar {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px 10px;
+  border-radius: 6px;
+  z-index: 5;
+}
+
+.ba-mode-btns {
+  display: flex;
+  gap: 2px;
+}
+
+.ba-mode-btn {
+  border: none;
+  background: none;
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+}
+
+.ba-mode-btn:hover {
+  color: rgba(255,255,255,0.8);
+}
+
+.ba-mode-btn.active {
+  color: var(--accent);
+  background: rgba(74, 158, 255, 0.2);
+}
+
+.ba-mode-label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.6);
+  white-space: nowrap;
+}
+
+.ba-zoom-label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.5);
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,644 @@
+.grid-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.toolbar-separator {
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+  margin: 0 4px;
+}
+
+/* Search */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  width: 220px;
+  transition: border-color 0.15s;
+}
+
+.search-box:focus-within {
+  border-color: var(--accent);
+}
+
+.search-box input {
+  border: none;
+  background: none;
+  color: var(--text-primary);
+  font-size: 12px;
+  outline: none;
+  width: 100%;
+}
+
+.search-box input::placeholder {
+  color: var(--text-secondary);
+}
+
+.search-box svg {
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.search-clear {
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+}
+
+.search-clear:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.filter-count {
+  font-size: 11px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* Toolbar Buttons */
+.toolbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 5px 8px;
+  border-radius: 5px;
+  font-size: 11px;
+  transition: all 0.15s;
+}
+
+.toolbar-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--accent);
+}
+
+.toolbar-btn.active {
+  background: rgba(74, 158, 255, 0.15);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.toolbar-btn.danger {
+  color: #e74c3c;
+  border-color: #e74c3c;
+}
+
+.toolbar-btn.danger:hover {
+  background: rgba(231, 76, 60, 0.15);
+}
+
+/* View mode buttons */
+.view-modes {
+  display: flex;
+  background: var(--bg-tertiary);
+  border-radius: 5px;
+  padding: 2px;
+  gap: 1px;
+}
+
+.view-mode-btn {
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.view-mode-btn:hover {
+  color: var(--text-primary);
+}
+
+.view-mode-btn.active {
+  background: var(--bg-active);
+  color: var(--accent);
+}
+
+/* Size slider */
+.size-slider {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.size-slider input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 80px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--slider-track);
+  outline: none;
+  cursor: pointer;
+}
+
+.size-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.size-slider input[type="range"]::-webkit-slider-thumb:hover {
+  background: var(--accent);
+}
+
+/* Sort */
+.sort-select {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 11px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+}
+
+.sort-select:hover {
+  border-color: var(--accent);
+}
+
+.sort-select option {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.toolbar-sort-control {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  padding: 0 4px 0 7px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  white-space: nowrap;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+}
+
+.toolbar-sort-control:hover,
+.toolbar-sort-control:focus-within {
+  color: var(--text-primary);
+  border-color: var(--accent);
+}
+
+.toolbar-sort-control select {
+  min-width: 122px;
+  max-width: 190px;
+  padding: 5px 5px;
+  color: var(--text-primary);
+  font-size: 11px;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+
+.toolbar-sort-control option {
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+.filter-select {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 11px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+.filter-select:hover {
+  border-color: var(--accent);
+}
+
+.filter-select option {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+/* Grid Toolbar Wrapper */
+.grid-toolbar-wrapper {
+  flex-shrink: 0;
+  /* Anchors the overflow menu above the photo grid. */
+  position: relative;
+  z-index: 20;
+}
+
+/* Filter toggle button */
+.filter-toggle-btn {
+  position: relative;
+}
+
+.filter-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Density steps
+
+   The bar reacts to its own width (ResizeObserver in useToolbarDensity), not to
+   the viewport: open side panels take room a media query cannot see, which is
+   how a wide window still ended up with labels painted over the view buttons.
+   Every step has to be strictly narrower than the one before it, otherwise the
+   hook keeps stepping down without gaining anything.
+   --------------------------------------------------------------------------- */
+
+.toolbar-label {
+  white-space: nowrap;
+}
+
+/* Only meaningful once the control sits in the overflow menu. */
+.toolbar-label-menu {
+  display: none;
+}
+
+/* Step 1: the count is redundant with the grid, the search field gives up room. */
+.grid-toolbar:not([data-density="0"]) .filter-count {
+  display: none;
+}
+
+.grid-toolbar[data-density="1"] .search-box {
+  width: 170px;
+}
+
+/* Step 2: labels drop to their icons, selects stop reserving their widest option. */
+.grid-toolbar[data-density="2"] .search-box,
+.grid-toolbar[data-density="3"] .search-box {
+  width: 124px;
+  min-width: 104px;
+}
+
+.grid-toolbar[data-density="2"] .toolbar-label,
+.grid-toolbar[data-density="3"] .toolbar-label {
+  display: none;
+}
+
+.grid-toolbar[data-density="2"] .toolbar-sort-control select {
+  min-width: 0;
+  max-width: 104px;
+}
+
+.grid-toolbar[data-density="2"] .sort-select {
+  max-width: 118px;
+}
+
+.grid-toolbar[data-density="2"] .size-slider input[type="range"] {
+  width: 56px;
+}
+
+/* Step 3: last resort - clip instead of letting the sections paint over each
+   other, in case a translation or a long selection label still does not fit. */
+.grid-toolbar[data-density="3"] .toolbar-left {
+  overflow: hidden;
+}
+
+.grid-toolbar[data-density="3"] .toolbar-right {
+  min-width: 0;
+}
+
+/* ---- Overflow menu ---- */
+.toolbar-overflow {
+  position: relative;
+  display: flex;
+}
+
+.toolbar-overflow-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  min-width: 200px;
+  padding: 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.toolbar-overflow-menu .toolbar-btn,
+.toolbar-overflow-menu .toolbar-sort-control,
+.toolbar-overflow-menu .sort-select,
+.toolbar-overflow-menu .size-slider {
+  width: 100%;
+  justify-content: flex-start;
+  min-height: 28px;
+}
+
+.grid-toolbar[data-density] .toolbar-overflow-menu .toolbar-label,
+.grid-toolbar[data-density] .toolbar-overflow-menu .toolbar-label-menu {
+  display: inline;
+}
+
+.grid-toolbar[data-density] .toolbar-overflow-menu .toolbar-sort-control select {
+  flex: 1;
+  min-width: 0;
+  max-width: none;
+}
+
+.grid-toolbar[data-density] .toolbar-overflow-menu .size-slider {
+  padding: 0 4px;
+}
+
+.grid-toolbar[data-density] .toolbar-overflow-menu .size-slider input[type="range"] {
+  flex: 1;
+  width: auto;
+}
+
+/* ─── Filter Bar ─── */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 16px;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.fb-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fb-label {
+  font-size: 10px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-weight: 600;
+  user-select: none;
+}
+
+.fb-sep {
+  width: 1px;
+  height: 18px;
+  background: var(--border);
+}
+
+/* Stars */
+.fb-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.fb-star-btn {
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 10px;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+
+.fb-star-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.fb-star-btn.active {
+  background: rgba(74, 158, 255, 0.15);
+  color: #f5c518;
+}
+
+/* ─── Tablet library chrome ─── */
+:root[data-screen="tablet"] .grid-toolbar {
+  align-items: stretch;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 10px;
+}
+
+:root[data-screen="tablet"] .toolbar-left,
+:root[data-screen="tablet"] .toolbar-right {
+  width: 100%;
+}
+
+:root[data-screen="tablet"] .toolbar-right {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+:root[data-screen="tablet"] .search-box {
+  width: auto;
+  flex: 1;
+}
+
+:root[data-screen="tablet"] .filter-count {
+  display: none;
+}
+
+:root[data-screen="tablet"] .toolbar-sort-control {
+  flex-shrink: 0;
+}
+
+:root[data-screen="tablet"][data-input="touch"] .search-box,
+:root[data-screen="tablet"][data-input="touch"] .toolbar-btn,
+:root[data-screen="tablet"][data-input="touch"] .view-mode-btn,
+:root[data-screen="tablet"][data-input="touch"] .sort-select,
+:root[data-screen="tablet"][data-input="touch"] .size-slider {
+  min-height: 44px;
+  flex-shrink: 0;
+}
+
+:root[data-screen="tablet"][data-input="touch"] .view-mode-btn {
+  min-width: 44px;
+}
+
+:root[data-screen="tablet"][data-input="touch"] .toolbar-right::-webkit-scrollbar {
+  display: none;
+}
+
+/* Flags */
+.fb-flags {
+  display: flex;
+  gap: 2px;
+}
+
+.fb-flag-btn {
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  transition: all 0.12s;
+}
+
+.fb-flag-btn:hover {
+  background: var(--bg-hover);
+}
+
+.fb-flag-btn.active {
+  background: rgba(74, 158, 255, 0.15);
+  color: var(--accent);
+}
+
+.fb-flag-btn.fb-pick.active {
+  color: #4ade80;
+}
+
+.fb-flag-btn.fb-reject.active {
+  color: #f87171;
+}
+
+/* Color dots */
+.fb-colors {
+  display: flex;
+  gap: 3px;
+}
+
+.fb-color-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  transition: all 0.12s;
+}
+
+.fb-color-btn:hover {
+  background: var(--bg-hover);
+}
+
+.fb-color-btn.active {
+  background: rgba(74, 158, 255, 0.2);
+  outline: 1px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.fb-color-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* Metadata select */
+.fb-select {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 10px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  max-width: 150px;
+}
+
+.fb-select:hover {
+  border-color: var(--accent);
+}
+
+.fb-select option {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.fb-keyword-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 220px;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.fb-keyword-chip {
+  padding: 3px 8px;
+  font-size: 10px;
+}
+
+.fb-keyword-chip span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Reset button */
+.fb-reset {
+  border: none;
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-left: auto;
+}
+
+.fb-reset:hover {
+  background: rgba(74, 158, 255, 0.1);
+}

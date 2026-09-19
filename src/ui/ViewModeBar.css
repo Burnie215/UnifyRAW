@@ -1,0 +1,86 @@
+.view-mode-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 16px;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+  min-height: 30px;
+}
+
+.vmb-left,
+.vmb-right {
+  flex: 1;
+  min-width: 0;
+}
+
+.vmb-count {
+  font-size: 10px;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.vmb-center {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--bg-tertiary);
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.vmb-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 10px;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+
+.vmb-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.vmb-btn.active {
+  background: var(--bg-active);
+  color: var(--accent);
+}
+
+.vmb-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+:root[data-input="touch"] .view-mode-bar {
+  min-height: 52px;
+  padding: 4px 12px;
+}
+
+:root[data-input="touch"] .vmb-center {
+  max-width: calc(100% - 64px);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+:root[data-input="touch"] .vmb-center::-webkit-scrollbar {
+  display: none;
+}
+
+:root[data-input="touch"] .vmb-btn {
+  min-height: 44px;
+  padding: 6px 10px;
+  flex-shrink: 0;
+}
+
+:root[data-input="touch"] .vmb-right {
+  display: none;
+}

@@ -1,0 +1,102 @@
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Tall enough to carry the display controls that used to sit in the top bar. */
+  min-height: 30px;
+  padding: 3px 12px;
+  background: var(--bg-tertiary);
+  border-top: 1px solid var(--border);
+  font-size: 10px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.sb-left, .sb-center, .sb-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sb-left { flex: 1; }
+.sb-center { flex: 0; }
+.sb-right { flex: 1; justify-content: flex-end; }
+
+.sb-item {
+  white-space: nowrap;
+}
+
+.sb-item::after {
+  content: '│';
+  margin-left: 8px;
+  color: var(--border);
+}
+
+.sb-item:last-child::after {
+  content: '';
+  margin: 0;
+}
+
+.sb-filename {
+  color: var(--text-primary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.sb-capture-settings {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  white-space: nowrap;
+}
+
+.sb-capture-settings > span::before {
+  content: '·';
+  margin: 0 6px;
+  color: var(--text-muted, var(--text-secondary));
+}
+
+/* Display controls parked at the right end, left of the zoom percentage. */
+.sb-display-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sb-display-controls .render-mode-toggle {
+  display: flex;
+  gap: 2px;
+  margin-right: 4px;
+}
+
+.sb-display-controls .toolbar-icon-btn {
+  font-size: 10px;
+  padding: 3px 6px;
+}
+
+/* The classic view is out of reach: the graph holds something the document
+   cannot express. Stays fully legible rather than fading out like an ordinary
+   disabled button — it is a state to read, not a control to ignore. */
+.sb-display-controls .toolbar-icon-btn.gate-blocked,
+.sb-display-controls .toolbar-icon-btn.gate-blocked:hover {
+  color: var(--gate-blocked);
+  background: var(--gate-blocked-bg);
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.sb-display-controls .gate-count {
+  margin-left: 4px;
+  padding: 0 4px;
+  border-radius: 6px;
+  background: var(--gate-blocked);
+  color: #fff;
+  font-size: 9px;
+  line-height: 13px;
+}
+
+.sb-zoom {
+  min-width: 38px;
+  text-align: right;
+}

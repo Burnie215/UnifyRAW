@@ -1,0 +1,109 @@
+.cs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 20px;
+}
+
+.cs-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  min-width: 70px;
+  flex-shrink: 0;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cs-track-wrap {
+  flex: 1;
+  position: relative;
+  height: 4px;
+  background: var(--slider-track);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.cs-fill {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.cs-range {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 14px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  margin: 0;
+}
+
+.cs-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  border: 2px solid var(--bg-secondary);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.cs-range::-webkit-slider-thumb:hover {
+  background: var(--accent);
+}
+
+.cs-range:active::-webkit-slider-thumb {
+  background: var(--accent);
+  transform: scale(1.15);
+}
+
+.cs-value {
+  font-size: 11px;
+  color: var(--text-primary);
+  min-width: 30px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  cursor: text;
+  flex-shrink: 0;
+}
+
+.cs-value:hover {
+  color: var(--accent);
+}
+
+.cs-input {
+  width: 38px;
+  border: 1px solid var(--accent);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-size: 11px;
+  text-align: right;
+  padding: 0 3px;
+  border-radius: 3px;
+  outline: none;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Identity not resolved yet: the value has nowhere to be written. */
+.cs.disabled {
+  opacity: 0.45;
+}
+
+.cs.disabled .cs-range,
+.cs.disabled .cs-value {
+  cursor: default;
+  pointer-events: none;
+}

@@ -1,0 +1,72 @@
+{
+  "graphEditor": {
+    "toolbar": {
+      "library": "Library ein/aus",
+      "zoomOut": "Zoom out (Wheel ↓)",
+      "fitToView": "Fit to view (F)",
+      "actualSize": "100% (0)",
+      "zoomIn": "Zoom in (Wheel ↑)",
+      "inspector": "Inspector ein/aus",
+      "reset": "Graph zurücksetzen — baut die Standard-Pipeline aus den aktuellen Reglern neu",
+      "resetConfirm": "Graph auf die Standard-Pipeline zurücksetzen? Die Verdrahtung geht verloren.",
+      "output": "Ausgabe / Histogramm ein/aus"
+    },
+    "status": {
+      "nodes_one": "{{count}} Knoten",
+      "nodes_other": "{{count}} Knoten",
+      "edges_one": "{{count}} Kante",
+      "edges_other": "{{count}} Kanten"
+    },
+    "blocked": {
+      "title": "Was steht im Weg ({{count}})",
+      "jumpTo": "Zum Knoten springen: {{nodeId}}"
+    },
+    "dropped_one": "{{count}} Knoten nicht verbunden, wirkt nicht",
+    "dropped_other": "{{count}} Knoten nicht verbunden, wirken nicht",
+    "library": {
+      "search": "Suche…",
+      "noResults": "Keine Treffer.",
+      "categories": {
+        "adjustment": "Anpassungen",
+        "source": "Quellen",
+        "decoder": "Decoder",
+        "encoder": "Encoder",
+        "compositor": "Compositing",
+        "mask": "Masken",
+        "generator": "Generatoren",
+        "tap": "Taps / Debug",
+        "convert": "Konvertierung"
+      },
+      "needsFile": "(Datei nötig)"
+    },
+    "inspector": {
+      "empty": "Kein Node ausgewählt.",
+      "unknownKind": "Unbekannter Kind: {{kind}}",
+      "entries_one": "{{count}} Eintrag",
+      "entries_other": "{{count}} Einträge",
+      "labels": {
+        "chroma": "Chroma",
+        "detail": "Details",
+        "amount": "Stärke",
+        "bwActive": "S/W aktiv",
+        "flipH": "Horizontal spiegeln",
+        "flipV": "Vertikal spiegeln",
+        "rawWbMultipliers": "RAW-Weißabgleich-Multiplikatoren"
+      },
+      "lut": {
+        "load": "LUT-Datei (.cube)",
+        "none": "Keine .cube-Datei geladen — der Knoten wirkt nicht.",
+        "loaded": "{{size}}³ Einträge geladen",
+        "inDocument": "Die Datei liegt im Bearbeitungsstand, nicht im Foto.",
+        "tooLarge": "LUT-Größe {{size}} ist zu groß; im Bearbeitungsstand werden höchstens {{max}} gespeichert."
+      }
+    },
+    "output": {
+      "title": "Ausgabe",
+      "choose": "Ausgabe wählen",
+      "final": "Endergebnis",
+      "selected": "Ausgewählter Node",
+      "rendering": "wird gerendert…"
+    }
+  }
+}

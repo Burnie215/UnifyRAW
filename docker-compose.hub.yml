@@ -1,0 +1,73 @@
+# Ein Sync-Hub allein, ohne App und ohne Zugriff auf Dateien oder das Netz.
+#
+#   cp .env.hub.example .env.hub
+#   openssl rand -hex 32          # -> AUTH_SECRET
+#   docker compose -f docker-compose.hub.yml --env-file .env.hub up -d --build
+#
+# Wer App und Hub auf derselben Maschine und unter derselben Adresse betreibt,
+# braucht diese Datei nicht: das Wurzel-docker-compose.yml bringt den Hub als
+# /api/sync des vollen Backends schon mit. Diese hier ist fuer den Fall, dass
+# der Hub eine eigene Maschine und eine eigene Adresse hat.
+#
+# Und dann muss diese Adresse oeffentlich erreichbar sein. Ein Hub auf
+# 192.168.x oder hinter einem DNS-Namen, der dorthin zeigt, ist von einer App
+# auf einer oeffentlichen Domain nicht ansprechbar - der Browser verbietet
+# public -> private (Private Network Access), unabhaengig von CORS und
+# unabhaengig vom Zertifikat. Siehe README, "Running the sync hub on its own".
+services:
+  hub:
+    build:
+      context: .
+      dockerfile: Dockerfile.hub
+    ports:
+      - "3000:3000"
+    volumes:
+      # Der Container laeuft als uid 1000 (node). Ein Volume, das ein aelterer
+      # root-Container angelegt hat, braucht einmal chown vor dem ersten Start:
+      #   docker compose -f docker-compose.hub.yml run --rm --user root hub chown -R node:node /data
+      - photolib-hub-data:/data
+    environment:
+      # SYNC_ONLY steht im Abbild und wird hier bewusst nicht wiederholt:
+      # es ist die Identitaet dieses Bildes, keine Einstellung.
+      PORT: 3000
+      DB_PATH: /data/photolib-sync.db
+
+      # Authentifizierung faellt zu. Ein Hub ohne AUTH_SECRET startet nicht.
+      AUTH_SECRET: "${AUTH_SECRET:?AUTH_SECRET in .env.hub setzen (mindestens 32 Zeichen)}"
+      AUTH_BOOTSTRAP_USERNAME: "${AUTH_BOOTSTRAP_USERNAME:-}"
+      AUTH_BOOTSTRAP_PASSWORD: "${AUTH_BOOTSTRAP_PASSWORD:-}"
+      # Anders als beim vollen Backend ist das hier eine echte Wahl: Konten auf
+      # einem Hub sind `role: 'user'` und kommen nie an Dateien, Proxy oder
+      # Decoder - die Routen existieren in diesem Abbild nicht.
+      AUTH_REGISTRATION_ENABLED: "${AUTH_REGISTRATION_ENABLED:-false}"
+
+      # Pflicht, nicht Kuer: ein getrennter Hub wird immer von einer anderen
+      # Domain aus angesprochen. Ohne diese Liste antwortet er ohne
+      # CORS-Header, der Browser verwirft schon den Preflight des Logins, und
+      # die App kann "CORS fehlt" nicht von "Host tot" unterscheiden - beides
+      # kommt als derselbe TypeError an. Exakte Origins, kommagetrennt, kein "*".
+      CORS_ALLOWED_ORIGINS: "${CORS_ALLOWED_ORIGINS:?CORS_ALLOWED_ORIGINS setzen: die exakten Origins der Apps, die diesen Hub nutzen}"
+
+      # Zahl der Reverse-Proxy-Sprunge davor: 1 = Traefik/nginx,
+      # 2 = Cloudflare-Tunnel plus Traefik, 0 = direkt. Ohne das teilen sich
+      # alle Clients die Adresse des Proxys und mit ihr ein Login-Rate-Limit.
+      TRUST_PROXY: "${TRUST_PROXY:-0}"
+    restart: unless-stopped
+    # Der Hub liest und schreibt genau eine SQLite-Datei. Er fuehrt keine
+    # fremden Dateien aus, holt nichts aus dem Netz und dekodiert nichts -
+    # entsprechend eng darf er sitzen.
+    cap_drop:
+      - ALL
+    security_opt:
+      - "no-new-privileges:true"
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  photolib-hub-data:

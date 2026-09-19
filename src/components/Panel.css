@@ -1,0 +1,40 @@
+.panel {
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  padding: 6px 0;
+  border: none;
+  background: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: left;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.panel-header:hover {
+  color: var(--accent);
+}
+
+.panel-chevron {
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+
+.panel.open .panel-chevron {
+  transform: rotate(90deg);
+}
+
+.panel-body {
+  padding-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}

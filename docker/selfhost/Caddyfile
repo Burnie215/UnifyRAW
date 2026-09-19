@@ -1,0 +1,25 @@
+# Caddy vor UnifyRAW im Heimnetz (docker-compose.yml).
+#
+# Browser schalten ueber http://<IP> die Funktionen ab, ohne die die App nicht
+# startet - sie braucht HTTPS. Caddy stellt dafuer Zertifikate aus seiner
+# eigenen Zertifizierungsstelle aus, auch fuer eine nackte IP-Adresse.
+# Andere Geraete warnen, bis dort das Stammzertifikat installiert ist:
+#   docker compose cp https:/data/caddy/pki/authorities/local/root.crt ./unifyraw-root.crt
+#
+# UNIFYRAW_HOST kommt aus .env: die IP oder der Name, unter dem die App
+# erreichbar sein soll. Weitere Namen: hier hinter der Adresse kommagetrennt
+# anhaengen.
+
+{
+	# Alle Zertifikate aus der eigenen Zertifizierungsstelle, keine oeffentliche.
+	local_certs
+	# Im Container gibt es keinen System-Truststore, den Caddy fuellen koennte.
+	skip_install_trust
+	# Browser schicken bei IP-Adressen keinen Servernamen (SNI) mit. Ohne
+	# diese Vorgabe faende Caddy fuer einen Aufruf per IP kein Zertifikat.
+	default_sni {$UNIFYRAW_HOST}
+}
+
+{$UNIFYRAW_HOST} {
+	reverse_proxy photolib:3000
+}

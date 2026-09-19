@@ -1,0 +1,97 @@
+.unexported-edit-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+}
+
+.unexported-edit-dialog {
+  background: var(--panel-bg, #2a2a2a);
+  border: 1px solid var(--panel-border, #444);
+  border-radius: 8px;
+  padding: 20px 22px;
+  min-width: 360px;
+  max-width: 480px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  color: var(--text, #e0e0e0);
+}
+
+.unexported-edit-dialog h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.unexported-edit-dialog p {
+  margin: 0 0 14px 0;
+  font-size: 13px;
+  color: var(--text-muted, #aaa);
+  line-height: 1.45;
+}
+
+.unexported-edit-suppress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.unexported-edit-suppress-hint {
+  margin: 6px 0 18px 0 !important;
+  font-size: 12px !important;
+}
+
+.unexported-edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.unexported-edit-actions button {
+  padding: 7px 16px;
+  font-size: 13px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.unexported-edit-actions .btn-secondary {
+  background: transparent;
+  border-color: var(--panel-border, #555);
+  color: var(--text, #e0e0e0);
+}
+
+.unexported-edit-actions .btn-secondary:hover {
+  background: var(--hover-bg, #3a3a3a);
+}
+
+.unexported-edit-actions .btn-primary {
+  background: var(--accent, #4a9eff);
+  color: var(--accent-fg, #fff);
+}
+
+.unexported-edit-actions .btn-primary:hover {
+  background: var(--accent-hover, #6bb3ff);
+}
+
+:root[data-screen="phone"] .unexported-edit-backdrop {
+  align-items: flex-end;
+}
+
+:root[data-screen="phone"] .unexported-edit-dialog {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  padding: 22px 18px calc(18px + env(safe-area-inset-bottom, 0));
+  border-width: 1px 0 0;
+  border-radius: 18px 18px 0 0;
+}
+
+:root[data-screen="phone"] .unexported-edit-actions button {
+  min-height: 46px;
+  flex: 1;
+}

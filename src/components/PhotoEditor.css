@@ -1,0 +1,558 @@
+/* EXIF Overlay */
+.exif-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 8;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 6px 10px;
+  border-radius: 4px;
+  pointer-events: none;
+  max-width: 300px;
+}
+
+.exif-overlay-name {
+  font-size: 11px;
+  color: #eee;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exif-overlay-line {
+  font-size: 10px;
+  color: #ccc;
+  white-space: nowrap;
+}
+
+/* Editor left header (replaces Sidebar in editor) */
+.editor-left-header {
+  padding: 12px 12px 8px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.editor-left-logo {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+  padding: 0 4px 8px;
+  display: flex;
+  align-items: center;
+  min-height: 20px;
+}
+
+.editor-left-wordmark {
+  max-height: 24px;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left;
+}
+
+.editor-left-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  transition: all 0.1s;
+  width: 100%;
+  text-align: left;
+}
+
+.editor-left-nav:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.editor-left-nav.active {
+  background: rgba(74, 158, 255, 0.12);
+  color: var(--accent);
+}
+
+.editor-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  min-height: var(--toolbar-height);
+  flex-shrink: 0;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.back-btn:hover {
+  background: var(--bg-hover);
+}
+
+.editor-filename {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Jumps to the RAW/JPEG sibling. Labelled with the target extension, because
+   that is the question the user actually has: "am I on the RAW or the JPEG?" */
+.editor-pair-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+  padding: 2px 7px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.editor-pair-switch:hover {
+  color: var(--accent, #3b82f6);
+  border-color: var(--accent, #3b82f6);
+}
+
+.editor-active-layer {
+  font-size: 11px;
+  color: var(--accent, #3b82f6);
+  background: rgba(59, 130, 246, 0.15);
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-left: 8px;
+}
+
+.toolbar-spacer {
+  flex: 1;
+}
+
+.editor-image-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+/* ─── Adaptive editor chrome ─── */
+.phone-editor-toolbar {
+  min-height: calc(52px + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-right: max(6px, env(safe-area-inset-right, 0px));
+  padding-bottom: 0;
+  padding-left: max(6px, env(safe-area-inset-left, 0px));
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg-secondary) 94%, transparent);
+  backdrop-filter: blur(16px);
+}
+
+.phone-editor-toolbar-btn,
+.phone-editor-tools-btn {
+  min-height: 44px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-primary);
+}
+
+.phone-editor-toolbar-btn {
+  width: 44px;
+  flex: 0 0 44px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-editor-toolbar-btn:active,
+.phone-editor-toolbar-btn.active,
+.phone-editor-tools-btn:active {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 13%, transparent);
+}
+
+.phone-editor-toolbar-btn:disabled,
+.phone-editor-tools-btn:disabled {
+  opacity: 0.35;
+}
+
+.phone-editor-toolbar-btn:focus-visible,
+.phone-editor-tools-btn:focus-visible,
+.phone-editor-overflow-menu button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.phone-editor-tools-btn {
+  min-width: 104px;
+  max-width: 132px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.phone-editor-tools-btn span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.phone-editor-toolbar-spacer {
+  flex: 1;
+  min-width: 0;
+}
+
+.phone-editor-saving {
+  width: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-editor-saving > span:first-child {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: phone-editor-saving-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes phone-editor-saving-pulse {
+  50% { opacity: 0.35; }
+}
+
+.phone-editor-overflow-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 320;
+}
+
+.phone-editor-overflow-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.phone-editor-overflow-menu {
+  position: absolute;
+  top: calc(52px + env(safe-area-inset-top, 0px));
+  right: max(8px, env(safe-area-inset-right, 0px));
+  width: min(296px, calc(100vw - 16px));
+  max-height: calc(100dvh - 64px - env(safe-area-inset-top, 0px));
+  padding: 6px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--bg-secondary);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.48);
+}
+
+.phone-editor-overflow-menu button {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--text-primary);
+  text-align: left;
+}
+
+.phone-editor-overflow-menu button:active,
+.phone-editor-overflow-menu button.active {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.phone-editor-overflow-menu button:disabled {
+  opacity: 0.38;
+}
+
+.phone-editor-overflow-menu button svg {
+  flex: 0 0 20px;
+  color: var(--text-secondary);
+}
+
+.phone-editor-overflow-menu button > span {
+  flex: 1;
+  font-size: 13px;
+}
+
+.phone-editor-overflow-menu button > small {
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.phone-editor-overflow-separator {
+  height: 1px;
+  margin: 5px 6px;
+  background: var(--border);
+}
+
+:root[data-screen="phone"] .exif-overlay {
+  top: 8px;
+  left: 8px;
+  max-width: calc(100% - 16px);
+  opacity: 0.82;
+}
+
+:root[data-screen="phone"] .ps-statusbar {
+  display: none;
+}
+
+:root[data-screen="tablet"] .editor-toolbar {
+  min-height: 52px;
+  padding-inline: 10px;
+  gap: 6px;
+}
+
+:root[data-input="touch"] .toolbar-icon-btn,
+:root[data-input="touch"] .back-btn,
+:root[data-input="touch"] .ts-btn,
+:root[data-input="touch"] .mask-tool-btn,
+:root[data-input="touch"] .brush-erase-btn {
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-image-wrapper {
+  position: relative;
+  transform-origin: center center;
+}
+
+.editor-image {
+  display: block;
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+.editor-image-preview {
+  position: absolute;
+  inset: 0;
+  opacity: 0.7;
+  filter: blur(2px);
+  z-index: -1;
+}
+
+.editor-compare-overlay {
+  position: absolute;
+  z-index: 3;
+}
+
+.editor-render-fallback {
+  position: absolute;
+  inset: 0;
+}
+
+.editor-render-failure {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: var(--text-primary);
+  background: rgba(20, 20, 20, 0.9);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  white-space: nowrap;
+}
+
+.editor-render-failure button {
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 4px 8px;
+  color: var(--text-primary);
+  background: transparent;
+  cursor: pointer;
+}
+
+.editor-loading {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.editor-loading-thumb {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-loading-thumb .editor-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: blur(0.5px);
+  opacity: 0.7;
+}
+
+.editor-loading-overlay {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 12px;
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+
+.toolbar-icon-btn {
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  transition: all 0.15s;
+  position: relative;
+}
+
+.toolbar-icon-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.toolbar-icon-btn.active {
+  color: var(--accent);
+  background: rgba(74, 158, 255, 0.15);
+}
+
+/* Reset carries the same accent as the panels' reset: it only appears when
+   something has been changed, and the colour is what says so. */
+.toolbar-reset-btn {
+  color: var(--accent);
+}
+
+/* The gate's reasons are whole sentences; the label tooltip below is built
+   for two or three words and would run off the screen with nowrap. */
+.toolbar-icon-btn.gate-blocked[title]:hover::after {
+  white-space: normal;
+  width: max-content;
+  max-width: 260px;
+  text-align: left;
+  line-height: 1.4;
+}
+
+/* Instant CSS tooltip */
+.toolbar-icon-btn[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 3px 8px;
+  background: #111;
+  color: #ddd;
+  font-size: 11px;
+  white-space: nowrap;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  animation: tooltip-in 0.1s ease;
+}
+
+@keyframes tooltip-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(-2px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.toolbar-zoom {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.zoom-label {
+  font-size: 10px;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+  min-width: 32px;
+  text-align: center;
+}
+
+.straighten-cursor {
+  cursor: crosshair !important;
+}
+
+.clipping-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.straighten-line-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.save-indicator {
+  font-size: 11px;
+  color: var(--accent);
+  opacity: 0.8;
+}

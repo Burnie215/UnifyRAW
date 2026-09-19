@@ -1,0 +1,72 @@
+{
+  "graphEditor": {
+    "toolbar": {
+      "library": "Toggle library",
+      "zoomOut": "Zoom out (Wheel ↓)",
+      "fitToView": "Fit to view (F)",
+      "actualSize": "100% (0)",
+      "zoomIn": "Zoom in (Wheel ↑)",
+      "inspector": "Toggle inspector",
+      "reset": "Reset graph — rebuilds the default pipeline from the current sliders",
+      "resetConfirm": "Reset the graph to the default pipeline? The wiring will be lost.",
+      "output": "Toggle output / histogram"
+    },
+    "status": {
+      "nodes_one": "{{count}} node",
+      "nodes_other": "{{count}} nodes",
+      "edges_one": "{{count}} edge",
+      "edges_other": "{{count}} edges"
+    },
+    "blocked": {
+      "title": "What is in the way ({{count}})",
+      "jumpTo": "Jump to node: {{nodeId}}"
+    },
+    "dropped_one": "{{count}} node not connected, has no effect",
+    "dropped_other": "{{count}} nodes not connected, have no effect",
+    "library": {
+      "search": "Search…",
+      "noResults": "No matches.",
+      "categories": {
+        "adjustment": "Adjustments",
+        "source": "Sources",
+        "decoder": "Decoders",
+        "encoder": "Encoders",
+        "compositor": "Compositing",
+        "mask": "Masks",
+        "generator": "Generators",
+        "tap": "Taps / Debug",
+        "convert": "Conversion"
+      },
+      "needsFile": "(file needed)"
+    },
+    "inspector": {
+      "empty": "No node selected.",
+      "unknownKind": "Unknown kind: {{kind}}",
+      "entries_one": "{{count}} entry",
+      "entries_other": "{{count}} entries",
+      "labels": {
+        "chroma": "Chroma",
+        "detail": "Detail",
+        "amount": "Amount",
+        "bwActive": "B&W active",
+        "flipH": "Flip horizontally",
+        "flipV": "Flip vertically",
+        "rawWbMultipliers": "RAW white balance multipliers"
+      },
+      "lut": {
+        "load": "LUT file (.cube)",
+        "none": "No .cube file loaded — this node has no effect.",
+        "loaded": "{{size}}³ entries loaded",
+        "inDocument": "The file is kept in the edit, not in the photo.",
+        "tooLarge": "LUT size {{size}} is too large; the edit stores at most {{max}}."
+      }
+    },
+    "output": {
+      "title": "Output",
+      "choose": "Choose output",
+      "final": "Final result",
+      "selected": "Selected node",
+      "rendering": "rendering…"
+    }
+  }
+}

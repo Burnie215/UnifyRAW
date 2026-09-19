@@ -1,0 +1,77 @@
+.alpha-notice-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  /* Above FirstLaunchModal (1100) — it has to be read first. */
+  z-index: 1200;
+  backdrop-filter: blur(4px);
+}
+
+.alpha-notice-dialog {
+  background: var(--bg-secondary);
+  border: 1px solid var(--alpha-orange);
+  border-radius: 10px;
+  width: 460px;
+  max-width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.alpha-notice-kicker {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--alpha-orange);
+}
+
+.alpha-notice-dialog h2 {
+  margin: 6px 0 12px;
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.alpha-notice-text {
+  margin: 0 0 12px;
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.alpha-notice-warning {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--alpha-orange);
+  background: var(--bg-tertiary);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.alpha-notice-confirm {
+  margin-top: 4px;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--alpha-orange);
+  border-radius: 6px;
+  background: var(--alpha-orange);
+  color: #1a1a1a;
+  font-size: var(--text-md);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.alpha-notice-confirm:hover {
+  filter: brightness(1.08);
+}
+
+:root[data-theme="light"] .alpha-notice-confirm {
+  color: #ffffff;
+}

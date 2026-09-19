@@ -1,0 +1,46 @@
+.toast-stack {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9999;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 8px;
+  pointer-events: none;
+}
+
+/* Notification bodies must never make controls underneath untouchable. */
+.toast-notification {
+  pointer-events: none;
+}
+
+.toast-close {
+  pointer-events: auto;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.toast-action {
+  pointer-events: auto;
+  min-height: 24px;
+}
+
+html[data-screen='phone'] .toast-stack {
+  right: 12px;
+  bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  left: 12px;
+  max-width: none;
+}
+
+html[data-screen='phone'] .toast-close,
+html[data-input='touch'] .toast-close {
+  min-width: 44px;
+  min-height: 44px;
+  margin: -8px -8px -8px 0;
+}
+
+html[data-screen='phone'] .toast-action,
+html[data-input='touch'] .toast-action {
+  min-height: 44px;
+}

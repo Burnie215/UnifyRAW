@@ -1,0 +1,226 @@
+.app-splash {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary, #1a1a1a);
+  color: var(--text-secondary, #999);
+  font-size: 13px;
+}
+
+.app-splash-inner {
+  padding: 24px 32px;
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+  border-radius: 8px;
+  background: var(--bg-secondary, rgba(255, 255, 255, 0.02));
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+
+.app-phone,
+.app-tablet {
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.no-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 100%;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.no-selection button {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-size: 12px;
+  padding: 4px 12px;
+  cursor: pointer;
+}
+
+.no-selection button:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.drop-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(74, 158, 255, 0.1);
+  border: 3px dashed var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.drop-text {
+  background: var(--bg-secondary);
+  color: var(--accent);
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* ─── Library Special Views ─── */
+.lib-special {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  background: #111;
+  overflow: hidden;
+}
+
+.lib-special-empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+  background: #111;
+}
+
+.lib-loupe {
+  padding: 16px;
+}
+
+.lib-loupe .lib-special-item {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.lib-compare {
+  gap: 4px;
+}
+
+.lib-compare .lib-special-item {
+  flex: 1;
+  max-width: 50%;
+  height: 100%;
+}
+
+.lib-survey {
+  flex-wrap: wrap;
+  align-content: center;
+  gap: 12px;
+}
+
+.lib-survey .lib-special-item {
+  flex: 1 1 200px;
+  max-width: 400px;
+  max-height: 50%;
+}
+
+.lib-special-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  transition: border-color 0.15s;
+  overflow: hidden;
+}
+
+.lib-special-item:hover {
+  border-color: var(--bg-hover);
+}
+
+.lib-special-item.selected {
+  border-color: var(--accent);
+}
+
+.lib-special-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.lib-special-loading {
+  width: 200px;
+  height: 200px;
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.lib-special-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 4px 8px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  font-size: 11px;
+  color: #ddd;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Catalog banner ── */
+
+.catalog-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(243, 156, 18, 0.1);
+  border-bottom: 1px solid rgba(243, 156, 18, 0.2);
+  font-size: 11px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.catalog-banner svg {
+  flex-shrink: 0;
+  color: #f39c12;
+}
+
+.catalog-banner span {
+  flex: 1;
+}
+
+.catalog-banner button {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-size: 10px;
+  padding: 2px 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.catalog-banner button:hover {
+  background: rgba(255, 255, 255, 0.05);
+}

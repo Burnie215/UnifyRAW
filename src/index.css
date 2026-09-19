@@ -1,0 +1,155 @@
+@import './ui/segmented.css';
+
+:root {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #242424;
+  --bg-tertiary: #2d2d2d;
+  --bg-hover: #383838;
+  --bg-active: #444;
+  --text-primary: #e0e0e0;
+  --text-secondary: #999;
+  --accent: #4a9eff;
+  --accent-fg: #ffffff;
+  --accent-hover: #6bb3ff;
+  --border: #333;
+  --slider-track: #555;
+  --slider-thumb: var(--accent);
+  --label-red: #e74c3c;
+  --label-yellow: #f1c40f;
+  --label-green: #2ecc71;
+  --label-blue: #3498db;
+  --label-purple: #9b59b6;
+
+  /* Alpha state — the product is pre-release, and the badge next to the
+     wordmark says so. Orange on purpose: red means error, this is a warning
+     about maturity, not a failure. */
+  --alpha-orange: #ff9a2e;
+
+  /* Gate state (single-source-of-truth plan, step 3): the way back from the
+     graph to the classic view is closed. Purple, because red stays reserved
+     for real errors. Its own state token on purpose — it happens to share the
+     value with --label-purple, which colours photo labels and means something
+     else entirely. */
+  --gate-blocked: #9b59b6;
+  --gate-blocked-bg: rgba(155, 89, 182, 0.15);
+
+  /* Typography tokens — see plans/UI_CUSTOMIZATION_PLAN.md (Phase 1a).
+     The Aussehen tab swaps this whole scale via data-ui-size. */
+  --text-xs: 10px;
+  --text-sm: 11px;
+  --text-base: 12px;
+  --text-md: 13px;
+  --text-lg: 14px;
+  --text-xl: 16px;
+
+  /* Density tokens — overridden by [data-ui-density="compact"]. */
+  --toolbar-height: 40px;
+  --tab-height: 32px;
+  --panel-padding: 12px;
+}
+
+:root[data-ui-size="sm"] {
+  --text-xs: 9px;
+  --text-sm: 10px;
+  --text-base: 11px;
+  --text-md: 12px;
+  --text-lg: 13px;
+  --text-xl: 15px;
+}
+
+:root[data-ui-size="lg"] {
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 13px;
+  --text-md: 14px;
+  --text-lg: 16px;
+  --text-xl: 18px;
+}
+
+/* Light theme — swap chrome tokens. Editor canvas (#111 in App.css) stays
+   dark intentionally (Wahrnehmungs-Standard für Foto-Editing). */
+:root[data-theme="light"] {
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #ebebeb;
+  --bg-hover: #e0e0e0;
+  --bg-active: #d4d4d4;
+  --text-primary: #1a1a1a;
+  --text-secondary: #5a5a5a;
+  --border: #d0d0d0;
+  --slider-track: #c0c0c0;
+  --alpha-orange: #c25708;
+}
+
+/* Compact mode — slightly tighter chrome. Defaults set in the base :root block above. */
+:root[data-ui-density="compact"] {
+  --toolbar-height: 32px;
+  --tab-height: 24px;
+  --panel-padding: 6px;
+}
+
+:root[data-ui-density="compact"] .settings-tab { padding: 5px 8px; }
+:root[data-ui-density="compact"] .settings-header { padding: 8px 12px; }
+:root[data-ui-density="compact"] .settings-content { padding: 10px 14px 24px; }
+:root[data-ui-density="compact"] .settings-subnav { padding: 5px 12px; margin: -10px -14px 12px; top: -10px; }
+:root[data-ui-density="compact"] .editor-toolbar { padding: 4px 12px; }
+:root[data-ui-density="compact"] .dialog-body { padding: 12px 16px; gap: 6px; }
+:root[data-ui-density="compact"] .dialog-header { padding: 10px 14px; }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: var(--text-md);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+:root[data-input="touch"] button,
+:root[data-input="touch"] select,
+:root[data-input="touch"] input[type="checkbox"] {
+  touch-action: manipulation;
+}
+
+:root[data-input="touch"] input[type="range"] {
+  min-height: 36px;
+  touch-action: pan-y;
+}
+
+:root[data-input="touch"] input[type="range"]::-webkit-slider-thumb {
+  min-width: 22px;
+  min-height: 22px;
+}
+
+:root[data-input="touch"] input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--slider-track);
+  border-radius: 3px;
+}

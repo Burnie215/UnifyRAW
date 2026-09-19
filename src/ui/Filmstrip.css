@@ -1,0 +1,122 @@
+.filmstrip {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.fs-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.fs-nav-btn {
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+}
+
+.fs-nav-btn:hover:not(:disabled) {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.fs-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.fs-info-text {
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin-left: 4px;
+}
+
+.fs-divider {
+  height: 5px;
+  cursor: ns-resize;
+  touch-action: none;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.fs-divider::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 2px;
+  background: var(--text-secondary);
+  border-radius: 1px;
+  opacity: 0.3;
+}
+
+.fs-divider:hover::after { opacity: 0.7; }
+
+.fs-scroll {
+  flex: 1;
+  display: flex;
+  gap: 3px;
+  padding: 0 8px 6px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  align-items: flex-start;
+}
+
+.fs-item {
+  flex-shrink: 0;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  transition: border-color 0.12s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fs-item:hover { border-color: var(--bg-hover); }
+.fs-item.active { border-color: var(--accent); }
+
+.fs-thumb {
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--bg-tertiary);
+}
+
+.fs-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fs-loading {
+  width: 100%;
+  height: 100%;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.fs-info {
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fs-stars {
+  font-size: 8px;
+  color: #f1c40f;
+  letter-spacing: -1px;
+}

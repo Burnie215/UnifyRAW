@@ -1,0 +1,9 @@
+{
+  "storage": {
+    "changePassword": "Passwort ändern",
+    "currentPassword": "Aktuelles Passwort",
+    "newPassword": "Neues Passwort (mind. 8 Zeichen)",
+    "logoutAll": "Alle Geräte abmelden",
+    "passwordChanged": "Passwort geändert. Alle anderen Geräte sind abgemeldet."
+  }
+}

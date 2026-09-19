@@ -1,0 +1,32 @@
+# Online-Build: statische Auslieferung, kein Backend (nginx auf Port 8080).
+# Gegenstueck zu docker-compose.yml, das den Selfhost-Build samt Backend faehrt.
+# Bauen und starten aus dem Wurzelverzeichnis des Repos:
+#   docker compose -f docker/online/compose.yml up -d --build
+# Der Browser braucht HTTPS oder http://localhost - ueber http://<IP> zeigt die
+# App nur eine Hinweisseite. Im Netz also hinter einen Reverse Proxy mit TLS.
+services:
+  online:
+    build:
+      context: ../..
+      dockerfile: docker/online/Dockerfile
+    image: unifyraw-online:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
+    # 127.0.0.1, nicht localhost: nginx hoert nur auf IPv4 (listen 8080), und
+    # localhost loest im Container zuerst auf ::1 auf. Mit localhost kam der
+    # Healthcheck nie an nginx an (kein einziger Zugriff im Log) und der
+    # Container blieb unhealthy — was zaehlt, weil manche Reverse Proxies
+    # (Traefik) ungesunde Container nicht in die Routing-Tabelle aufnehmen.
+    healthcheck:
+      test: [ "CMD", "wget", "-q", "--spider", "http://127.0.0.1:8080/index.html" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      # Ohne diese beiden ist der Container nach dem Start 30s lang "starting",
+      # und ein Proxy, der auf gesunde Container wartet, liefert so lange 404.
+      # Der erste Versuch kommt jetzt nach 2s.
+      start_period: 10s
+      start_interval: 2s
+
+name: unifyraw-online

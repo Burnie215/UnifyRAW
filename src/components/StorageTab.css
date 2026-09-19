@@ -1,0 +1,113 @@
+.storage-tab-callout {
+  margin: 6px 0 12px;
+  padding: 10px 12px;
+  background: var(--bg-tertiary, rgba(255, 255, 255, 0.03));
+  border-left: 2px solid var(--color-warning, #f39c12);
+  font-size: 11px;
+  color: var(--text-secondary);
+  border-radius: 4px;
+  line-height: 1.55;
+}
+
+.storage-tab-callout code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  color: var(--text-primary);
+}
+
+.storage-tab-callout button {
+  margin-top: 6px;
+}
+
+.storage-tab-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.storage-tab-kind {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-tertiary, rgba(255, 255, 255, 0.02));
+}
+
+.storage-tab-kind.active {
+  border-color: var(--accent, #4a9eff);
+  background: rgba(74, 158, 255, 0.06);
+}
+
+.storage-tab-kind-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.storage-tab-kind-label {
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.storage-tab-kind-sub {
+  font-size: 10.5px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.storage-tab-status,
+.storage-tab-sync-status {
+  margin-top: 14px;
+  padding: 10px 12px;
+  background: var(--bg-tertiary, rgba(255, 255, 255, 0.02));
+  border-radius: 6px;
+}
+
+.storage-tab-status-row {
+  display: flex;
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.storage-tab-status-row:last-child {
+  margin-bottom: 0;
+}
+
+.storage-tab-status-label {
+  width: 110px;
+  color: var(--text-secondary);
+}
+
+.storage-tab-status-value {
+  color: var(--text-primary);
+}
+
+.storage-tab-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.storage-tab-actions .settings-btn-text {
+  flex-shrink: 0;
+}
+
+.storage-tab-warn {
+  font-size: 10.5px;
+  color: var(--color-warning, #f39c12);
+}
+
+.storage-tab-error {
+  margin-top: 12px;
+  padding: 8px 10px;
+  background: rgba(231, 76, 60, 0.08);
+  border-left: 2px solid var(--color-error, #e74c3c);
+  color: var(--color-error, #e74c3c);
+  font-size: 11px;
+  border-radius: 4px;
+}

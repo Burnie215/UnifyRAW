@@ -1,0 +1,533 @@
+.bench-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 120;
+}
+
+.bench-dialog {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 1400px;
+  max-width: 96vw;
+  height: 860px;
+  max-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.bench-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.bench-header h2 {
+  margin: 0;
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.bench-header-status {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.bench-name-input {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  padding: 4px 8px;
+  width: 200px;
+}
+
+.bench-save-btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--bg-active);
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.bench-save-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.bench-close {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 20px;
+  line-height: 1;
+  padding: 0 4px;
+  cursor: pointer;
+}
+
+.bench-body {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+/* The grid area does not scroll: a matrix you have to scroll is no longer a
+   matrix, because two tiles you cannot see at once cannot be compared. The
+   wrap owns the height, the grid divides it into equal rows, and the tiles
+   fit whatever they are given.
+
+   Pair mode is the exception, and for the same reason. There the comparison
+   is between the two halves of one cell, not across the grid, so height spent
+   on making each pair readable is height well spent - and scrolling to the
+   next pair costs nothing. */
+.bench-grid-wrap {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 12px;
+  background: var(--bg-primary);
+}
+
+.bench-note {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 5px 8px;
+  margin-bottom: 10px;
+}
+
+.bench-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 10px;
+}
+
+.bench-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 0;
+  cursor: crosshair;
+}
+
+.bench-tile-frame {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bench-tile.focused .bench-tile-frame {
+  border-color: var(--accent, #4a90d9);
+}
+
+.bench-tile-canvas {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+.bench-tile-state {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  text-align: center;
+  padding: 6px;
+}
+
+.bench-tile-name {
+  font-size: 10px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bench-side {
+  width: 320px;
+  flex-shrink: 0;
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.bench-loupe {
+  padding: 2px 0 4px;
+}
+
+.bench-loupe-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.bench-loupe-clear {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 10px;
+  text-transform: none;
+  letter-spacing: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.bench-loupe-frame {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bench-loupe-canvas {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+.bench-loupe-hint {
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin-top: 5px;
+  line-height: 1.35;
+}
+
+.bench-panels {
+  flex: 1;
+  min-height: 0;
+}
+
+.bench-empty {
+  padding: 12px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.bench-tile-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 4px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-size: 9px;
+  letter-spacing: 0.4px;
+  color: var(--text-secondary);
+  vertical-align: 1px;
+}
+
+.bench-tile-badge.warn {
+  border-color: var(--warning, #c8892a);
+  color: var(--warning, #c8892a);
+}
+
+.bench-scope {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.bench-scope strong {
+  color: var(--text-primary);
+}
+
+.bench-modes {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.bench-mode-btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.bench-mode-btn.active {
+  background: var(--bg-active);
+  color: var(--text-primary);
+  cursor: default;
+}
+
+.bench-mode-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.bench-modes-hint {
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin-left: 6px;
+}
+
+/* Pair mode: a RAW and its camera rendering share one cell, side by side. */
+.bench-grid.paired {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 18px;
+}
+
+.bench-grid.paired .bench-tile-frame {
+  min-height: 190px;
+}
+
+.bench-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  min-width: 0;
+}
+
+.bench-pair .bench-tile,
+.bench-single .bench-tile {
+  min-width: 0;
+}
+
+.bench-tile.reference .bench-tile-frame {
+  border-style: dashed;
+}
+
+/* A reference grid: barrel and pincushion are invisible without straight lines
+   to bend against. Drawn over the canvas rather than into it, so it never ends
+   up in a measurement. */
+.bench-tile-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(to right, rgba(80, 180, 255, 0.55) 0 1px, transparent 1px 12.5%),
+    repeating-linear-gradient(to bottom, rgba(80, 180, 255, 0.55) 0 1px, transparent 1px 25%);
+  mix-blend-mode: difference;
+}
+
+.lens-grid-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  padding: 2px 0 6px;
+  cursor: pointer;
+}
+
+.lens-group-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--text-secondary);
+  margin: 8px 0 2px;
+}
+
+/* One photo on the bench gets the width: a third of the pane is no use for
+   judging whether a straight line is straight. */
+.bench-grid.single {
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+  max-width: 900px;
+}
+
+.bench-single,
+.bench-pair {
+  min-height: 0;
+}
+
+.bench-grid-wrap.scrollable {
+  overflow-y: auto;
+}
+
+/* Free rows rather than an equal share of a fixed height: with scrolling
+   allowed, a pair may be as tall as it needs to be read. */
+.bench-grid.paired {
+  grid-auto-rows: minmax(230px, auto);
+}
+
+.bench-nothing {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  max-width: 46ch;
+  margin: 0 auto;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* One row for everything that steers the bench: what is being compared, what
+   is being worked on, which profile that produces, and how to start over. */
+.bench-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.bench-toolbar-sep {
+  width: 1px;
+  align-self: stretch;
+  background: var(--border);
+  margin: 2px 2px;
+}
+
+.bench-toolbar-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--text-secondary);
+}
+
+.bench-load-select,
+.bench-reset-btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.bench-blocked {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--warning, #c8892a);
+  max-width: 62ch;
+  text-align: right;
+}
+
+/* Inline: no overlay, no rounded card - the bench IS the settings pane. */
+.bench-dialog.inline {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+.bench-dialog.inline .bench-header {
+  padding: 0 0 10px;
+}
+
+.bench-dialog.inline .bench-grid-wrap {
+  padding: 0 12px 0 0;
+  background: transparent;
+}
+
+/* A tile that is why nothing can be saved. Framed rather than merely counted
+   in a sentence: the sentence leaves the user to find it among nine. */
+.bench-tile.odd .bench-tile-frame {
+  border-color: var(--warning, #c8892a);
+  border-width: 2px;
+}
+
+.bench-tile-odd {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  background: rgba(20, 16, 8, 0.86);
+  cursor: default;
+}
+
+.bench-tile-odd-why {
+  flex: 1;
+  min-width: 0;
+  font-size: 10px;
+  line-height: 1.2;
+  color: var(--warning, #c8892a);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bench-tile-odd-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.bench-tile-odd-btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  width: 20px;
+  height: 20px;
+  line-height: 1;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.bench-tile-odd-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--warning, #c8892a);
+}
+
+.bench-tile-odd-btn.accept:hover {
+  border-color: var(--success, #4a9d5f);
+  color: var(--success, #4a9d5f);
+}

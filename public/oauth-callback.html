@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>PhotoLib — OAuth</title></head>
+<body>
+<p>Authentifizierung abgeschlossen. Dieses Fenster schliesst sich automatisch.</p>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code');
+  const state = params.get('state');
+  const error = params.get('error');
+
+  if (window.opener) {
+    window.opener.postMessage({
+      type: 'oauth-callback',
+      code: code,
+      state: state,
+      error: error || (code ? null : 'No authorization code received'),
+    }, window.location.origin);
+  }
+
+  setTimeout(() => window.close(), 1500);
+</script>
+</body>
+</html>

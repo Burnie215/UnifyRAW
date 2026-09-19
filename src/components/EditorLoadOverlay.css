@@ -1,0 +1,66 @@
+.editor-load-overlay {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 200;
+  pointer-events: none;
+  font-size: 11px;
+  color: var(--text-primary, #eee);
+}
+
+.editor-load-panel {
+  min-width: 240px;
+  max-width: 320px;
+  padding: 10px 12px;
+  background: rgba(20, 20, 22, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.editor-load-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  font-size: 10px;
+  color: var(--text-secondary, #999);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.editor-load-step {
+  font-weight: 500;
+}
+
+.editor-load-pct {
+  font-variant-numeric: tabular-nums;
+}
+
+.editor-load-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary, #eee);
+  margin-bottom: 2px;
+}
+
+.editor-load-next {
+  font-size: 10px;
+  color: var(--text-secondary, #888);
+  margin-bottom: 8px;
+}
+
+.editor-load-bar {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.editor-load-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4a9eff 0%, #6db8ff 100%);
+  transition: width 200ms ease-out;
+}

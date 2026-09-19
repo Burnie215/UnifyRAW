@@ -1,0 +1,2418 @@
+[
+  {
+    "type": "index",
+    "name": "idx_backend_collections_revision",
+    "table": "collections",
+    "sql": "CREATE INDEX idx_backend_collections_revision ON collections(userId, revision)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_backend_collections_syncId",
+    "table": "collections",
+    "sql": "CREATE INDEX idx_backend_collections_syncId ON collections(userId, syncId)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_backend_developProfiles_revision",
+    "table": "developProfiles",
+    "sql": "CREATE INDEX idx_backend_developProfiles_revision ON developProfiles(userId, revision)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_backend_edits_revision",
+    "table": "edits",
+    "sql": "CREATE INDEX idx_backend_edits_revision ON edits(userId, revision)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_backend_exports_revision",
+    "table": "exports",
+    "sql": "CREATE INDEX idx_backend_exports_revision ON exports(userId, revision)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_backend_lensProfiles_revision",
+    "table": "lensProfiles",
+    "sql": "CREATE INDEX idx_backend_lensProfiles_revision ON lensProfiles(userId, revision)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_backend_photoMeta_revision",
+    "table": "photoMeta",
+    "sql": "CREATE INDEX idx_backend_photoMeta_revision ON photoMeta(userId, revision)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_backend_photos_revision",
+    "table": "photos",
+    "sql": "CREATE INDEX idx_backend_photos_revision ON photos(userId, revision)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_backend_presets_revision",
+    "table": "presets",
+    "sql": "CREATE INDEX idx_backend_presets_revision ON presets(userId, revision)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_backend_presets_syncId",
+    "table": "presets",
+    "sql": "CREATE INDEX idx_backend_presets_syncId ON presets(userId, syncId)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_backend_sources_revision",
+    "table": "sources",
+    "sql": "CREATE INDEX idx_backend_sources_revision ON sources(userId, revision)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_collections_parentId",
+    "table": "collections",
+    "sql": "CREATE INDEX idx_collections_parentId ON collections(parentId)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_collections_syncId",
+    "table": "collections",
+    "sql": "CREATE INDEX idx_collections_syncId ON collections(syncId)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_collections_updatedAt",
+    "table": "collections",
+    "sql": "CREATE INDEX idx_collections_updatedAt ON collections(updatedAt)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_developProfiles_syncId",
+    "table": "developProfiles",
+    "sql": "CREATE INDEX idx_developProfiles_syncId ON developProfiles(syncId)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_developProfiles_updatedAt",
+    "table": "developProfiles",
+    "sql": "CREATE INDEX idx_developProfiles_updatedAt ON developProfiles(updatedAt)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_edits_updatedAt",
+    "table": "edits",
+    "sql": "CREATE INDEX idx_edits_updatedAt ON edits(updatedAt)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_exports_hash",
+    "table": "exports",
+    "sql": "CREATE INDEX idx_exports_hash ON exports(contentHash)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_exports_updatedAt",
+    "table": "exports",
+    "sql": "CREATE INDEX idx_exports_updatedAt ON exports(updatedAt)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_faces_clusterId",
+    "table": "faces",
+    "sql": "CREATE INDEX idx_faces_clusterId ON faces(clusterId)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_faces_photoId",
+    "table": "faces",
+    "sql": "CREATE INDEX idx_faces_photoId ON faces(photoId)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_lensProfiles_syncId",
+    "table": "lensProfiles",
+    "sql": "CREATE INDEX idx_lensProfiles_syncId ON lensProfiles(syncId)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_lensProfiles_updatedAt",
+    "table": "lensProfiles",
+    "sql": "CREATE INDEX idx_lensProfiles_updatedAt ON lensProfiles(updatedAt)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_photoMeta_updatedAt",
+    "table": "photoMeta",
+    "sql": "CREATE INDEX idx_photoMeta_updatedAt ON photoMeta(updatedAt)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_photos_dateTaken",
+    "table": "photos",
+    "sql": "CREATE INDEX idx_photos_dateTaken ON photos(dateTaken DESC)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_photos_hash",
+    "table": "photos",
+    "sql": "CREATE INDEX idx_photos_hash ON photos(contentHash)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_photos_source",
+    "table": "photos",
+    "sql": "CREATE INDEX idx_photos_source ON photos(sourceId)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_photos_stackId",
+    "table": "photos",
+    "sql": "CREATE INDEX idx_photos_stackId ON photos(stackId)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_photos_updatedAt",
+    "table": "photos",
+    "sql": "CREATE INDEX idx_photos_updatedAt ON photos(updatedAt)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_presets_syncId",
+    "table": "presets",
+    "sql": "CREATE INDEX idx_presets_syncId ON presets(syncId)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_presets_updatedAt",
+    "table": "presets",
+    "sql": "CREATE INDEX idx_presets_updatedAt ON presets(updatedAt)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_server_libraries_owner",
+    "table": "server_libraries",
+    "sql": "CREATE INDEX idx_server_libraries_owner\n        ON server_libraries(ownerId, updatedAt DESC)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_server_library_assets_generation",
+    "table": "server_library_assets",
+    "sql": "CREATE INDEX idx_server_library_assets_generation\n        ON server_library_assets(ownerId, libraryId, rootId, scanGeneration)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_server_library_assets_hash",
+    "table": "server_library_assets",
+    "sql": "CREATE INDEX idx_server_library_assets_hash\n        ON server_library_assets(ownerId, libraryId, quickHash, size)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_server_library_assets_revision",
+    "table": "server_library_assets",
+    "sql": "CREATE INDEX idx_server_library_assets_revision\n        ON server_library_assets(ownerId, libraryId, revision, id)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_server_library_assets_status",
+    "table": "server_library_assets",
+    "sql": "CREATE INDEX idx_server_library_assets_status\n        ON server_library_assets(ownerId, libraryId, status)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_server_library_imports_library",
+    "table": "server_library_imports",
+    "sql": "CREATE INDEX idx_server_library_imports_library\n        ON server_library_imports(ownerId, libraryId, createdAt DESC)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_server_library_roots_library",
+    "table": "server_library_roots",
+    "sql": "CREATE INDEX idx_server_library_roots_library\n        ON server_library_roots(ownerId, libraryId)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_server_library_scans_library",
+    "table": "server_library_scans",
+    "sql": "CREATE INDEX idx_server_library_scans_library\n        ON server_library_scans(ownerId, libraryId, createdAt DESC)",
+    "columns": []
+  },
+  {
+    "type": "index",
+    "name": "idx_sources_updatedAt",
+    "table": "sources",
+    "sql": "CREATE INDEX idx_sources_updatedAt ON sources(updatedAt)",
+    "columns": []
+  },
+  {
+    "type": "table",
+    "name": "collections",
+    "table": "collections",
+    "sql": "CREATE TABLE collections (userId TEXT NOT NULL DEFAULT '_anon', revision INTEGER NOT NULL DEFAULT 0, id INTEGER PRIMARY KEY AUTOINCREMENT, syncId TEXT NOT NULL, name TEXT NOT NULL, type TEXT NOT NULL, parentId INTEGER, rules TEXT, photoIds TEXT, createdAt INTEGER NOT NULL, updatedAt INTEGER NOT NULL, deletedAt INTEGER, parentSyncId TEXT, photoRefs TEXT, UNIQUE(userId, syncId))",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "userId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'_anon'",
+        "primaryKey": 0
+      },
+      {
+        "cid": 1,
+        "name": "revision",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 2,
+        "name": "id",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 3,
+        "name": "syncId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 4,
+        "name": "name",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 5,
+        "name": "type",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 6,
+        "name": "parentId",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 7,
+        "name": "rules",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 8,
+        "name": "photoIds",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 9,
+        "name": "createdAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 10,
+        "name": "updatedAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 11,
+        "name": "deletedAt",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 12,
+        "name": "parentSyncId",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 13,
+        "name": "photoRefs",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "developProfiles",
+    "table": "developProfiles",
+    "sql": "CREATE TABLE developProfiles (userId TEXT NOT NULL DEFAULT '_anon', revision INTEGER NOT NULL DEFAULT 0, id INTEGER PRIMARY KEY AUTOINCREMENT, syncId TEXT NOT NULL, name TEXT NOT NULL, scope TEXT NOT NULL, key TEXT NOT NULL, isoFrom INTEGER, isoTo INTEGER, adjustments TEXT NOT NULL, createdAt INTEGER NOT NULL, updatedAt INTEGER NOT NULL, deletedAt INTEGER, UNIQUE(userId, syncId))",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "userId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'_anon'",
+        "primaryKey": 0
+      },
+      {
+        "cid": 1,
+        "name": "revision",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 2,
+        "name": "id",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 3,
+        "name": "syncId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 4,
+        "name": "name",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 5,
+        "name": "scope",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 6,
+        "name": "key",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 7,
+        "name": "isoFrom",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 8,
+        "name": "isoTo",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 9,
+        "name": "adjustments",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 10,
+        "name": "createdAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 11,
+        "name": "updatedAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 12,
+        "name": "deletedAt",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "edits",
+    "table": "edits",
+    "sql": "CREATE TABLE edits (userId TEXT NOT NULL DEFAULT '_anon', revision INTEGER NOT NULL DEFAULT 0, contentHash TEXT NOT NULL, copyIndex INTEGER NOT NULL DEFAULT 0, copyName TEXT, adjustments TEXT NOT NULL, document TEXT, history TEXT NOT NULL DEFAULT '[]', documentHistory TEXT, createdAt INTEGER NOT NULL, updatedAt INTEGER NOT NULL, deletedAt INTEGER, PRIMARY KEY (userId, contentHash, copyIndex))",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "userId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'_anon'",
+        "primaryKey": 1
+      },
+      {
+        "cid": 1,
+        "name": "revision",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 2,
+        "name": "contentHash",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 2
+      },
+      {
+        "cid": 3,
+        "name": "copyIndex",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 3
+      },
+      {
+        "cid": 4,
+        "name": "copyName",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 5,
+        "name": "adjustments",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 6,
+        "name": "document",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 7,
+        "name": "history",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'[]'",
+        "primaryKey": 0
+      },
+      {
+        "cid": 8,
+        "name": "documentHistory",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 9,
+        "name": "createdAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 10,
+        "name": "updatedAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 11,
+        "name": "deletedAt",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "exifScan",
+    "table": "exifScan",
+    "sql": "CREATE TABLE exifScan (\n  photoId INTEGER PRIMARY KEY REFERENCES photos(id),\n  scannedAt INTEGER NOT NULL\n)",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "photoId",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 1,
+        "name": "scannedAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "exports",
+    "table": "exports",
+    "sql": "CREATE TABLE exports (userId TEXT NOT NULL DEFAULT '_anon', revision INTEGER NOT NULL DEFAULT 0, id INTEGER PRIMARY KEY AUTOINCREMENT, syncId TEXT NOT NULL, contentHash TEXT NOT NULL, copyIndex INTEGER NOT NULL DEFAULT 0, targetSourceId TEXT NOT NULL, targetAssetId TEXT NOT NULL, targetUrl TEXT, format TEXT NOT NULL, editStackHash TEXT NOT NULL, filename TEXT NOT NULL, bytes INTEGER NOT NULL DEFAULT 0, status TEXT NOT NULL DEFAULT 'ok', uploadedAt INTEGER NOT NULL, updatedAt INTEGER NOT NULL, deletedAt INTEGER, UNIQUE(userId, syncId))",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "userId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'_anon'",
+        "primaryKey": 0
+      },
+      {
+        "cid": 1,
+        "name": "revision",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 2,
+        "name": "id",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 3,
+        "name": "syncId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 4,
+        "name": "contentHash",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 5,
+        "name": "copyIndex",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 6,
+        "name": "targetSourceId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 7,
+        "name": "targetAssetId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 8,
+        "name": "targetUrl",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 9,
+        "name": "format",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 10,
+        "name": "editStackHash",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 11,
+        "name": "filename",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 12,
+        "name": "bytes",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 13,
+        "name": "status",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'ok'",
+        "primaryKey": 0
+      },
+      {
+        "cid": 14,
+        "name": "uploadedAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 15,
+        "name": "updatedAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 16,
+        "name": "deletedAt",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "faces",
+    "table": "faces",
+    "sql": "CREATE TABLE faces (\n  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  photoId INTEGER NOT NULL REFERENCES photos(id),\n  x REAL NOT NULL,\n  y REAL NOT NULL,\n  width REAL NOT NULL,\n  height REAL NOT NULL,\n  confidence REAL NOT NULL,\n  embedding TEXT,\n  clusterId INTEGER,\n  name TEXT,\n  createdAt INTEGER NOT NULL\n)",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "id",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 1,
+        "name": "photoId",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 2,
+        "name": "x",
+        "type": "REAL",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 3,
+        "name": "y",
+        "type": "REAL",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 4,
+        "name": "width",
+        "type": "REAL",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 5,
+        "name": "height",
+        "type": "REAL",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 6,
+        "name": "confidence",
+        "type": "REAL",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 7,
+        "name": "embedding",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 8,
+        "name": "clusterId",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 9,
+        "name": "name",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 10,
+        "name": "createdAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "lensProfiles",
+    "table": "lensProfiles",
+    "sql": "CREATE TABLE lensProfiles (userId TEXT NOT NULL DEFAULT '_anon', revision INTEGER NOT NULL DEFAULT 0, id INTEGER PRIMARY KEY AUTOINCREMENT, syncId TEXT NOT NULL, name TEXT NOT NULL, key TEXT NOT NULL, focalFrom REAL, focalTo REAL, coefficients TEXT NOT NULL, createdAt INTEGER NOT NULL, updatedAt INTEGER NOT NULL, deletedAt INTEGER, UNIQUE(userId, syncId))",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "userId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'_anon'",
+        "primaryKey": 0
+      },
+      {
+        "cid": 1,
+        "name": "revision",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 2,
+        "name": "id",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 3,
+        "name": "syncId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 4,
+        "name": "name",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 5,
+        "name": "key",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 6,
+        "name": "focalFrom",
+        "type": "REAL",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 7,
+        "name": "focalTo",
+        "type": "REAL",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 8,
+        "name": "coefficients",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 9,
+        "name": "createdAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 10,
+        "name": "updatedAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 11,
+        "name": "deletedAt",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "photoMeta",
+    "table": "photoMeta",
+    "sql": "CREATE TABLE photoMeta (userId TEXT NOT NULL DEFAULT '_anon', revision INTEGER NOT NULL DEFAULT 0, contentHash TEXT NOT NULL, rating INTEGER, flag TEXT, colorLabel TEXT, keywords TEXT, updatedAt INTEGER NOT NULL, deletedAt INTEGER, PRIMARY KEY (userId, contentHash))",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "userId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'_anon'",
+        "primaryKey": 1
+      },
+      {
+        "cid": 1,
+        "name": "revision",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 2,
+        "name": "contentHash",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 2
+      },
+      {
+        "cid": 3,
+        "name": "rating",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 4,
+        "name": "flag",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 5,
+        "name": "colorLabel",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 6,
+        "name": "keywords",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 7,
+        "name": "updatedAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 8,
+        "name": "deletedAt",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "photos",
+    "table": "photos",
+    "sql": "CREATE TABLE photos (userId TEXT NOT NULL DEFAULT '_anon', revision INTEGER NOT NULL DEFAULT 0, id INTEGER PRIMARY KEY AUTOINCREMENT, sourceId TEXT NOT NULL, sourcePhotoId TEXT NOT NULL, contentHash TEXT, name TEXT NOT NULL, mimeType TEXT, sizeBytes INTEGER, dateTaken INTEGER, dateModified INTEGER, sourcePath TEXT, availability TEXT NOT NULL DEFAULT 'online', sourceRevision INTEGER NOT NULL DEFAULT 0, indexedAt INTEGER NOT NULL, updatedAt INTEGER NOT NULL, deletedAt INTEGER, width INTEGER, height INTEGER, sourceBits INTEGER, camera TEXT, lens TEXT, iso INTEGER, focalLength REAL, aperture REAL, shutterSpeed TEXT, latitude REAL, longitude REAL, blurHash TEXT, stackId TEXT, stackPosition INTEGER, UNIQUE(userId, sourceId, sourcePhotoId))",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "userId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'_anon'",
+        "primaryKey": 0
+      },
+      {
+        "cid": 1,
+        "name": "revision",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 2,
+        "name": "id",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 3,
+        "name": "sourceId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 4,
+        "name": "sourcePhotoId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 5,
+        "name": "contentHash",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 6,
+        "name": "name",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 7,
+        "name": "mimeType",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 8,
+        "name": "sizeBytes",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 9,
+        "name": "dateTaken",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 10,
+        "name": "dateModified",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 11,
+        "name": "sourcePath",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 12,
+        "name": "availability",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'online'",
+        "primaryKey": 0
+      },
+      {
+        "cid": 13,
+        "name": "sourceRevision",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 14,
+        "name": "indexedAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 15,
+        "name": "updatedAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 16,
+        "name": "deletedAt",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 17,
+        "name": "width",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 18,
+        "name": "height",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 19,
+        "name": "sourceBits",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 20,
+        "name": "camera",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 21,
+        "name": "lens",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 22,
+        "name": "iso",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 23,
+        "name": "focalLength",
+        "type": "REAL",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 24,
+        "name": "aperture",
+        "type": "REAL",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 25,
+        "name": "shutterSpeed",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 26,
+        "name": "latitude",
+        "type": "REAL",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 27,
+        "name": "longitude",
+        "type": "REAL",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 28,
+        "name": "blurHash",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 29,
+        "name": "stackId",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 30,
+        "name": "stackPosition",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "presets",
+    "table": "presets",
+    "sql": "CREATE TABLE presets (userId TEXT NOT NULL DEFAULT '_anon', revision INTEGER NOT NULL DEFAULT 0, id INTEGER PRIMARY KEY AUTOINCREMENT, syncId TEXT NOT NULL, name TEXT NOT NULL, adjustments TEXT NOT NULL, category TEXT, createdAt INTEGER NOT NULL, updatedAt INTEGER NOT NULL, deletedAt INTEGER, UNIQUE(userId, syncId))",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "userId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'_anon'",
+        "primaryKey": 0
+      },
+      {
+        "cid": 1,
+        "name": "revision",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 2,
+        "name": "id",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 3,
+        "name": "syncId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 4,
+        "name": "name",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 5,
+        "name": "adjustments",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 6,
+        "name": "category",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 7,
+        "name": "createdAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 8,
+        "name": "updatedAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 9,
+        "name": "deletedAt",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "schema_meta",
+    "table": "schema_meta",
+    "sql": "CREATE TABLE schema_meta (\n  key TEXT PRIMARY KEY,\n  value TEXT NOT NULL\n)",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "key",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 1,
+        "name": "value",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "server_libraries",
+    "table": "server_libraries",
+    "sql": "CREATE TABLE server_libraries (\n        id TEXT PRIMARY KEY,\n        ownerId TEXT NOT NULL,\n        name TEXT NOT NULL,\n        mode TEXT NOT NULL CHECK (mode IN ('external', 'managed')),\n        readOnly INTEGER NOT NULL DEFAULT 1 CHECK (readOnly IN (0, 1)),\n        exclusionPatterns TEXT NOT NULL DEFAULT '[]',\n        includeHidden INTEGER NOT NULL DEFAULT 0 CHECK (includeHidden IN (0, 1)),\n        watchEnabled INTEGER NOT NULL DEFAULT 0 CHECK (watchEnabled IN (0, 1)),\n        scanIntervalMinutes INTEGER NOT NULL DEFAULT 0 CHECK (scanIntervalMinutes >= 0),\n        revision INTEGER NOT NULL DEFAULT 0 CHECK (revision >= 0),\n        status TEXT NOT NULL DEFAULT 'idle'\n          CHECK (status IN ('idle', 'scanning', 'error', 'unavailable')),\n        lastScanAt INTEGER,\n        lastError TEXT,\n        createdAt INTEGER NOT NULL,\n        updatedAt INTEGER NOT NULL\n      )",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "id",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 1,
+        "name": "ownerId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 2,
+        "name": "name",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 3,
+        "name": "mode",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 4,
+        "name": "readOnly",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "1",
+        "primaryKey": 0
+      },
+      {
+        "cid": 5,
+        "name": "exclusionPatterns",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'[]'",
+        "primaryKey": 0
+      },
+      {
+        "cid": 6,
+        "name": "includeHidden",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 7,
+        "name": "watchEnabled",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 8,
+        "name": "scanIntervalMinutes",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 9,
+        "name": "revision",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 10,
+        "name": "status",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'idle'",
+        "primaryKey": 0
+      },
+      {
+        "cid": 11,
+        "name": "lastScanAt",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 12,
+        "name": "lastError",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 13,
+        "name": "createdAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 14,
+        "name": "updatedAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "server_library_assets",
+    "table": "server_library_assets",
+    "sql": "CREATE TABLE server_library_assets (\n        id TEXT PRIMARY KEY,\n        ownerId TEXT NOT NULL,\n        libraryId TEXT NOT NULL,\n        rootId TEXT NOT NULL,\n        relativePath TEXT NOT NULL,\n        fileName TEXT NOT NULL,\n        extension TEXT NOT NULL,\n        mimeType TEXT,\n        size INTEGER NOT NULL,\n        mtimeMs INTEGER NOT NULL,\n        inode INTEGER,\n        quickHash TEXT,\n        fullChecksum TEXT,\n        width INTEGER,\n        height INTEGER,\n        orientation INTEGER,\n        dateTaken INTEGER,\n        metadataJson TEXT,\n        sidecarRelativePath TEXT,\n        status TEXT NOT NULL DEFAULT 'online'\n          CHECK (status IN ('online', 'offline', 'error', 'trashed', 'importing')),\n        scanGeneration INTEGER NOT NULL,\n        firstSeenGeneration INTEGER NOT NULL,\n        lastSeenAt INTEGER NOT NULL,\n        revision INTEGER NOT NULL,\n        thumbVersion INTEGER NOT NULL DEFAULT 1,\n        errorCode TEXT,\n        errorMessage TEXT,\n        createdAt INTEGER NOT NULL,\n        updatedAt INTEGER NOT NULL,\n        trashedAt INTEGER,\n        UNIQUE(libraryId, rootId, relativePath)\n      )",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "id",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 1,
+        "name": "ownerId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 2,
+        "name": "libraryId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 3,
+        "name": "rootId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 4,
+        "name": "relativePath",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 5,
+        "name": "fileName",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 6,
+        "name": "extension",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 7,
+        "name": "mimeType",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 8,
+        "name": "size",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 9,
+        "name": "mtimeMs",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 10,
+        "name": "inode",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 11,
+        "name": "quickHash",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 12,
+        "name": "fullChecksum",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 13,
+        "name": "width",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 14,
+        "name": "height",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 15,
+        "name": "orientation",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 16,
+        "name": "dateTaken",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 17,
+        "name": "metadataJson",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 18,
+        "name": "sidecarRelativePath",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 19,
+        "name": "status",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'online'",
+        "primaryKey": 0
+      },
+      {
+        "cid": 20,
+        "name": "scanGeneration",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 21,
+        "name": "firstSeenGeneration",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 22,
+        "name": "lastSeenAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 23,
+        "name": "revision",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 24,
+        "name": "thumbVersion",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "1",
+        "primaryKey": 0
+      },
+      {
+        "cid": 25,
+        "name": "errorCode",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 26,
+        "name": "errorMessage",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 27,
+        "name": "createdAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 28,
+        "name": "updatedAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 29,
+        "name": "trashedAt",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "server_library_imports",
+    "table": "server_library_imports",
+    "sql": "CREATE TABLE server_library_imports (\n        id TEXT PRIMARY KEY,\n        ownerId TEXT NOT NULL,\n        libraryId TEXT NOT NULL,\n        fileName TEXT NOT NULL,\n        expectedSize INTEGER NOT NULL CHECK (expectedSize >= 0),\n        receivedSize INTEGER NOT NULL DEFAULT 0 CHECK (receivedSize >= 0),\n        expectedChecksum TEXT,\n        dateModified INTEGER,\n        status TEXT NOT NULL DEFAULT 'pending'\n          CHECK (status IN ('pending', 'uploading', 'uploaded', 'committed', 'failed', 'cancelled')),\n        resultAssetId TEXT,\n        errorCode TEXT,\n        errorMessage TEXT,\n        createdAt INTEGER NOT NULL,\n        updatedAt INTEGER NOT NULL\n      )",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "id",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 1,
+        "name": "ownerId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 2,
+        "name": "libraryId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 3,
+        "name": "fileName",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 4,
+        "name": "expectedSize",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 5,
+        "name": "receivedSize",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 6,
+        "name": "expectedChecksum",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 7,
+        "name": "dateModified",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 8,
+        "name": "status",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'pending'",
+        "primaryKey": 0
+      },
+      {
+        "cid": 9,
+        "name": "resultAssetId",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 10,
+        "name": "errorCode",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 11,
+        "name": "errorMessage",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 12,
+        "name": "createdAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 13,
+        "name": "updatedAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "server_library_roots",
+    "table": "server_library_roots",
+    "sql": "CREATE TABLE server_library_roots (\n        id TEXT PRIMARY KEY,\n        libraryId TEXT NOT NULL,\n        ownerId TEXT NOT NULL,\n        path TEXT NOT NULL,\n        canonicalPath TEXT NOT NULL,\n        label TEXT NOT NULL,\n        writable INTEGER NOT NULL DEFAULT 0 CHECK (writable IN (0, 1)),\n        lastSeenAt INTEGER,\n        lastError TEXT,\n        createdAt INTEGER NOT NULL,\n        UNIQUE(ownerId, canonicalPath)\n      )",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "id",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 1,
+        "name": "libraryId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 2,
+        "name": "ownerId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 3,
+        "name": "path",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 4,
+        "name": "canonicalPath",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 5,
+        "name": "label",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 6,
+        "name": "writable",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 7,
+        "name": "lastSeenAt",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 8,
+        "name": "lastError",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 9,
+        "name": "createdAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "server_library_scans",
+    "table": "server_library_scans",
+    "sql": "CREATE TABLE server_library_scans (\n        id TEXT PRIMARY KEY,\n        libraryId TEXT NOT NULL,\n        ownerId TEXT NOT NULL,\n        kind TEXT NOT NULL DEFAULT 'full',\n        status TEXT NOT NULL\n          CHECK (status IN ('queued', 'running', 'completed', 'failed', 'cancelled', 'interrupted')),\n        generation INTEGER NOT NULL DEFAULT 0,\n        discovered INTEGER NOT NULL DEFAULT 0,\n        added INTEGER NOT NULL DEFAULT 0,\n        updated INTEGER NOT NULL DEFAULT 0,\n        offline INTEGER NOT NULL DEFAULT 0,\n        restored INTEGER NOT NULL DEFAULT 0,\n        errors INTEGER NOT NULL DEFAULT 0,\n        currentPath TEXT,\n        cancelRequested INTEGER NOT NULL DEFAULT 0 CHECK (cancelRequested IN (0, 1)),\n        startedAt INTEGER,\n        finishedAt INTEGER,\n        createdAt INTEGER NOT NULL,\n        errorSummary TEXT\n      )",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "id",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 1,
+        "name": "libraryId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 2,
+        "name": "ownerId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 3,
+        "name": "kind",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'full'",
+        "primaryKey": 0
+      },
+      {
+        "cid": 4,
+        "name": "status",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 5,
+        "name": "generation",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 6,
+        "name": "discovered",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 7,
+        "name": "added",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 8,
+        "name": "updated",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 9,
+        "name": "offline",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 10,
+        "name": "restored",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 11,
+        "name": "errors",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 12,
+        "name": "currentPath",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 13,
+        "name": "cancelRequested",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 14,
+        "name": "startedAt",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 15,
+        "name": "finishedAt",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 16,
+        "name": "createdAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 17,
+        "name": "errorSummary",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "server_schema_migrations",
+    "table": "server_schema_migrations",
+    "sql": "CREATE TABLE server_schema_migrations (\n    version INTEGER PRIMARY KEY,\n    name TEXT NOT NULL,\n    appliedAt INTEGER NOT NULL\n  )",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "version",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 1,
+        "name": "name",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 2,
+        "name": "appliedAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "sources",
+    "table": "sources",
+    "sql": "CREATE TABLE sources (userId TEXT NOT NULL DEFAULT '_anon', revision INTEGER NOT NULL DEFAULT 0, id TEXT NOT NULL, type TEXT NOT NULL, label TEXT NOT NULL, config TEXT NOT NULL DEFAULT '{}', addedAt INTEGER NOT NULL, updatedAt INTEGER NOT NULL, deletedAt INTEGER, PRIMARY KEY (userId, id))",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "userId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'_anon'",
+        "primaryKey": 1
+      },
+      {
+        "cid": 1,
+        "name": "revision",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      },
+      {
+        "cid": 2,
+        "name": "id",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 2
+      },
+      {
+        "cid": 3,
+        "name": "type",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 4,
+        "name": "label",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 5,
+        "name": "config",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'{}'",
+        "primaryKey": 0
+      },
+      {
+        "cid": 6,
+        "name": "addedAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 7,
+        "name": "updatedAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 8,
+        "name": "deletedAt",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "sync_counter",
+    "table": "sync_counter",
+    "sql": "CREATE TABLE sync_counter (\n      id INTEGER PRIMARY KEY CHECK (id = 1),\n      value INTEGER NOT NULL\n    )",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "id",
+        "type": "INTEGER",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 1,
+        "name": "value",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "thumbIndex",
+    "table": "thumbIndex",
+    "sql": "CREATE TABLE thumbIndex (\n  contentHash TEXT NOT NULL,\n  size TEXT NOT NULL,\n  binId TEXT NOT NULL,\n  offset INTEGER NOT NULL,\n  length INTEGER NOT NULL,\n  PRIMARY KEY (contentHash, size)\n)",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "contentHash",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 1,
+        "name": "size",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 2
+      },
+      {
+        "cid": 2,
+        "name": "binId",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 3,
+        "name": "offset",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 4,
+        "name": "length",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      }
+    ]
+  },
+  {
+    "type": "table",
+    "name": "users",
+    "table": "users",
+    "sql": "CREATE TABLE users (\n        id TEXT PRIMARY KEY,\n        username TEXT UNIQUE NOT NULL,\n        passwordHash TEXT NOT NULL,\n        salt TEXT NOT NULL,\n        role TEXT NOT NULL DEFAULT 'user' CHECK (role IN ('admin', 'user')),\n        createdAt INTEGER NOT NULL\n      , tokenVersion INTEGER NOT NULL DEFAULT 0)",
+    "columns": [
+      {
+        "cid": 0,
+        "name": "id",
+        "type": "TEXT",
+        "notnull": 0,
+        "defaultValue": null,
+        "primaryKey": 1
+      },
+      {
+        "cid": 1,
+        "name": "username",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 2,
+        "name": "passwordHash",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 3,
+        "name": "salt",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 4,
+        "name": "role",
+        "type": "TEXT",
+        "notnull": 1,
+        "defaultValue": "'user'",
+        "primaryKey": 0
+      },
+      {
+        "cid": 5,
+        "name": "createdAt",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": null,
+        "primaryKey": 0
+      },
+      {
+        "cid": 6,
+        "name": "tokenVersion",
+        "type": "INTEGER",
+        "notnull": 1,
+        "defaultValue": "0",
+        "primaryKey": 0
+      }
+    ]
+  }
+]

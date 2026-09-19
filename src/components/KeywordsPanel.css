@@ -1,0 +1,207 @@
+.kw-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Input row */
+.kw-input-row {
+  display: flex;
+  gap: 4px;
+}
+
+.kw-input {
+  flex: 1;
+  background: var(--bg-tertiary, #2a2a2a);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 11px;
+  padding: 4px 6px;
+  border-radius: 3px;
+  outline: none;
+}
+
+.kw-input:focus {
+  border-color: var(--accent);
+}
+
+.kw-add-btn {
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text-secondary);
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kw-add-btn:hover { border-color: var(--accent); color: var(--text-primary); }
+.kw-add-btn:disabled { opacity: 0.3; cursor: default; }
+
+/* Suggestions dropdown */
+.kw-suggestions {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-tertiary, #2a2a2a);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.kw-suggestion {
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  font-size: 10px;
+  padding: 4px 8px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.kw-suggestion:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+}
+
+.kw-count {
+  opacity: 0.4;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Keyword pills */
+.kw-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.kw-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(230, 126, 34, 0.15);
+  border: 1px solid rgba(230, 126, 34, 0.3);
+  color: var(--text-primary);
+  font-size: 10px;
+  padding: 2px 4px 2px 6px;
+  border-radius: 3px;
+}
+
+.kw-pill-partial {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.kw-pill-x {
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 11px;
+  padding: 0 1px;
+  line-height: 1;
+}
+
+.kw-pill-x:hover { color: #e74c3c; }
+
+/* Hint */
+.kw-hint {
+  font-size: 10px;
+  color: var(--text-secondary);
+  opacity: 0.5;
+  padding: 4px 0;
+}
+
+/* All keywords list */
+.kw-list {
+  border-top: 1px solid var(--border);
+  padding-top: 6px;
+  margin-top: 2px;
+}
+
+.kw-list-header {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--text-secondary);
+  padding-bottom: 4px;
+}
+
+.kw-list-scroll {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.kw-list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 4px;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.kw-list-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.kw-list-name {
+  color: var(--text-primary);
+}
+
+.kw-list-count {
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+  opacity: 0.5;
+}
+
+/* Hierarchy tree */
+.kw-tree-item {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 4px;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.kw-tree-item:hover { background: rgba(255,255,255,0.06); }
+.kw-tree-item.active { background: rgba(74, 158, 255, 0.16); }
+
+.kw-tree-toggle {
+  background: none; border: none; color: var(--text-secondary);
+  font-size: 9px; cursor: pointer; padding: 0; width: 12px; text-align: center;
+}
+.kw-tree-spacer { width: 12px; flex-shrink: 0; }
+.kw-tree-select {
+  flex: 1; min-width: 0; display: flex; align-items: center;
+  border: 0; background: none; color: inherit; cursor: pointer; padding: 0;
+  font: inherit; text-align: left;
+}
+.kw-tree-select:focus-visible { outline: 1px solid var(--accent); outline-offset: 1px; }
+.kw-tree-name { flex: 1; color: var(--text-primary); }
+.kw-tree-count { color: var(--text-secondary); opacity: 0.5; font-variant-numeric: tabular-nums; margin-right: 4px; }
+.kw-tree-add {
+  background: none; border: none; color: var(--text-tertiary);
+  font-size: 11px; cursor: pointer; padding: 0 2px; opacity: 0;
+}
+.kw-tree-item:hover .kw-tree-add { opacity: 1; }
+.kw-tree-add:hover { color: var(--accent, #3b82f6); }
+
+/* Parent badge in input */
+.kw-parent-badge {
+  font-size: 10px; color: var(--accent, #3b82f6);
+  padding: 1px 6px; background: rgba(59,130,246,0.15);
+  border-radius: 3px; cursor: pointer; flex-shrink: 0;
+}
+.kw-parent-badge:hover { text-decoration: line-through; }

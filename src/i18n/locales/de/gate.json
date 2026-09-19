@@ -1,0 +1,33 @@
+{
+  "gate": {
+    "reasons": {
+      "shape": {
+        "branchOffIntermediate": "Dieser Zweig baut auf einem Zwischenergebnis auf; Ebenen beginnen immer an der Quelle.",
+        "notAStack": "Diese Verknüpfung lässt sich nicht als Ebenenstapel schreiben.",
+        "noImageSource": "Der Graph hat keine Bildquelle, aus der ein Foto entstehen könnte.",
+        "severalImageSources": "Der Graph hat mehr als eine Bildquelle; ein Foto hat genau eine.",
+        "maskNotASource": "Der Maskeneingang kommt nicht aus einer Maske; klassisch hat jede Ebene genau eine.",
+        "missingInput": "Dieser Knoten hat keinen Eingang; die Kette ist unterbrochen.",
+        "cycle": "Dieser Knoten liegt in einem Kreis; eine Ebenenkette läuft immer in eine Richtung."
+      },
+      "chain": {
+        "noClassicEquivalent": "{{kind}} hat in der klassischen Ansicht keine Entsprechung.",
+        "wrongOrder": "{{earlierKind}} liegt vor {{laterKind}}; die klassische Ansicht hat eine feste Reihenfolge.",
+        "duplicateKind": "{{kind}} kommt zweimal hintereinander vor; klassisch gibt es pro Ebene nur einen.",
+        "baseStageKind": "{{kind}} gehört nicht zur Grundentwicklung des Kameraprofils."
+      },
+      "param": {
+        "branchDiffers": "Parameter „{{field}}\" unterscheidet sich zwischen den Zweigen; klassisch gilt er für das ganze Bild.",
+        "cameraMetadata": "Parameter „{{field}}\" stammt klassisch aus den Kamera-Metadaten und ist dort nicht einstellbar.",
+        "lensProfileUnknown": "Diese Objektivkorrektur passt zu keinem bekannten Profil; klassisch lässt sich nur ein Profil auswählen.",
+        "baseStageEdited": "Diese Grundentwicklung stammt aus dem Kameraprofil und ist klassisch nicht einstellbar.",
+        "spaceOverrideAsymmetric": "Dieser Knoten rechnet Ein- und Ausgang in verschiedenen Farbräumen; klassisch gibt es dafür nur einen Umschalter.",
+        "spaceOverrideConflict": "Die Farbraum-Umschalter der HSL-Knoten widersprechen sich; klassisch gilt einer für alle drei."
+      },
+      "document": {
+        "maskWithoutShape": "Diese Ebene hat eine Maske, zu der es keine klassische Maskenform gibt.",
+        "customHslSplit": "Die Farbbereiche lassen sich nicht auf die drei Listen der klassischen Ansicht aufteilen."
+      }
+    }
+  }
+}

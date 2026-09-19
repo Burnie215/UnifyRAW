@@ -1,0 +1,109 @@
+{
+  "adjustments": {
+    "curve": {
+      "channels": {
+        "rgb": "RGB",
+        "luma": "Luma",
+        "red": "Rot",
+        "green": "Grün",
+        "blue": "Blau"
+      },
+      "input": "Eing.",
+      "output": "Ausg.",
+      "reset": "Zurücksetzen",
+      "presetPlaceholder": "▾",
+      "presets": {
+        "linear": "Linear",
+        "strongContrast": "Starker Kontrast",
+        "mediumContrast": "Mittlerer Kontrast",
+        "filmMatte": "Film Matt",
+        "negative": "Negativ",
+        "crossProcess": "Cross Process"
+      }
+    },
+    "levels": {
+      "channels": {
+        "rgb": "RGB",
+        "red": "Rot",
+        "green": "Grün",
+        "blue": "Blau"
+      }
+    },
+    "histogram": {
+      "shadowClipping": "Tiefen-Clipping",
+      "highlightClipping": "Lichter-Clipping",
+      "unavailable": "Kein Histogramm verfügbar"
+    },
+    "hsl": {
+      "modes": {
+        "basic": "Basic",
+        "advanced": "Advanced",
+        "skinTone": "Skin Tone"
+      },
+      "pickerTitle": "Farbe aus Bild wählen",
+      "viewRange": "Ausgewählten Farbbereich anzeigen",
+      "feather": "Glättung",
+      "hue": "Farbton",
+      "saturation": "Sättigung",
+      "lightness": "Helligkeit",
+      "advancedHint": "Klick aufs Rad um eine Farbe auszuwählen",
+      "uniformity": "Uniformity",
+      "wheel": {
+        "hue": "Farbton",
+        "sat": "Sätt.",
+        "range": "Bereich",
+        "satRange": "Sat-Ber."
+      }
+    },
+    "colorGrading": {
+      "master": "Master",
+      "threeWay": "3-Way",
+      "shadow": "Shadow",
+      "midtone": "Midtone",
+      "highlight": "Highlight",
+      "blending": "Blending",
+      "balance": "Balance",
+      "hue": "Farbton",
+      "sat": "Sätt.",
+      "satAdj": "Sat ±",
+      "lumAdj": "Lum ±"
+    },
+    "crop": {
+      "cancel": "Abbrechen",
+      "cancelTitle": "Zuschnitt abbrechen (Esc)",
+      "confirm": "Zuschneiden",
+      "confirmTitle": "Zuschnitt anwenden (Enter)"
+    },
+    "retouch": {
+      "deletePoint": "Retusche-Punkt löschen",
+      "heal": "Reparieren",
+      "clone": "Klonen",
+      "clickTarget": "← Klick auf Ziel",
+      "clickSource": "← Klick auf Quelle",
+      "limitReached": "Maximal {{max}} Retusche-Punkte",
+      "sizeTitle": "Pinselgröße anpassen",
+      "size": "Größe:"
+    },
+    "softProof": {
+      "active": "Proof aktiv",
+      "title": "Soft Proofing",
+      "gamutWarning": "Gamut-Warnung",
+      "profile": "Profil",
+      "paper": "Papier",
+      "simulatePaperWhite": "Papierweiß simulieren",
+      "paperOptions": {
+        "none": "Kein Papier",
+        "matte": "Mattes Papier",
+        "glossy": "Glanzpapier",
+        "fineArt": "Fine Art Papier",
+        "canvas": "Leinwand"
+      }
+    },
+    "navigator": {
+      "fit": "Einpassen",
+      "oneToOne": "1:1 (100%)",
+      "zoomOut": "Verkleinern",
+      "zoomIn": "Vergrößern"
+    }
+  }
+}

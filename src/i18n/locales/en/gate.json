@@ -1,0 +1,33 @@
+{
+  "gate": {
+    "reasons": {
+      "shape": {
+        "branchOffIntermediate": "This branch starts from an intermediate result; layers always start at the source.",
+        "notAStack": "This wiring cannot be written as a layer stack.",
+        "noImageSource": "The graph has no image source a photo could come from.",
+        "severalImageSources": "The graph has more than one image source; a photo has exactly one.",
+        "maskNotASource": "This mask input does not come from a mask; classically every layer has exactly one.",
+        "missingInput": "This node has no input; the chain is broken.",
+        "cycle": "This node sits in a cycle; a layer chain always runs one way."
+      },
+      "chain": {
+        "noClassicEquivalent": "{{kind}} has no equivalent in the classic view.",
+        "wrongOrder": "{{earlierKind}} comes before {{laterKind}}; the classic view has a fixed order.",
+        "duplicateKind": "{{kind}} occurs twice in a row; classically there is only one per layer.",
+        "baseStageKind": "{{kind}} is not part of the camera profile's base development."
+      },
+      "param": {
+        "branchDiffers": "Parameter \"{{field}}\" differs between the branches; classically it applies to the whole image.",
+        "cameraMetadata": "Parameter \"{{field}}\" classically comes from the camera metadata and cannot be set there.",
+        "lensProfileUnknown": "This lens correction matches no known profile; classically only a profile can be picked.",
+        "baseStageEdited": "This base development comes from the camera profile and cannot be set classically.",
+        "spaceOverrideAsymmetric": "This node reads and writes in different color spaces; classically there is only one switch for that.",
+        "spaceOverrideConflict": "The color space switches of the HSL nodes contradict each other; classically one applies to all three."
+      },
+      "document": {
+        "maskWithoutShape": "This layer has a mask with no classic mask shape to go with it.",
+        "customHslSplit": "The color ranges cannot be split across the three lists of the classic view."
+      }
+    }
+  }
+}

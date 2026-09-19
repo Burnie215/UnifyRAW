@@ -1,0 +1,108 @@
+/* Layout for the Transform tool panel — rotation + straighten, aspect
+   chips, flip toggles, geometry. Replaces the cramped unstyled layout. */
+
+.transform-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 8px;
+}
+.transform-section + .transform-section {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+}
+.transform-section-title {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted, rgba(255, 255, 255, 0.5));
+  margin-bottom: 2px;
+}
+
+/* Inline button row (e.g. "Drehung + Begradigen") */
+.transform-inline-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.transform-icon-btn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: var(--text, #ddd);
+  font-size: 11px;
+  cursor: pointer;
+}
+.transform-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+.transform-icon-btn.active {
+  background: var(--accent, #4a9eff);
+  border-color: var(--accent, #4a9eff);
+  color: white;
+}
+
+/* Aspect ratio chips — wrap on narrow panels, equal sizing */
+.transform-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.transform-chip {
+  flex: 1 1 auto;
+  min-width: 38px;
+  padding: 4px 8px;
+  font-size: 11px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: var(--text, #ddd);
+  cursor: pointer;
+}
+.transform-chip:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.transform-chip.active {
+  background: var(--accent, #4a9eff);
+  border-color: var(--accent, #4a9eff);
+  color: white;
+}
+
+/* Flip toggles — bigger touch targets, clearer icons */
+.transform-flip-row {
+  display: flex;
+  gap: 6px;
+}
+.transform-flip-btn {
+  flex: 1 1 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: var(--text, #ddd);
+  font-size: 11px;
+  cursor: pointer;
+}
+.transform-flip-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.transform-flip-btn.active {
+  background: var(--accent, #4a9eff);
+  border-color: var(--accent, #4a9eff);
+  color: white;
+}
+.transform-flip-btn svg {
+  flex-shrink: 0;
+}

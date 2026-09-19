@@ -1,0 +1,95 @@
+# Der Sync-Hub allein: /api/auth und /api/sync, sonst nichts.
+#
+# Bis hierher fuhr der Hub dasselbe Abbild wie die App (SYNC_ONLY=true im
+# Compose). Das traegt technisch, hat aber drei Nachteile, die genau dann
+# zaehlen, wenn jemand anderes als der Autor den Hub betreibt:
+#
+#   1. Die Image-Defaults logen. Das Wurzel-Dockerfile setzt ALLOWED_ROOTS
+#      =/photos und legt ein /photos-Volume an; der Hub erbte beides und
+#      meldete beim Start "Allowed file roots: /photos", obwohl SYNC_ONLY die
+#      Datei-Route gar nicht mountet. Wer das liest, glaubt an eine Oeffnung,
+#      die es nicht gibt - oder uebersieht die, die es gaebe, wenn SYNC_ONLY
+#      einmal nicht exakt "true" heisst.
+#   2. dcraw_emu und exiftool lagen im Abbild. Beides sind Parser mit
+#      RCE-Historie, und der Hub ruft sie nie auf. Was nicht da ist, muss
+#      nicht eingesperrt werden.
+#   3. Das Frontend-Bundle lag im Abbild, obwohl SYNC_ONLY keinen statischen
+#      Ausliefer-Zweig hat (backend/index.ts) - und sein Bau ist der
+#      langsamste Teil des Builds.
+#
+# Der Code ist derselbe: ein Hub aus diesem Abbild und einer aus dem vollen
+# mit SYNC_ONLY=true verhalten sich gleich. Getrennt ist nur, was mitfaehrt.
+
+# ─── Gate ───
+# Konvention dieses Repos: ein rotes Repo baut nicht. verify laeuft ueber den
+# ganzen Baum (Lint, Typen, Node-Tests), deshalb braucht diese Stufe die
+# vollen Abhaengigkeiten - sie liefert aber nichts ins Endbild ausser dem
+# Marker, an dem die naechste Stufe haengt, damit BuildKit sie nicht wegoptimiert.
+FROM node:20-alpine AS gate
+
+WORKDIR /app
+COPY . .
+RUN npm ci && npm run verify && touch /gate-passed
+
+# ─── Backend bauen ───
+FROM node:20-alpine AS build
+
+WORKDIR /app
+COPY --from=gate /gate-passed /gate-passed
+COPY package.json package-lock.json ./
+COPY packages/shared/package.json packages/shared/
+COPY packages/backend/package.json packages/backend/
+
+RUN npm ci --workspace=packages/shared --workspace=packages/backend
+
+COPY packages/shared packages/shared
+COPY packages/backend packages/backend
+
+# tsc -b folgt der Projektreferenz auf ../shared
+WORKDIR /app/packages/backend
+RUN npx tsc -b
+
+# ─── Produktions-Abhaengigkeiten ───
+# Eigener Baum ohne Dev-Werkzeug: TypeScript und tsx duerfen nicht ins Endbild.
+FROM node:20-alpine AS runtime-deps
+
+WORKDIR /app
+COPY package.json package-lock.json ./
+COPY packages/shared/package.json packages/shared/
+COPY packages/backend/package.json packages/backend/
+RUN npm ci --omit=dev --workspace=packages/shared --workspace=packages/backend
+
+# ─── Produktion ───
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Kein apk add: libraw-tools und exiftool ruft nur /api/raw auf, und die Route
+# existiert hier nicht. sharp bleibt, weil routes/raw.ts sie auf Modulebene
+# importiert - der Import laeuft also auch im SYNC_ONLY-Modus, nur ruft ihn
+# danach niemand. Sie kommt als npm-Abhaengigkeit aus node_modules.
+COPY --from=build /app/packages/backend/dist ./backend
+COPY --from=build /app/packages/shared ./packages/shared
+COPY --from=runtime-deps /app/node_modules ./node_modules
+
+# SYNC_ONLY gehoert ins Abbild, nicht nur in den Compose: es ist die Identitaet
+# dieses Bildes, keine Einstellung. index.ts vergleicht strikt gegen "true",
+# und getAuthMode lehnt AUTH_MODE=disabled ab, solange es gesetzt ist.
+ENV SYNC_ONLY=true
+ENV PORT=3000
+ENV DB_PATH=/data/photolib-sync.db
+# ALLOWED_ROOTS, PHOTOLIB_LIBRARY_ROOTS und /photos fehlen mit Absicht.
+
+# node:20-alpine bringt uid/gid 1000 mit. /data wird hier uebereignet, damit ein
+# frisches Volume die Rechte erbt - vor der VOLUME-Zeile, weil Docker
+# Aenderungen an einem deklarierten Volume-Pfad danach verwirft. Ein Volume,
+# das ein aelterer root-Container angelegt hat, braucht einmal chown, sonst
+# scheitert der Start mit EACCES beim Oeffnen der Datenbank (README).
+RUN mkdir -p /data && chown node:node /data
+
+EXPOSE 3000
+VOLUME ["/data"]
+
+USER node
+
+CMD ["node", "backend/index.js"]

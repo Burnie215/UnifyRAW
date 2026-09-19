@@ -1,0 +1,64 @@
+# UnifyRAW im Heimnetz, auch ohne Domain - nur per IP.
+#
+#   cp .env.example .env    # AUTH_SECRET, erstes Konto, UNIFYRAW_HOST
+#   docker compose up -d --build
+#
+# Dann https://<UNIFYRAW_HOST> oeffnen. Caddy stellt das Zertifikat aus seiner
+# eigenen Zertifizierungsstelle aus; bis ihr Stammzertifikat auf einem Geraet
+# installiert ist, warnt der Browser dort einmal (docker/selfhost/Caddyfile).
+# http://<IP> leitet Caddy auf https um - ueber http startet die App nicht.
+#
+# Wer schon einen Reverse Proxy mit Zertifikat betreibt: docker-compose.proxy.yml.
+# Den App-Dienst erbt diese Datei von dort; hier steht nur, was anders ist.
+services:
+  photolib:
+    extends:
+      file: docker-compose.proxy.yml
+      service: photolib
+    # Aus dem Netz nur noch ueber Caddy und HTTPS. http://localhost:3000 bleibt
+    # auf diesem Rechner selbst nutzbar - localhost gilt dem Browser als sicher.
+    ports: !override
+      - "127.0.0.1:3000:3000"
+    environment:
+      # Genau ein Proxy davor: Caddy. Ohne das teilen sich alle Geraete die
+      # Adresse des Proxys und mit ihr ein Login-Rate-Limit.
+      TRUST_PROXY: "1"
+
+  https:
+    image: caddy:2.11.4-alpine
+    restart: unless-stopped
+    depends_on:
+      - photolib
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      UNIFYRAW_HOST: "${UNIFYRAW_HOST:?UNIFYRAW_HOST in .env setzen: die IP oder der Name, unter dem UnifyRAW im Heimnetz erreichbar sein soll}"
+    volumes:
+      - ./docker/selfhost/Caddyfile:/etc/caddy/Caddyfile:ro
+      # HAELT DIE ZERTIFIZIERUNGSSTELLE. Geht das Volume verloren, entsteht eine
+      # neue, und jedes Geraet muss ihr Stammzertifikat neu installieren.
+      - caddy-data:/data
+      - caddy-config:/config
+    # Caddy liest eine Konfigurationsdatei und leitet weiter; mehr darf er nicht.
+    # NET_BIND_SERVICE, weil Port 80 und 443 unter 1024 liegen.
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+    security_opt:
+      - "no-new-privileges:true"
+    read_only: true
+    tmpfs:
+      - /tmp
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:2019/config/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  photolib-data:
+  caddy-data:
+  caddy-config:

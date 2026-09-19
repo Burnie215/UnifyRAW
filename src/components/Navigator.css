@@ -1,0 +1,59 @@
+.navigator {
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.navigator-preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/2;
+  background: #111;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.navigator-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.navigator-viewport {
+  position: absolute;
+  border: 2px solid var(--accent);
+  border-radius: 2px;
+  pointer-events: none;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.3);
+}
+
+.navigator-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding-top: 6px;
+}
+
+.nav-zoom-btn {
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+.nav-zoom-btn:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+.nav-zoom-level {
+  font-size: 10px;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+  min-width: 36px;
+  text-align: center;
+}

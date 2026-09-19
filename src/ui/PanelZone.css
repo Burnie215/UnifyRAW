@@ -1,0 +1,76 @@
+/* ─── Panel Zone ─── */
+.panel-zone {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.pz-left {
+  border-right: 1px solid var(--border);
+}
+
+.pz-right {
+  border-left: 1px solid var(--border);
+}
+
+.pz-bottom {
+  border-top: 1px solid var(--border);
+  flex-direction: row;
+}
+
+.pz-pinned {
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.pz-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+}
+
+.pz-bottom .pz-scroll {
+  overflow-y: hidden;
+  overflow-x: auto;
+  display: flex;
+}
+
+/* ─── Resize Dividers ─── */
+.pz-divider {
+  position: absolute;
+  z-index: 10;
+  transition: background 0.15s;
+}
+
+.pz-divider:hover,
+.pz-divider:active {
+  background: var(--accent);
+  opacity: 0.5;
+}
+
+.pz-divider-right {
+  top: 0;
+  right: -2px;
+  width: 5px;
+  height: 100%;
+  cursor: col-resize;
+}
+
+.pz-divider-left {
+  top: 0;
+  left: -2px;
+  width: 5px;
+  height: 100%;
+  cursor: col-resize;
+}
+
+.pz-divider-top {
+  left: 0;
+  top: -2px;
+  height: 5px;
+  width: 100%;
+  cursor: row-resize;
+}

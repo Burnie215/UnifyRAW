@@ -1,0 +1,91 @@
+# UnifyRAW hinter einem Reverse Proxy, den du schon betreibst (Traefik, nginx,
+# Caddy mit echtem Zertifikat, Cloudflare-Tunnel ...).
+#
+#   cp .env.example .env
+#   docker compose -f docker-compose.proxy.yml up -d --build
+#
+# Die App spricht hier nur HTTP auf Port 3000; TLS beendet dein Proxy. Das muss
+# er auch: Browser schalten ueber http://<IP> die Funktionen ab, ohne die die
+# App nicht startet (sicherer Kontext). Setz TRUST_PROXY in .env auf die Zahl
+# der Proxys vor der App.
+#
+# Ohne eigenen Proxy - im Heimnetz, auch nur per IP - nimm docker-compose.yml:
+# die bringt Caddy mit eigenem Zertifikat mit und erbt diesen Dienst von hier.
+services:
+  photolib:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      # The container runs as uid 1000 (node). A volume that an older root
+      # container created needs one chown before the first start:
+      #   docker compose -f docker-compose.proxy.yml run --rm --user root photolib chown -R node:node /data
+      - photolib-data:/data
+      # Mount your photo directories here; they must be readable for uid 1000:
+      # - /path/to/your/photos:/photos/myphotos:ro
+      # - /mnt/nas/photos:/photos/nas:ro
+      # - //server/share:/photos/smb:ro    # SMB
+    environment:
+      MODE: hosted
+      PORT: 3000
+      DB_PATH: /data/photolib.db
+      ALLOWED_ROOTS: /photos
+      # Authentication fails closed. Copy .env.example to .env and set the
+      # required secret + first-start administrator credentials.
+      AUTH_MODE: required
+      AUTH_SECRET: "${AUTH_SECRET:?Set AUTH_SECRET in .env (at least 32 characters)}"
+      AUTH_BOOTSTRAP_USERNAME: "${AUTH_BOOTSTRAP_USERNAME:-}"
+      AUTH_BOOTSTRAP_PASSWORD: "${AUTH_BOOTSTRAP_PASSWORD:-}"
+      AUTH_REGISTRATION_ENABLED: "${AUTH_REGISTRATION_ENABLED:-false}"
+      CORS_ALLOWED_ORIGINS: "${CORS_ALLOWED_ORIGINS:-}"
+      TRUST_PROXY: "${TRUST_PROXY:-0}"
+      # Comma-separated exact DNS hostnames are the safe way to reach
+      # LAN/Docker sources. Broad private-network access stays opt-in.
+      PROXY_ALLOWED_PRIVATE_HOSTS: "${PROXY_ALLOWED_PRIVATE_HOSTS:-}"
+      RAW_ALLOWED_PRIVATE_HOSTS: "${RAW_ALLOWED_PRIVATE_HOSTS:-}"
+      PROXY_ALLOW_PRIVATE_TARGETS: "${PROXY_ALLOW_PRIVATE_TARGETS:-false}"
+      RAW_ALLOW_PRIVATE_FETCH: "${RAW_ALLOW_PRIVATE_FETCH:-false}"
+      PROXY_MAX_BODY_MB: "${PROXY_MAX_BODY_MB:-100}"
+      PROXY_MAX_RESPONSE_MB: "${PROXY_MAX_RESPONSE_MB:-256}"
+      RAW_MAX_UPLOAD_MB: "${RAW_MAX_UPLOAD_MB:-128}"
+      RAW_MAX_REMOTE_MB: "${RAW_MAX_REMOTE_MB:-256}"
+      RAW_DECODE_CONCURRENCY: "${RAW_DECODE_CONCURRENCY:-2}"
+      RAW_DECODE_QUEUE_LIMIT: "${RAW_DECODE_QUEUE_LIMIT:-16}"
+      # Integrated libraries use opaque root IDs in the browser.
+      PHOTOLIB_LIBRARY_ROOTS: /photos
+      PHOTOLIB_MANAGED_ROOT: /data/library
+      PHOTOLIB_THUMB_ROOT: /data/thumbs
+      PHOTOLIB_SCAN_CONCURRENCY: 2
+      PHOTOLIB_MAX_IMPORT_BYTES: 0
+    # LAN resolvers and a search domain belong in docker-compose.override.yml
+    # (gitignored, merged automatically, example in the README). The backend
+    # resolves every proxy and RAW target inside this container, so a
+    # LAN-only source name needs a resolver that knows it.
+    restart: unless-stopped
+    # The RAW routes run libraw, exiftool and libvips on files fetched from a
+    # user-configured source — parsers with an RCE history. Keep the blast
+    # radius small: no root (USER node in the Dockerfile), no capabilities, no
+    # writable image layer. Writable are /data (volume), /tmp (tmpfs below,
+    # RAW_TMPDIR fallback) and /dev/shm (shm_size below, preferred RAW_TMPDIR).
+    cap_drop:
+      - ALL
+    security_opt:
+      - "no-new-privileges:true"
+    read_only: true
+    tmpfs:
+      - /tmp:size=1g
+    # Backend RAW decode (dcraw_emu) writes intermediate PPMs of
+    # width*height*3 bytes to RAW_TMPDIR (preferred /dev/shm for tmpfs
+    # speed). A 26 MP X-Trans produces a ~78 MB PPM, which silently
+    # truncated on the default 64 MB /dev/shm and forced a fallback to
+    # /tmp on overlay-fs (3-10x slower). 512 MB gives headroom for the
+    # current 1200-2540 px previews plus future high-res sources.
+    shm_size: '512mb'
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  photolib-data:

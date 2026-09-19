@@ -1,0 +1,138 @@
+.mask-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.mask-tools {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.mask-tool-btn {
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 5px 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  transition: all 0.15s;
+}
+
+.mask-tool-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.mask-tool-btn.active {
+  color: var(--accent);
+  background: rgba(74, 158, 255, 0.15);
+}
+
+.mask-tool-separator {
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+  margin: 0 4px;
+}
+
+.brush-settings {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.mask-tool-btn.ai {
+  color: #9b59b6;
+}
+
+.mask-tool-btn.ai:hover {
+  color: #c39bd3;
+  background: rgba(155, 89, 182, 0.15);
+}
+
+.ai-loading-text {
+  font-size: 10px;
+  color: #9b59b6;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.brush-setting {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.brush-setting label {
+  min-width: 50px;
+}
+
+.brush-setting input[type="range"] {
+  width: 80px;
+  height: 3px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--slider-track);
+  border-radius: 2px;
+  outline: none;
+}
+
+.brush-setting input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  cursor: pointer;
+}
+
+.brush-setting span {
+  min-width: 36px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.brush-erase-btn {
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.brush-erase-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(74, 158, 255, 0.1);
+}
+
+:root[data-screen="phone"] .mask-toolbar {
+  max-height: 132px;
+  padding: 4px 8px;
+  overflow-x: auto;
+  overflow-y: auto;
+  gap: 4px;
+}
+
+:root[data-screen="phone"] .mask-tools,
+:root[data-screen="phone"] .brush-settings {
+  width: max-content;
+  min-width: 100%;
+  flex-wrap: nowrap;
+}
+
+:root[data-input="touch"] .brush-setting input[type="range"] {
+  width: 120px;
+  min-height: 36px;
+}

@@ -1,0 +1,155 @@
+{
+  "uiShell": {
+    "panelRegistry": {
+      "navigator": "Navigator",
+      "loupe": "Loupe",
+      "presets": "Presets",
+      "history": "History",
+      "layers": "Layers",
+      "histogram": "Histogram",
+      "toolstrip": "Tools",
+      "basic": "Basic",
+      "whitebalance": "White balance",
+      "presence": "Impact",
+      "tonecurve": "Tone curve",
+      "levels": "Levels",
+      "hsl": "Color editor",
+      "colorgrading": "Color grading",
+      "bw": "Black & white",
+      "detail": "Detail",
+      "effects": "Effects",
+      "sky": "Sky replacement",
+      "transform": "Transform",
+      "masking": "Masks & retouch",
+      "softproof": "Soft proofing",
+      "metadata": "Metadata",
+      "keywords": "Keywords",
+      "quickdev": "Quick develop",
+      "filmstrip": "Filmstrip"
+    },
+    "modPanel": {
+      "pin": "Pin",
+      "unpin": "Unpin",
+      "reset": "Reset adjustments"
+    },
+    "floating": {
+      "dock": "Dock back",
+      "expand": "Expand",
+      "collapse": "Collapse"
+    },
+    "filmstrip": {
+      "prev": "Previous",
+      "next": "Next",
+      "countPhotos": "{{count}} photos",
+      "countWithSelected": "{{count}} photos / {{index}} selected"
+    },
+    "layerBanner": {
+      "label": "Layer: {{name}}"
+    },
+    "viewMode": {
+      "countSelected": "{{selected}} of {{total}} selected",
+      "countPhotos": "{{count}} photos",
+      "grid": "Grid",
+      "loupe": "Loupe",
+      "compare": "Compare",
+      "survey": "Survey",
+      "gridTooltip": "Grid view (G)",
+      "loupeTooltip": "Loupe view (E)",
+      "compareTooltip": "Compare view (C)",
+      "surveyTooltip": "Survey view (N)"
+    },
+    "phoneLibrary": {
+      "allPhotos": "All photos",
+      "adjust": "Adjust view",
+      "selectedCount": "{{count}} selected",
+      "libraryView": "Workspace view",
+      "layout": "Grid layout",
+      "organize": "Sort and group",
+      "sort": "Sort order",
+      "group": "Grouping",
+      "moreActions": "More actions",
+      "selectionActions": "Selection actions",
+      "rateSelection": "Rate and flag"
+    },
+    "toolStrip": {
+      "edit": "Edit",
+      "crop": "Crop (R)",
+      "heal": "Heal (Q)",
+      "brush": "Brush (K)",
+      "gradient": "Graduated filter (M)",
+      "radial": "Radial filter (Shift+M)",
+      "straighten": "Straighten"
+    },
+    "toneAdjust": {
+      "treatment": "Treatment",
+      "color": "Color",
+      "bw": "B&W",
+      "wbPickerTooltip": "White-balance picker — click a neutral (gray/white) area in the image",
+      "wbPickerActive": "Picker active — click gray/white",
+      "wbPickerIdle": "Picker"
+    },
+    "toolPanels": {
+      "sharpness": "Sharpness",
+      "radius": "Radius",
+      "masking": "Masking",
+      "noiseReduction": "Noise reduction",
+      "denoiseLuma": "Denoise Luminance",
+      "denoiseChroma": "Denoise Color",
+      "denoiseDetail": "Denoise Detail",
+      "aiDenoise": "AI Denoise",
+      "aiDenoiseApply": "Apply",
+      "aiDenoiseDownloading": "Downloading model",
+      "aiDenoiseProcessing": "Processing",
+      "aiDenoiseCancel": "Cancel",
+      "aiDenoiseStrength": "Strength",
+      "aiDenoiseReset": "Reset",
+      "aiDenoiseUnavailable": "Not yet available in the new render engine. The feature returns in a later update.",
+      "aiDenoiseRetry": "Retry",
+      "angle": "Angle",
+      "geometry": "Geometry",
+      "straighten": "Straighten",
+      "straightenHint": "Drag a line along a straight edge",
+      "vignette": "Vignette",
+      "vignetteFeather": "Vignette feather",
+      "grain": "Grain",
+      "grainSize": "Grain size",
+      "rotation": "Rotation",
+      "perspectiveV": "Perspective V",
+      "perspectiveH": "Perspective H",
+      "distortion": "Distortion",
+      "cropAspect": "Aspect ratio",
+      "cropFree": "Free",
+      "horizontal": "Horizontal",
+      "vertical": "Vertical"
+    },
+    "colorPanels": {
+      "red": "Red",
+      "orange": "Orange",
+      "yellow": "Yellow",
+      "green": "Green",
+      "aqua": "Aqua",
+      "blue": "Blue",
+      "purple": "Purple",
+      "magenta": "Magenta",
+      "bwInactiveHint": "Enable B&W in the Basic panel"
+    },
+    "metaPanels": {
+      "reset": "Reset"
+    },
+    "libraryPanel": {
+      "reset": "Reset",
+      "applyingToSelection": "Applying to {{done}} of {{total}} photos…",
+      "identifying": "Identifying photo…",
+      "identifyFailed": "Could not identify the photo — the edit was not saved.",
+      "exposure": "Exposure",
+      "contrast": "Contrast",
+      "highlights": "Highlights",
+      "shadows": "Shadows",
+      "whites": "Whites",
+      "blacks": "Blacks",
+      "clarity": "Clarity",
+      "vibrance": "Vibrance",
+      "saturation": "Saturation"
+    }
+  }
+}

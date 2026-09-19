@@ -1,0 +1,138 @@
+.retouch-tool {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  cursor: crosshair;
+}
+
+.retouch-tool.at-limit {
+  cursor: not-allowed;
+}
+
+.retouch-circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.retouch-circle.target {
+  border-color: rgba(74, 158, 255, 0.8);
+  pointer-events: auto;
+}
+
+.retouch-circle.source {
+  border-color: rgba(255, 255, 255, 0.5);
+  border-style: dashed;
+}
+
+.retouch-circle.preview {
+  border-style: dashed;
+  animation: pulse-border 1s ease-in-out infinite;
+}
+
+@keyframes pulse-border {
+  0%, 100% { border-color: rgba(74, 158, 255, 0.4); }
+  50% { border-color: rgba(74, 158, 255, 1); }
+}
+
+.retouch-delete {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: none;
+  background: #e74c3c;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.retouch-circle.target:hover .retouch-delete {
+  display: flex;
+}
+
+.retouch-cursor {
+  position: absolute;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+.retouch-toolbar {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  pointer-events: auto;
+}
+
+.retouch-mode {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.retouch-phase {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.retouch-size {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.retouch-size input[type="range"] {
+  width: 60px;
+  height: 3px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.retouch-size input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+}
+
+:root[data-input="touch"] .retouch-delete {
+  display: flex;
+  top: -16px;
+  right: -16px;
+  width: 32px;
+  height: 32px;
+}
+
+:root[data-input="touch"] .retouch-toolbar {
+  min-height: 52px;
+  bottom: calc(10px + env(safe-area-inset-bottom, 0));
+  padding: 8px 12px;
+  gap: 8px;
+}
+
+:root[data-input="touch"] .retouch-size input[type="range"] {
+  width: 120px;
+  min-height: 36px;
+}

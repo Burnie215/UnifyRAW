@@ -1,0 +1,83 @@
+.photo-meta-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pmc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--text-primary, #e0e0e0);
+  font-size: 13px;
+}
+
+.pmc-row-label {
+  white-space: nowrap;
+  color: var(--text-secondary, #a0a0a0);
+}
+
+.pmc-stars,
+.pmc-flags,
+.pmc-labels {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.pmc-stars::-webkit-scrollbar,
+.pmc-flags::-webkit-scrollbar,
+.pmc-labels::-webkit-scrollbar {
+  display: none;
+}
+
+.photo-meta-controls button {
+  min-width: 30px;
+  min-height: 30px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary, #a0a0a0);
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.photo-meta-controls button:hover:not(:disabled) {
+  background: var(--hover-bg, #3a3a3a);
+  color: var(--text-primary, #e0e0e0);
+}
+
+.photo-meta-controls button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pmc-label-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--border, #444);
+}
+
+/* Touch surfaces need the full 44px target; the context menu stays compact. */
+.phone-library-sheet-content > .photo-meta-controls {
+  padding: 8px 16px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.phone-library-sheet .photo-meta-controls button {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.phone-library-sheet .pmc-row {
+  min-height: 48px;
+}

@@ -1,0 +1,56 @@
+.history-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.history-empty {
+  font-size: 11px;
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.history-entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 11px;
+  text-align: left;
+  border-radius: 3px;
+  transition: background 0.1s;
+  width: 100%;
+}
+
+.history-entry:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.history-entry.current {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.history-index {
+  font-size: 9px;
+  color: var(--text-secondary);
+  min-width: 16px;
+  text-align: right;
+  opacity: 0.5;
+}
+
+.history-label {
+  flex: 1;
+}

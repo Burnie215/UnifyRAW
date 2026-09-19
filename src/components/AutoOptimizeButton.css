@@ -1,0 +1,63 @@
+.auto-optimize-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 6px 10px;
+  margin-bottom: 6px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: none;
+  color: var(--text-secondary);
+  font-size: 11px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.auto-optimize-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  background: rgba(74, 158, 255, 0.08);
+}
+
+.auto-optimize-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Split form — shown for the RAW half of a RAW+JPEG pair. The left half is
+   the generic Auto, the right half optimizes towards the camera JPEG. */
+.auto-optimize-split {
+  display: flex;
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.auto-optimize-split .auto-optimize-btn {
+  margin-bottom: 0;
+}
+
+.auto-optimize-split .auto-optimize-btn:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.auto-optimize-btn--match {
+  flex: 0 0 auto;
+  width: auto;
+  gap: 4px;
+  padding: 6px 9px;
+  border-left-width: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Analysis that could not run — CORS-tainted source, undecodable sibling. */
+.auto-optimize-btn.failed,
+.auto-optimize-btn.failed:hover:not(:disabled) {
+  border-color: var(--label-red);
+  color: var(--label-red);
+  background: none;
+}

@@ -1,0 +1,60 @@
+.stale-banner {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  max-width: 420px;
+  z-index: 10000;
+  background: var(--bg-secondary, #1f1f1f);
+  border: 1px solid var(--border, #333);
+  border-left: 3px solid var(--accent, #4a9eff);
+  border-radius: 8px;
+  padding: 14px 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  font-size: 13px;
+}
+
+.stale-banner-title {
+  font-weight: 600;
+  color: var(--text-primary, #eee);
+  margin-bottom: 4px;
+}
+
+.stale-banner-text {
+  color: var(--text-secondary, #aaa);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.stale-banner-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.stale-banner-btn-primary,
+.stale-banner-btn-secondary {
+  border: none;
+  border-radius: 5px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.stale-banner-btn-primary {
+  background: var(--accent, #4a9eff);
+  color: white;
+}
+
+.stale-banner-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.stale-banner-btn-secondary {
+  background: transparent;
+  color: var(--text-secondary, #aaa);
+}
+
+.stale-banner-btn-secondary:hover {
+  color: var(--text-primary, #eee);
+}

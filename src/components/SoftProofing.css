@@ -1,0 +1,102 @@
+.soft-proofing {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sp-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sp-toggle {
+  flex: 1;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  transition: all 0.15s;
+}
+
+.sp-toggle:hover {
+  border-color: var(--accent);
+}
+
+.sp-toggle.active {
+  background: rgba(74, 158, 255, 0.15);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.sp-gamut-btn {
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.sp-gamut-btn.active {
+  background: rgba(231, 76, 60, 0.15);
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+.sp-profile-select {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+.sp-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sp-label {
+  font-size: 10px;
+  color: var(--text-secondary);
+  min-width: 40px;
+  flex-shrink: 0;
+}
+
+.sp-select {
+  flex: 1;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+.sp-select:hover {
+  border-color: var(--accent);
+}
+
+.sp-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.sp-checkbox input {
+  accent-color: var(--accent);
+}
