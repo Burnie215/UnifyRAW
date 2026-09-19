@@ -31,10 +31,12 @@ import { catalogLockName, waitForCatalogLock } from '../storage/catalogLock';
 import { prepareImportedCatalog, CatalogImportError } from '../storage/importCatalog';
 import { readPersistence, requestPersistence, type PersistenceState } from '../storage/persistentStorage';
 import {
+  folderStartupStep,
   shouldAskForPersistence,
   switchLeavesCatalogBehind,
   type OnboardingReason,
 } from '../components/storageOptions';
+import { queryPermission, requestPermission } from '../platform/fs';
 import { attachLifecycleFlush } from '../storage/lifecycleFlush';
 import { sourceManager } from '../sources/SourceManager';
 import type { PassphraseRequest } from '../components/PassphraseDialog';
@@ -130,6 +132,13 @@ export interface StorageContextValue {
   flushError: CatalogWriteError | null;
   /** Retry the flush now. Call from a click: a picked folder may need its permission again. */
   retryFlush: () => Promise<void>;
+  /**
+   * The folder the catalog lives in, while the browser wants its permission
+   * confirmed before the catalog opens (after a browser restart). Null otherwise.
+   */
+  pendingFolderName: string | null;
+  /** Ask for that permission and open the catalog. Call from a click. */
+  resumeFolder: () => Promise<void>;
 
   caps: { filesystem: boolean; opfs: boolean };
 
@@ -194,6 +203,7 @@ export function StorageProvider({ children }: { children: React.ReactNode }) {
   const [explicit, setExplicit] = useState(false);
   const [openError, setOpenError] = useState<string | null>(null);
   const [opening, setOpening] = useState(true);
+  const [pendingFolder, setPendingFolder] = useState<FileSystemDirectoryHandle | null>(null);
   const [revisions, setRevisions] = useState<StorageRevisions>(createRevisions);
   const [sync, setSyncState] = useState<SyncSettings | null>(() => {
     const fromStorage = readSyncSettings();
@@ -372,7 +382,14 @@ export function StorageProvider({ children }: { children: React.ReactNode }) {
     async function openFromPref(pref: StoragePref): Promise<void> {
       if (pref.kind === 'filesystem') {
         const handle = await loadCatalogHandle();
-        if (!handle || !await ensureHandlePermission(handle)) {
+        // Query only: a page load has no click, and requestPermission without
+        // one throws (folderStartupStep).
+        const step = folderStartupStep(!!handle, handle ? await queryPermission(handle, 'readwrite') : 'denied');
+        if (step === 'ask' && handle) {
+          if (!cancelled) setPendingFolder(handle);
+          return;
+        }
+        if (step === 'lost' || !handle) {
           setOpenError(t('storage.folderUnreachable'));
           setShowOnboarding('folder-lost');
           return;
@@ -490,6 +507,36 @@ export function StorageProvider({ children }: { children: React.ReactNode }) {
       setOpening(false);
     }
   }, [storage, promptPassphrase, confirmSwitch]);
+
+  const resumeFolder = useCallback(async () => {
+    const handle = pendingFolder;
+    if (!handle) return;
+    setOpening(true);
+    setOpenError(null);
+    try {
+      // The click this runs in is what lets the browser ask.
+      const state = await requestPermission(handle, 'readwrite');
+      if (state === 'prompt') return; // prompt dismissed: the button stays
+      if (state !== 'granted' && state !== 'unsupported') {
+        setPendingFolder(null);
+        setOpenError(t('storage.folderUnreachable'));
+        setShowOnboarding('folder-lost');
+        return;
+      }
+      const s = await FolderStorage.open(handle, 'filesystem', { passphraseProvider: promptPassphrase });
+      setPendingFolder(null);
+      setStorage(s);
+    } catch (e) {
+      setOpenError((e as Error).message);
+    } finally {
+      setOpening(false);
+    }
+  }, [pendingFolder, promptPassphrase, t]);
+
+  // Another storage opened from the dialog instead: the waiting folder is moot.
+  useEffect(() => {
+    if (storage) setPendingFolder(null);
+  }, [storage]);
 
   const openOPFS = useCallback(async () => {
     if (!confirmSwitch('opfs')) return;
@@ -617,6 +664,8 @@ export function StorageProvider({ children }: { children: React.ReactNode }) {
     catalogLockFree,
     flushError,
     retryFlush,
+    pendingFolderName: pendingFolder?.name ?? null,
+    resumeFolder,
     caps,
     persistence,
     openFilesystem,
@@ -633,7 +682,7 @@ export function StorageProvider({ children }: { children: React.ReactNode }) {
     syncSessionExpired,
     passphraseRequest,
     requestPassphrase,
-  }), [storage, repos, explicit, showOnboarding, openError, opening, readOnly, catalogLockFree, flushError, retryFlush, caps, persistence, openFilesystem, openOPFS, openMemory, importCatalog, reset, sync, setSync, syncNow, resendAll, syncing, lastSyncResult, syncSessionExpired, passphraseRequest, requestPassphrase]);
+  }), [storage, repos, explicit, showOnboarding, openError, opening, readOnly, catalogLockFree, flushError, retryFlush, pendingFolder, resumeFolder, caps, persistence, openFilesystem, openOPFS, openMemory, importCatalog, reset, sync, setSync, syncNow, resendAll, syncing, lastSyncResult, syncSessionExpired, passphraseRequest, requestPassphrase]);
 
   return (
     <StorageRevisionsContext.Provider value={revisions}>

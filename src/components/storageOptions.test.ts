@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   activeStorageTier,
+  folderStartupStep,
   folderTierAvailable,
   memoryCatalogOffered,
   multiDeviceAnswer,
@@ -197,5 +198,24 @@ describe('which sentence the storage tab shows', () => {
 
   it('says nothing before a catalog is open', () => {
     expect(storageCalloutKey(null, 'needs-address')).toBe(null);
+  });
+});
+
+describe('opening a folder catalog on page load', () => {
+  it('opens a folder the browser still grants', () => {
+    expect(folderStartupStep(true, 'granted')).toBe('open');
+  });
+
+  it('asks through a button when the permission is due again, never by itself', () => {
+    expect(folderStartupStep(true, 'prompt')).toBe('ask');
+  });
+
+  it('treats a refusal or a missing handle as a lost folder', () => {
+    expect(folderStartupStep(true, 'denied')).toBe('lost');
+    expect(folderStartupStep(false, 'granted')).toBe('lost');
+  });
+
+  it('opens without asking where the browser has no permission API', () => {
+    expect(folderStartupStep(true, 'unsupported')).toBe('open');
   });
 });

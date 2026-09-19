@@ -232,11 +232,32 @@ function Phase2MigrationToast() {
 }
 
 function AppGate() {
-  const { storage, opening, openError } = useStorage();
+  const { storage, opening, openError, pendingFolderName, resumeFolder, setShowOnboarding } = useStorage();
   const { t } = useTranslation();
   // The panel layout owns one localStorage key and is read by both shells
   // (library and editor), so it is created once above them.
   if (storage) return <PanelLayoutProvider><AppInner /></PanelLayoutProvider>;
+  // A folder catalog after a browser restart: the browser asks again, and it
+  // may only ask from a click - so the splash offers the click.
+  if (pendingFolderName && !opening) {
+    return (
+      <div className="app-splash">
+        <div className="app-splash-inner app-splash-ask">
+          <p>{t('app.splash.folderPermission', { name: pendingFolderName })}</p>
+          <p className="app-splash-note">{t('app.splash.folderPermissionNote')}</p>
+          {openError && <p className="app-splash-error">{t('app.splash.error', { message: openError })}</p>}
+          <div className="app-splash-actions">
+            <button className="app-splash-primary" onClick={() => void resumeFolder()}>
+              {t('app.splash.folderPermissionAllow')}
+            </button>
+            <button className="app-splash-secondary" onClick={() => setShowOnboarding('switch')}>
+              {t('app.splash.folderPermissionOther')}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="app-splash">
       <div className="app-splash-inner">

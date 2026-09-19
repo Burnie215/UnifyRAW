@@ -96,7 +96,11 @@
     "splash": {
       "opening": "Opening catalog…",
       "error": "Catalog error: {{message}}",
-      "select": "Please select a catalog…"
+      "select": "Please select a catalog…",
+      "folderPermission": "Your catalog lives in the folder “{{name}}”. After a restart the browser asks before it opens it again.",
+      "folderPermissionNote": "If the browser offers to allow access permanently, it will not ask next time.",
+      "folderPermissionAllow": "Allow folder access",
+      "folderPermissionOther": "Choose another storage"
     }
   },
   "sidebar": {

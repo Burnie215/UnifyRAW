@@ -96,7 +96,11 @@
     "splash": {
       "opening": "Öffne Katalog…",
       "error": "Katalog-Fehler: {{message}}",
-      "select": "Bitte Katalog auswählen…"
+      "select": "Bitte Katalog auswählen…",
+      "folderPermission": "Dein Katalog liegt im Ordner „{{name}}“. Nach einem Neustart fragt der Browser nach, bevor er ihn wieder öffnet.",
+      "folderPermissionNote": "Bietet der Browser an, den Zugriff dauerhaft zu erlauben, fragt er beim nächsten Mal nicht mehr.",
+      "folderPermissionAllow": "Ordner freigeben",
+      "folderPermissionOther": "Anderen Speicher wählen"
     }
   },
   "sidebar": {

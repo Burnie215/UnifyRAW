@@ -211,3 +211,26 @@ export function storageCalloutKey(
   if (tier === 'server') return 'storage.calloutServer';
   return tier === 'folder' ? 'storage.calloutFolder' : 'storage.calloutTrial';
 }
+
+/**
+ * What the page load does with a catalog kept in a picked folder.
+ *
+ * It only asks the browser, never the user: `requestPermission` needs a click
+ * (transient user activation), and on page load there is none. Calling it
+ * anyway failed with "User activation is required to request permissions",
+ * and the splash showed that error with no way out. A folder whose permission
+ * is merely due again (`prompt`, the normal state after a browser restart) is
+ * therefore handed to a button; only a missing handle or a refusal is a lost
+ * folder.
+ */
+export type FolderStartupStep = 'open' | 'ask' | 'lost';
+
+export function folderStartupStep(
+  hasHandle: boolean,
+  permission: PermissionState | 'unsupported',
+): FolderStartupStep {
+  if (!hasHandle) return 'lost';
+  if (permission === 'granted' || permission === 'unsupported') return 'open';
+  if (permission === 'prompt') return 'ask';
+  return 'lost';
+}

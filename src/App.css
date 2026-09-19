@@ -16,6 +16,55 @@
   background: var(--bg-secondary, rgba(255, 255, 255, 0.02));
 }
 
+/* The folder permission ask: a sentence and two buttons, not a bare status. */
+.app-splash-ask {
+  max-width: 440px;
+  line-height: 1.5;
+  color: var(--text-primary, #ddd);
+}
+
+.app-splash-ask p {
+  margin: 0 0 10px;
+}
+
+.app-splash-note {
+  font-size: 12px;
+  color: var(--text-secondary, #999);
+}
+
+.app-splash-error {
+  font-size: 12px;
+  color: var(--color-error, #e74c3c);
+}
+
+.app-splash-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.app-splash-primary,
+.app-splash-secondary {
+  border-radius: 4px;
+  padding: 7px 14px;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.app-splash-primary {
+  background: var(--accent, #4a9eff);
+  border: none;
+  color: #fff;
+}
+
+.app-splash-secondary {
+  background: transparent;
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.15));
+  color: var(--text-secondary, #bbb);
+}
+
 .app {
   display: flex;
   height: 100vh;
