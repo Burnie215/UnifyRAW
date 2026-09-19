@@ -104,6 +104,9 @@ export function FirstLaunchModal() {
             <div className="first-launch-option-desc">
               {folderAvailable ? t('firstLaunch.tierFolderDesc') : t('firstLaunch.tierFolderUnavailable')}
             </div>
+            {/* Chrome refuses Documents & co. themselves; saying so up front
+                saves the second pick (see CATALOG_PICKER_OPTIONS). */}
+            {folderAvailable && <div className="first-launch-option-desc">{t('firstLaunch.tierFolderHint')}</div>}
             {folderAvailable && <div className="first-launch-option-badge">{t('firstLaunch.recommended')}</div>}
           </button>
 

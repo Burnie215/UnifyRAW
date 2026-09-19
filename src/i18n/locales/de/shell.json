@@ -41,6 +41,7 @@
     "tierTrialDescMemory": "Dieser Browser kann nichts dauerhaft speichern. Alles, was du machst, ist beim Schließen des Tabs weg.",
     "tierFolder": "Ordner auf diesem Computer",
     "tierFolderDesc": "Der Katalog liegt in einem Ordner, den du wählst — sichtbar im Dateimanager und mitgesichert, wenn du diesen Ordner sicherst. Immer nur ein Gerät und ein Tab dürfen ihn gleichzeitig öffnen.",
+    "tierFolderHint": "Leg dafür einen eigenen Ordner an, etwa „UnifyRAW-Katalog“ in Dokumente. Dokumente, Downloads, Schreibtisch und deinen Benutzerordner selbst lässt der Browser nicht zu.",
     "tierFolderUnavailable": "Braucht Chrome, Edge, Brave oder Opera — Safari und Firefox erlauben Webseiten keinen Zugriff auf Ordner.",
     "tierServer": "Eigener Server",
     "tierServerDescNoAddress": "Bewertungen und Bearbeitungen liegen auf deinem eigenen Server und gleichen sich zwischen mehreren Geräten ab. Dafür brauchst du seine Adresse und ein Konto darauf, und er muss aus dem Internet erreichbar sein — einer, den nur dein Heimnetz sieht, genügt nicht. Die Fotos selbst bleiben auf jedem Gerät.",

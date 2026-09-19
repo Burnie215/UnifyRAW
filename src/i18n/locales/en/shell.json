@@ -41,6 +41,7 @@
     "tierTrialDescMemory": "This browser cannot store anything permanently. Everything you do is gone when the tab closes.",
     "tierFolder": "A folder on this computer",
     "tierFolderDesc": "The catalog sits in a folder you choose — visible in your file manager, and backed up whenever you back that folder up. Only one device and one tab may have it open at a time.",
+    "tierFolderHint": "Create a folder of its own for it, such as “UnifyRAW catalog” inside Documents. The browser does not accept Documents, Downloads, Desktop or your home folder themselves.",
     "tierFolderUnavailable": "Needs Chrome, Edge, Brave or Opera — Safari and Firefox give web pages no access to folders.",
     "tierServer": "Your own server",
     "tierServerDescNoAddress": "Ratings and edits live on a server of your own and stay in step across several devices. You need its address, an account on it, and it has to be reachable from the internet — one only your home network can see will not do. The photos themselves stay on each device.",
