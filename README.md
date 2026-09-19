@@ -2,13 +2,18 @@
 
 **Photo library and RAW editor in the browser. Your sources, no cloud lock-in.**
 
+**[Open the app](https://app.unifyraw.com)** · [Website](https://unifyraw.com) ·
+[Releases](https://github.com/Burnie215/UnifyRAW/releases) · Licence: [AGPL-3.0-only](LICENSE)
+
+![UnifyRAW editor with a landscape photo, histogram, develop controls and filmstrip](docs/images/editor.webp)
+
 UnifyRAW connects the photo sources you already have into one library and develops
 RAW files right in the browser: rate, sort, edit non-destructively, export. Reachable
 from any device with a browser, without Adobe's cloud in the background.
 
-- Website: https://unifyraw.com
-- App (hosted, currently free): https://app.unifyraw.com
-- Licence: [GNU AGPL v3](LICENSE) (`AGPL-3.0-only`)
+The hosted app at [app.unifyraw.com](https://app.unifyraw.com) is free; an account is
+only needed for the optional sync between devices. Or run it yourself - see
+[Secure backend bootstrap](#secure-backend-bootstrap).
 
 Technically it is a React SPA with an optional Express backend, source types
 governed by [one capability table](src/sources/capabilities.ts), a graph-based
@@ -26,6 +31,30 @@ UnifyRAW is a one-person project in an early test phase (alpha).
 | Devices | Optional sync of edits, ratings and collections between devices through a sync hub; optional end-to-end encryption. |
 | Self-hosting | Docker Compose, with HTTPS for the home network included - see [Secure backend bootstrap](#secure-backend-bootstrap). |
 | Price | Free: the hosted instance, and the software itself. |
+
+## A look around
+
+**Bring your own sources.** A local folder, Immich or Lychee: UnifyRAW reads your photos
+where they are instead of importing them into somebody else's storage.
+
+![Annotated source picker with local folder, Immich and Lychee](docs/images/sources.webp)
+
+**One library across all of them.** Cull, filter and rate in one place, with each source
+visible in the sidebar. The originals are never moved.
+
+![Annotated library with the source tree and a grid of photos](docs/images/library.webp)
+
+**Colour tools.** A colour editor and three-way colour grading, rendered with WebGL.
+
+<p>
+  <img src="docs/images/color-editor.webp" width="49%" alt="Colour editor with its hue wheel over a photo">
+  <img src="docs/images/color-grading.webp" width="49%" alt="Colour grading with wheels for shadows, midtones and highlights">
+</p>
+
+**Your workspace.** Float a panel over the photo, dock it left or right, and reorder the
+panels by drag and drop.
+
+![Annotated editor showing a floating panel, a docked panel and reordering](docs/images/panels.webp)
 
 ## Privacy in one paragraph
 
