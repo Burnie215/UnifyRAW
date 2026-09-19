@@ -25,6 +25,20 @@ const BUILD_SOURCE = SOURCE_COMMIT && SOURCE_COMMIT !== 'unknown'
   ? `${SOURCE_COMMIT.slice(0, 12)}${SOURCE_DIRTY ? '+dirty' : ''}`
   : 'unknown'
 
+/**
+ * ES modules that ship as assets (libheif for HEIC, onnxruntime's glue for the
+ * AI denoise) leave the build as .js, not .mjs. Static servers commonly know
+ * .js but not .mjs - nginx 1.31 sent them as application/octet-stream, which
+ * the browser refuses for a module - and a browser that once cached that
+ * answer keeps it for the life of the immutable asset URL, so a changed name is
+ * what reaches it.
+ */
+function moduleAssetsAsJs(asset: { names: string[] }): string {
+  return asset.names.some((name) => name.endsWith('.mjs'))
+    ? 'assets/[name]-[hash].js'
+    : 'assets/[name]-[hash][extname]'
+}
+
 export default defineConfig({
   define: {
     __BUILD_DATE__: JSON.stringify(BUILD_DATE),
@@ -32,6 +46,14 @@ export default defineConfig({
   // Relative asset paths so the bundle works both at `/` (web) and at
   // `capacitor://localhost/` (mobile WebView).
   base: './',
+  build: {
+    rolldownOptions: { output: { assetFileNames: moduleAssetsAsJs } },
+  },
+  // The denoise worker is a bundle of its own and references onnxruntime's
+  // glue itself; the rule above does not reach it.
+  worker: {
+    rolldownOptions: { output: { assetFileNames: moduleAssetsAsJs } },
+  },
   // The bundle and the dev server read the shared sources directly; only
   // Node (backend, tsx) goes through packages/shared/dist.
   resolve: {
